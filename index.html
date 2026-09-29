@@ -1,0 +1,190 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>슈퍼스토리 개발본부 — 프로젝트 보드</title>
+<style>
+  :root{--ink:#1c1c1c;--ink2:#4a4a4a;--ink3:#8a8a8a;--line:#e2ddd4;--bg:#fbfaf7;--card:#fff;--accent:#E8562F;--soft:#f6f2ea;--fill:#fffdf0;
+        --a:#E8562F;--b:#8A5FBF;--c:#2F6FE8;--d:#B8860B;--e:#3d8c4a;}
+  *{box-sizing:border-box;margin:0;padding:0;}
+  body{font-family:'Pretendard','Apple SD Gothic Neo','Noto Sans KR',sans-serif;background:var(--bg);color:var(--ink);line-height:1.6;font-size:13.5px;}
+  .wrap{max-width:1080px;margin:0 auto;padding:40px 26px 90px;}
+  header.doc{border-bottom:3px solid var(--accent);padding-bottom:14px;}
+  header.doc h1{font-size:23px;font-weight:800;letter-spacing:-.5px;}
+  header.doc .sub{color:var(--ink2);margin-top:4px;font-size:13px;}
+  .meta{display:flex;gap:14px;flex-wrap:wrap;font-size:12px;color:var(--ink3);margin-top:8px;}
+  .meta a{color:var(--accent);text-decoration:none;font-weight:700;}
+  h2{font-size:17px;font-weight:800;margin:34px 0 10px;}
+  h2 .n{color:var(--accent);margin-right:6px;}
+  table{width:100%;border-collapse:collapse;font-size:12.5px;margin:8px 0 4px;background:var(--card);}
+  th,td{border:1px solid var(--line);padding:7px 10px;text-align:left;vertical-align:top;}
+  th{background:var(--soft);font-weight:700;white-space:nowrap;}
+  td.date{background:var(--fill);min-width:80px;color:var(--ink3);}
+  .lb{display:inline-block;font-size:10.5px;font-weight:800;padding:1px 8px;border-radius:4px;color:#fff;margin-right:2px;}
+  .lb.A{background:var(--a);} .lb.B{background:var(--b);} .lb.C{background:var(--c);} .lb.D{background:var(--d);} .lb.E{background:var(--e);}
+  .st{white-space:nowrap;font-weight:700;}
+  .todo{color:var(--ink3);}
+  a.doc{color:var(--accent);text-decoration:none;font-weight:700;}
+  .cap{font-size:11.5px;color:var(--ink3);margin:4px 0 0;}
+  .people{display:grid;grid-template-columns:repeat(2,1fr);gap:12px;margin-top:10px;}
+  .person{background:var(--card);border:1px solid var(--line);border-radius:8px;padding:12px 15px;}
+  .person h3{font-size:14px;font-weight:800;margin-bottom:2px;}
+  .person .team{font-size:11px;color:var(--ink3);margin-bottom:8px;}
+  .person .grp{font-size:11px;font-weight:800;color:var(--accent);margin:7px 0 3px;}
+  .person ul{padding-left:16px;margin:0;}
+  .person li{margin-bottom:4px;font-size:12.5px;}
+  .person li .src{color:var(--ink3);font-size:11px;}
+  .legend{font-size:12px;color:var(--ink2);background:var(--card);border:1px solid var(--line);border-radius:8px;padding:10px 14px;margin:14px 0;}
+  footer{margin-top:40px;padding-top:12px;border-top:1px solid var(--line);font-size:11.5px;color:var(--ink3);}
+  @media print{body{background:#fff;} .people{grid-template-columns:repeat(2,1fr);} table,.person{break-inside:avoid;}}
+</style>
+</head>
+<body>
+<div class="wrap">
+
+<header class="doc">
+  <h1>개발본부 프로젝트 보드</h1>
+  <div class="sub">전사 프로젝트 포트폴리오 · 첫 페이지 — 24건 + 인원별 R&amp;R 종합</div>
+  <div class="meta">
+    <span>기준일: 2026-09-29 · v1.0</span>
+    <span>갱신: 신규 즉시 + 목요일 저녁(변경분만) → 금요일 주간회의</span>
+    <span><a href="management_standard.html">관리 기준 1p</a></span>
+    <span style="color:var(--ink3);">■ 음영 칸 = 기입 대기 · "미정(초안)" = 금요일 주간회의 확정 대상</span>
+  </div>
+</header>
+
+<div class="legend">
+  상태: 🟢 진행 · 🟡 대기(팔로업 날짜 필수) · ⚪ 휴면 · ✅ 종료 &nbsp;|&nbsp; 분류: <span class="lb A">A</span>동화·앱 <span class="lb B">B</span>IP·콘텐츠 <span class="lb C">C</span>메인 개발 <span class="lb D">D</span>사업(제안·PoC) <span class="lb E">E</span>계약·인프라
+</div>
+
+<h2><span class="n">1.</span> 프로젝트 리스트 (24)</h2>
+<table>
+  <tr><th style="width:4%"></th><th style="width:21%">프로젝트</th><th style="width:7%">상태</th><th style="width:13%">오너 / 백업·확인</th><th style="width:33%">다음 액션</th><th style="width:9%">팔로업</th><th>상세</th></tr>
+
+  <tr><td><span class="lb A">A</span></td><td><b>신데렐라 앱</b></td><td class="st">🟢 진행</td><td>이상훈 / 안국주 · 변 본부장</td><td>v1.3.1 교체 제출(9/30, 통과 목표 10/8) → 퀄리티업 진행 → <b>런칭 결정(대표 승인) 대기</b> · iOS v1.3.1 제출(~10/2, 2.1(b) 회신 포함)</td><td class="date">■</td><td><a class="doc" href="cinderella_rnr_milestones.html">R&amp;R·마일스톤</a></td></tr>
+  <tr><td><span class="lb A">A</span></td><td>후속 동화 4종</td><td class="st">🟡 대기</td><td>미정 / 전병모</td><td>신데렐라 안정화(M6) 후 착수 판단 — 1종 리드타임 산정. 4종(빨간 모자·아기 돼지 삼형제·브레멘 음악대·헨젤과 그레텔) 교육방침·스토리보드·연출 구성 기확보</td><td class="date">■</td><td><span class="todo">승격 시 작성</span><br><a class="doc" href="https://playbook-sequence-dashboard.vercel.app/" target="_blank" rel="noopener">4종 시퀀스 대시보드</a></td></tr>
+  <tr><td><span class="lb A">A</span></td><td>간니닌니 동화책</td><td class="st">🟢 진행</td><td>미정</td><td><b>제작 트랙(유니티/메이커) 확정</b> — 계약 완료 상태로 트랙 미정</td><td class="date">■</td><td class="todo">승격 시 작성</td></tr>
+  <tr><td><span class="lb A">A</span></td><td>그레이트북스</td><td class="st">🟢 진행</td><td>미정</td><td>계약 범위·산출물 확인 → 제작 트랙 결정</td><td class="date">■</td><td class="todo">승격 시 작성</td></tr>
+
+  <tr><td><span class="lb B">B</span></td><td><b>어린왕자 80주년 (b612)</b></td><td class="st">🟢 진행</td><td>홍수화·안국주(개발, 초안)</td><td>본편 제작 진행 · 뉴플레이 결제 연동 준비</td><td class="date">■</td><td><span class="todo">R&amp;R 작성 대상</span><br><a class="doc" href="https://little-prince-hub.vercel.app/" target="_blank" rel="noopener">프로젝트 허브</a></td></tr>
+  <tr><td><span class="lb B">B</span></td><td>네이버 레드 샘플</td><td class="st">🟢 진행</td><td>이규선·유성현 (분절)</td><td><b>분절 완료(9/28)</b> → 다음 공정 착수 + 수위·사운드 방향 결정</td><td class="date">■</td><td class="todo">—</td></tr>
+  <tr><td><span class="lb B">B</span></td><td>러브룰렛 「모니터룸」 FMV</td><td class="st">🟢 진행</td><td>미정</td><td>유니티 스팀 빌드 개발 진행 — 다음 마일스톤 정의. 웹 프로토타입 공개</td><td class="date">■</td><td><span class="todo">R&amp;R 작성 예정</span><br><a class="doc" href="https://love-roulette-monitor.vercel.app/" target="_blank" rel="noopener">프로토타입</a></td></tr>
+  <tr><td><span class="lb B">B</span></td><td>퀵게임 게임팩토리</td><td class="st">🟢 진행</td><td>전병모(초안)</td><td>9/15 결정 후속 액션 실행 — 1호 타이틀 선정</td><td class="date">■</td><td class="todo">—</td></tr>
+
+  <tr><td><span class="lb C">C</span></td><td><b>PlayToon Maker</b></td><td class="st">🟢 진행</td><td>안국주·홍수화 (Jira)</td><td>버전 로드맵 진행 · FGT — 플레이북 마스터 스펙 포함</td><td class="date">■</td><td><span class="todo">R&amp;R 작성 대상</span><br><span class="todo">세부 태스크 = Jira</span></td></tr>
+  <tr><td><span class="lb C">C</span></td><td>결 (GYEOL) — 학습형 AI</td><td class="st">🟢 진행</td><td>이순형 · 전병모</td><td>Maker V2.5 AI 레이어 + 학습형 AI 통합 설계</td><td class="date">■</td><td class="todo">작성 대상</td></tr>
+  <tr><td><span class="lb C">C</span></td><td>Spine 내재화 (Maker V3)</td><td class="st">🟢 진행</td><td>미정</td><td>자체 스켈레탈 엔진 R&amp;D — 단계 정의</td><td class="date">■</td><td class="todo">—</td></tr>
+  <tr><td><span class="lb C">C</span></td><td>컨슈머 관리 플랫폼<br><span style="font-size:11px;color:var(--ink3);">슈퍼스토리 IP 제품 유통·정산 관리</span></td><td class="st">🟢 진행</td><td>이순형</td><td><b>완료 대상</b> — 플랫폼·작품 관리 고도화, 권한 세분화·내부 운영 접근 통제, 가입·비밀번호 재설정 통합, 도메인 연동·배포 환경 구성 완료 → 마무리·운영 투입</td><td class="date">■</td><td class="todo">—</td></tr>
+  <tr><td><span class="lb C">C</span></td><td>플레이툰 어드민 웹</td><td class="st">✅ 완료</td><td>전병모 · 이순형</td><td>완료 — RBAC·IA·DB 갭 분석 포함</td><td>—</td><td class="todo">—</td></tr>
+  <tr><td><span class="lb C">C</span></td><td>워크스페이스 웹</td><td class="st">✅ 완료</td><td>전병모 · 이순형</td><td>완료 — URL 구조·화면 플로우 정의</td><td>—</td><td class="todo">—</td></tr>
+
+  <tr><td><span class="lb D">D</span></td><td>넷플릭스 어린왕자 제안</td><td class="st">🟡 대기</td><td>전병모 · 박인성</td><td>제안 PPT·영상 작성 완료 → 회신 대기 (무응답 시 재접촉 판단)</td><td class="date">■</td><td class="todo">—</td></tr>
+  <tr><td><span class="lb D">D</span></td><td>넷플릭스 플레이그라운드 신데렐라</td><td class="st">🟡 대기</td><td>전병모 · 박인성</td><td>제안 PPT·영상 작성 완료 → 회신 대기 (무응답 시 재접촉 판단)</td><td class="date">■</td><td class="todo">—</td></tr>
+  <tr><td><span class="lb D">D</span></td><td>템플스테이 월정사 PoC</td><td class="st">🟡 대기</td><td>이현석(사업, 초안) / 박인성(제작)</td><td>PoC 샘플 제작 완료(박인성)·공유 → 총무원장 선거 결과 확인 후 계약 절차 재개</td><td class="date">■</td><td class="todo">—</td></tr>
+  <tr><td><span class="lb D">D</span></td><td>샘터 PoC</td><td class="st">✅ 완료</td><td>박인성 / 유성현</td><td>2작품 제작·납품 완료(9/16경) — 지하철 편(박인성)·야구 편(유성현). 후속 피드백 확인</td><td class="date">■</td><td class="todo">—</td></tr>
+  <tr><td><span class="lb D">D</span></td><td>WYD 2027 서울</td><td class="st">🟡 대기</td><td>이현석(초안)</td><td>담당 신부님 검토 회신 팔로업</td><td class="date">■</td><td class="todo">—</td></tr>
+  <tr><td><span class="lb D">D</span></td><td>방산 교육 콘텐츠</td><td class="st">🟡 대기</td><td>이현석(초안)</td><td>2개처 검토 회신 팔로업</td><td class="date">■</td><td class="todo">—</td></tr>
+  <tr><td><span class="lb D">D</span></td><td>BTL·팬미팅·브랜드 확장</td><td class="st">⚪ 휴면</td><td>미정</td><td>구상 단계 — 트리거 발생 시 D 승격</td><td class="date">—</td><td class="todo">—</td></tr>
+  <tr><td><span class="lb D">D</span></td><td>아이스크림 (교육)</td><td class="st">🟢 진행</td><td>미정</td><td>회신 발송 → 미팅 여부 확인</td><td class="date">■</td><td class="todo">—</td></tr>
+
+  <tr><td><span class="lb E">E</span></td><td>뉴플레이 결제 계약</td><td class="st">🟢 진행</td><td>미정</td><td>국내 제외 협상 마무리 → 어린왕자 연동 일정 합류</td><td class="date">■</td><td class="todo">—</td></tr>
+  <tr><td><span class="lb E">E</span></td><td>superstory.com 홈페이지</td><td class="st">🟢 진행</td><td>전병모</td><td>구축 진행 — storynmics 흡수 반영</td><td class="date">■</td><td class="todo">—</td></tr>
+</table>
+<p class="cap">⚪ 휴면 비공개 건 1건 별도 관리 중 (보드 외 표기 원칙 — 관리 기준 2장).</p>
+
+<h2><span class="n">2.</span> 인원별 R&amp;R 종합 (8명)</h2>
+<p class="cap" style="margin-bottom:8px;">아래는 위 보드·마일스톤에서 <b>파생</b>된 현재 상태다 (관리 기준 4장). 마일스톤 날짜가 기입되면 "담당 중/임박" 구분이 날짜 기준으로 자동 갱신된다. ☐ = 담당 프로젝트 미배정(회의 확정 대상).</p>
+<div class="people">
+  <div class="person">
+    <h3>전병모</h3><div class="team">총괄</div>
+    <div class="grp">담당 중</div>
+    <ul>
+      <li>신데렐라 — 총괄·정책 문서 오너 <span class="src">(M4·M6)</span></li>
+      <li>결(GYEOL) — 학습형 AI 공동</li>
+      <li>퀵게임 게임팩토리 — 전략 (초안)</li>
+      <li>superstory.com 홈페이지 · 프로젝트 보드 운영</li>
+    </ul>
+    <div class="grp">최근 완료</div>
+    <ul>
+      <li>플레이툰 어드민 웹 · 워크스페이스 웹 (이순형 공동)</li>
+      <li>넷플릭스 제안 2건 PPT·영상 (박인성 공동)</li>
+    </ul>
+  </div>
+  <div class="person">
+    <h3>이상훈</h3><div class="team">개발팀</div>
+    <div class="grp">담당 중</div>
+    <ul>
+      <li>신데렐라 — 주 개발(Owner): 출시 <span class="src">(M1~M3)</span> · 버전 정책 구현 <span class="src">(M7~M9, 후속 착수 시)</span></li>
+      <li>신데렐라 — SETUP 문서 작성(백업 인수인계) <span class="src">(M5)</span></li>
+    </ul>
+    <div class="grp">임박</div>
+    <ul><li>Android 심사 결과 대응 · M1~M9 날짜 산정</li></ul>
+  </div>
+  <div class="person">
+    <h3>안국주</h3><div class="team">개발팀</div>
+    <div class="grp">담당 중</div>
+    <ul>
+      <li>PlayToon Maker — 데이터/엔진 <span class="src">(Jira)</span></li>
+      <li>신데렐라 — 백업 개발: 온보딩·리뷰 <span class="src">(M5 온보딩 10/1~10/7, M7~M9 확인)</span></li>
+      <li>어린왕자 b612 — 개발 (초안)</li>
+    </ul>
+  </div>
+  <div class="person">
+    <h3>홍수화</h3><div class="team">개발팀</div>
+    <div class="grp">담당 중</div>
+    <ul>
+      <li>PlayToon Maker — 에디터/UX <span class="src">(Jira)</span></li>
+      <li>어린왕자 b612 — 개발 (초안)</li>
+    </ul>
+  </div>
+  <div class="person">
+    <h3>이순형</h3><div class="team">개발팀</div>
+    <div class="grp">담당 중</div>
+    <ul>
+      <li>결(GYEOL) — 학습형 AI 구축 (전병모 공동)</li>
+      <li>신데렐라 — 스토어 폼 개발측 (박선희 공동) <span class="src">(M4 ✅)</span></li>
+    </ul>
+    <div class="grp">임박</div>
+    <ul><li>컨슈머 관리 플랫폼(IP 유통·정산 관리) — 완료 마무리·운영 투입</li></ul>
+    <div class="grp">최근 완료</div>
+    <ul><li>플레이툰 어드민 웹 · 워크스페이스 웹 (전병모 공동)</li></ul>
+  </div>
+  <div class="person">
+    <h3>박인성</h3><div class="team">그래픽팀 · 팀장</div>
+    <div class="grp">담당 중</div>
+    <ul>
+      <li>신데렐라 — 디자인 기획·애니메이션 총괄</li>
+      <li>플레이북 디자인 총괄</li>
+    </ul>
+    <div class="grp">최근 완료</div>
+    <ul>
+      <li>샘터 PoC — 지하철 편 제작·납품 (9/16경)</li>
+      <li>템플스테이 월정사 PoC — 샘플 제작</li>
+      <li>넷플릭스 제안 2건 PPT·영상 (전병모 공동)</li>
+    </ul>
+  </div>
+  <div class="person">
+    <h3>이규선</h3><div class="team">그래픽팀</div>
+    <div class="grp">담당 중</div>
+    <ul>
+      <li>신데렐라 — Spine·애니메이션 작업</li>
+      <li>네이버 레드 샘플 — 분절 (유성현 공동, 9/28 완료)</li>
+    </ul>
+  </div>
+  <div class="person">
+    <h3>유성현</h3><div class="team">그래픽팀 · 신규</div>
+    <div class="grp">담당 중</div>
+    <ul><li>네이버 레드 샘플 — 분절 (이규선 공동, 9/28 완료)</li></ul>
+    <div class="grp">최근 완료</div>
+    <ul><li>샘터 PoC — 야구 편 제작·납품 (9/16경)</li></ul>
+  </div>
+</div>
+
+<footer>
+  © 2026 SuperStory 개발본부 — 내부용. 이 보드가 전 프로젝트 상태의 단일 출처다. 갱신: 전병모 + Claude · 세부 태스크는 Jira(안국주·홍수화) — <a href="management_standard.html" style="color:var(--accent);">관리 기준 1p</a>
+</footer>
+
+</div>
+</body>
+</html>

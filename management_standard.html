@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>슈퍼스토리 개발본부 — 프로젝트 관리 기준 (1p)</title>
+<style>
+  :root{--ink:#1c1c1c;--ink2:#4a4a4a;--ink3:#8a8a8a;--line:#e2ddd4;--bg:#fbfaf7;--card:#fff;--accent:#E8562F;--soft:#f6f2ea;}
+  *{box-sizing:border-box;margin:0;padding:0;}
+  body{font-family:'Pretendard','Apple SD Gothic Neo','Noto Sans KR',sans-serif;background:var(--bg);color:var(--ink);line-height:1.7;font-size:14px;}
+  .wrap{max-width:880px;margin:0 auto;padding:40px 26px 80px;}
+  header.doc{border-bottom:3px solid var(--accent);padding-bottom:14px;}
+  header.doc h1{font-size:22px;font-weight:800;letter-spacing:-.5px;}
+  header.doc .sub{color:var(--ink2);margin-top:4px;font-size:13px;}
+  .meta{display:flex;gap:12px;flex-wrap:wrap;font-size:12px;color:var(--ink3);margin-top:8px;}
+  .meta a{color:var(--accent);text-decoration:none;font-weight:700;}
+  .principle{background:var(--card);border:1px solid var(--line);border-left:4px solid var(--accent);border-radius:8px;padding:13px 17px;margin:20px 0;font-size:13.5px;}
+  h2{font-size:16.5px;font-weight:800;margin:30px 0 8px;}
+  h2 .n{color:var(--accent);margin-right:6px;}
+  table{width:100%;border-collapse:collapse;font-size:12.5px;margin:8px 0 4px;background:var(--card);}
+  th,td{border:1px solid var(--line);padding:7px 10px;text-align:left;vertical-align:top;}
+  th{background:var(--soft);font-weight:700;white-space:nowrap;}
+  ul{padding-left:20px;margin:6px 0 10px;}
+  li{margin-bottom:7px;}
+  .cap{font-size:11.5px;color:var(--ink3);margin-top:4px;}
+  footer{margin-top:36px;padding-top:12px;border-top:1px solid var(--line);font-size:11.5px;color:var(--ink3);}
+  @media print{body{background:#fff;font-size:12.5px;} .wrap{padding:10mm 8mm;} h2{break-after:avoid;} table{break-inside:avoid;}}
+</style>
+</head>
+<body>
+<div class="wrap">
+
+<header class="doc">
+  <h1>프로젝트 관리 기준</h1>
+  <div class="sub">SuperStory 개발본부 · 전사 프로젝트 포트폴리오 운영 규칙 (1p)</div>
+  <div class="meta">
+    <span>v1.0 · 제정 2026-09-29</span>
+    <span>적용 범위: 개발본부가 관여하는 전 프로젝트</span>
+    <span><a href="./">→ 프로젝트 보드 (첫 페이지)</a></span>
+  </div>
+</header>
+
+<div class="principle">
+  <b>목적</b> — 인력은 작고 프로젝트는 짧게 계속 생기는 구조에서, "얘기됐던 것이 잊혀지는" 누수를 막는다. 원칙은 세 가지: <b>① 이름이 붙는 순간 등록한다 ② 삭제하지 않고 휴면시킨다 ③ 사람별 R&amp;R은 입력하지 않고 파생시킨다.</b> 이 기준은 도구에 독립적이다 — 지금은 보드(웹 페이지)로 운영하고, 팀 직접 편집이 필요해지는 시점에 이 기준을 그대로 들고 도구를 옮긴다.
+</div>
+
+<h2><span class="n">1.</span> 등록 기준 — 이름이 붙으면 등록한다</h2>
+<ul>
+  <li>대화·회의·메일에서 프로젝트성 일에 <b>이름이 붙는 순간</b> 보드에 등록한다. 한 줄짜리 구상이어도 등록한다 — 잊혀지는 프로젝트의 대부분은 판단 이전에 <b>등록 자체가 안 된 것</b>이다.</li>
+  <li>등록 비용은 1분, 5개 필드: <b>이름 · 분류(A~E) · 오너 · 다음 액션 · 팔로업 날짜.</b> 모르는 칸은 "미정"으로 두고 등록을 미루지 않는다.</li>
+  <li>등록 판단이 애매하면 등록한다. 지우는 건 쉽고, 잊힌 걸 되살리는 건 어렵다.</li>
+</ul>
+<table>
+  <tr><th style="width:12%">분류</th><th>정의</th></tr>
+  <tr><td>A</td><td>동화·앱 라인 — 자사 단독 콘텐츠 앱 (유니티 트랙)</td></tr>
+  <tr><td>B</td><td>IP·콘텐츠 사업 — 자사/계약 IP 기반 제작·사업화</td></tr>
+  <tr><td>C</td><td>메인 개발 — 플랫폼·제품·R&amp;D (Maker 축)</td></tr>
+  <tr><td>D</td><td>사업 — 제안·PoC·회신 대기 (인입의 기본 입구)</td></tr>
+  <tr><td>E</td><td>계약·인프라 — 파트너 계약, 회사 웹, 정책 문서</td></tr>
+</table>
+
+<h2><span class="n">2.</span> 수명주기 — 삭제는 없다</h2>
+<table>
+  <tr><th style="width:14%">상태</th><th>정의 · 전이 규칙</th></tr>
+  <tr><td>🟢 진행</td><td>오너와 다음 액션이 살아 있는 상태</td></tr>
+  <tr><td>🟡 대기</td><td>상대 회신·외부 이벤트를 기다리는 상태 — <b>반드시 팔로업 날짜를 가진다.</b> D라인의 기본 상태</td></tr>
+  <tr><td>⚪ 휴면</td><td>팔로업 날짜에 움직임이 없으면 휴면으로 내린다(삭제 금지). 수면 아래 유지가 전략인 건(비공개 건)도 휴면으로 분류하고 보드 하단에만 표기</td></tr>
+  <tr><td>✅ 종료</td><td>완료 또는 공식 드랍 — 한 줄 사유와 함께 종료 목록으로 이동</td></tr>
+</table>
+<ul>
+  <li><b>인입</b>: 신규 건은 원칙적으로 D라인으로 들어온다 (문의·구상·제안 단계).</li>
+  <li><b>승격</b>: 계약 체결 또는 제작 착수 확정 시 A/B/C로 승격하고, 그 시점에 <b>오너·마일스톤 문서(신데렐라 양식)</b>를 붙인다.</li>
+</ul>
+
+<h2><span class="n">3.</span> 갱신 리듬 — 매일이 아니라 변경 시 + 주 1회</h2>
+<ul>
+  <li><b>신규 인입</b>: 생기는 즉시 1분 등록 (모모 → Claude 한 줄 지시로 반영).</li>
+  <li><b>정기 갱신</b>: <b>목요일 저녁, 변경분만 갱신</b>(전병모 → Claude 반영) → <b>금요일 주간회의</b> 안건 1번은 "보드 훑기" — 특히 🟡 대기 건의 팔로업 날짜 도래 여부.</li>
+  <li><b>일 단위 이력</b>: 손 입력하지 않는다. 주간 스냅샷(보드 상태를 날짜 찍어 보관)으로 대체한다.</li>
+</ul>
+
+<h2><span class="n">4.</span> 사람별 R&amp;R — 입력하지 않고 파생시킨다</h2>
+<ul>
+  <li>개인의 "오늘의 R&amp;R"은 별도로 쓰지 않는다. 두 소스에서 자동으로 모인다:
+    <b>① 마일스톤 구간</b> — 각 프로젝트 마일스톤의 (담당자, 시작일~목표일)에 오늘이 걸리면 그 사람 칸에 표시,
+    <b>② 단발 건</b> — 구간이 없는 일(팔로업·단발 태스크)은 날짜 하나로 등록되어 해당일에 표시.</li>
+  <li>개인 뷰는 2단으로 본다: <b>담당 중</b>(오늘이 구간에 걸린 것 = 요즘 맡은 일) / <b>임박</b>(이번 주 목표일·팔로업이 도래하는 것 = 지금 급한 일).</li>
+  <li>따라서 마일스톤에는 <b>시작일과 목표일</b>이 모두 있어야 한다. 목표일만 있는 마일스톤은 날짜 산정 시 시작일을 함께 기입한다.</li>
+</ul>
+
+<h2><span class="n">5.</span> 레이어 구분 — 보드와 지라의 역할</h2>
+<table>
+  <tr><th style="width:22%">레이어</th><th style="width:30%">도구 · 관리자</th><th>담는 것</th></tr>
+  <tr><td>포트폴리오 (이 보드)</td><td>웹 보드 — 전병모 + Claude 갱신</td><td>전 프로젝트의 분류·상태·오너·다음 액션·팔로업. 대표 보고·주간 회의의 단일 출처</td></tr>
+  <tr><td>실행 (태스크)</td><td>Jira — 안국주·홍수화 관리 (현행 유지)</td><td>마일스톤 아래 세부 태스크·버그. 보드는 지라를 대체하지 않는다</td></tr>
+  <tr><td>상세 문서</td><td>프로젝트별 R&amp;R·마일스톤 페이지 (신데렐라 양식)</td><td>승격된 프로젝트의 담당/백업/검증·마일스톤·완료 판정 기준</td></tr>
+</table>
+<p class="cap">구두 변경 금지 — 상태·날짜의 단일 출처는 보드이며, 변경은 보드 갱신으로 성립한다.</p>
+
+<footer>
+  © 2026 SuperStory 개발본부 — 내부용. 본 기준의 개정은 금요일 주간회의에서 합의 후 v를 올린다.
+</footer>
+
+</div>
+</body>
+</html>
