@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>러브룰렛 「모니터룸」 FMV — 담당·R&R·마일스톤·유입 전략</title>
+<style>
+  :root{--ink:#1c1c1c;--ink2:#4a4a4a;--ink3:#8a8a8a;--line:#e2ddd4;--bg:#fbfaf7;--card:#fff;--accent:#E8562F;--soft:#f6f2ea;--fill:#fffdf0;}
+  *{box-sizing:border-box;margin:0;padding:0;}
+  body{font-family:'Pretendard','Apple SD Gothic Neo','Noto Sans KR',sans-serif;background:var(--bg);color:var(--ink);line-height:1.65;font-size:14px;}
+  .wrap{max-width:920px;margin:0 auto;padding:40px 26px 80px;}
+  header.doc{border-bottom:3px solid var(--accent);padding-bottom:14px;}
+  header.doc h1{font-size:22px;font-weight:800;letter-spacing:-.5px;}
+  header.doc .sub{color:var(--ink2);margin-top:4px;font-size:13px;}
+  .meta{display:flex;gap:12px;flex-wrap:wrap;font-size:12px;color:var(--ink3);margin-top:8px;}
+  .why{background:var(--card);border:1px solid var(--line);border-left:4px solid var(--accent);border-radius:8px;padding:12px 16px;margin:18px 0;font-size:13px;color:var(--ink2);}
+  h2{font-size:16.5px;font-weight:800;margin:30px 0 8px;}
+  h2 .n{color:var(--accent);margin-right:6px;}
+  table{width:100%;border-collapse:collapse;font-size:12.5px;margin:8px 0 4px;background:var(--card);}
+  th,td{border:1px solid var(--line);padding:7px 10px;text-align:left;vertical-align:top;}
+  th{background:var(--soft);font-weight:700;white-space:nowrap;}
+  td.date{background:var(--fill);min-width:88px;color:var(--ink3);}
+  .cap{font-size:11.5px;color:var(--ink3);margin-bottom:10px;}
+  ul{padding-left:20px;margin:6px 0 10px;}
+  li{margin-bottom:6px;}
+  .tag{display:inline-block;font-size:10.5px;font-weight:700;padding:1px 8px;border-radius:99px;color:#fff;background:var(--accent);margin-left:4px;vertical-align:1px;}
+  .tag.g{background:#3d8c4a;} .tag.b{background:#4A7A8C;}
+  footer{margin-top:36px;padding-top:12px;border-top:1px solid var(--line);font-size:11.5px;color:var(--ink3);}
+  @media print{body{background:#fff;font-size:12.5px;} .wrap{padding:10mm 8mm;} h2{break-after:avoid;} table{break-inside:avoid;}}
+</style>
+</head>
+<body>
+<div class="wrap">
+
+<header class="doc">
+  <h1>러브룰렛 「모니터룸」 FMV — 담당 · R&amp;R · 마일스톤</h1>
+  <div class="sub">Love Roulette Change · Steam FMV 게임 · 제작·유입 운영 체제 (초안)</div>
+  <div class="meta">
+    <span>작성: 2026-09-30 · 개발본부</span>
+    <span>분류: B라인 (IP·콘텐츠) · <a href="./" style="color:var(--accent);text-decoration:none;font-weight:700;">← 프로젝트 보드</a></span>
+    <span>상태: 기획서 v0.3.4·웹 프로토타입 완료(9/16~9/22) · 유니티 클립 교체형 구조 개발 착수 · 영상 소스 수령일 미정</span>
+    <span>자료: <a href="https://love-roulette-monitor.vercel.app/" target="_blank" rel="noopener" style="color:var(--accent);text-decoration:none;font-weight:700;">프로토타입 ↗</a> · <span id="link-plan"><a href="files/love_roulette_monitor_room_plan_v0.3.4.docx" download style="color:var(--accent);text-decoration:none;font-weight:700;">게임 기획서 v0.3.4 (docx) ↓</a></span> · <span id="link-data"><a href="files/love_roulette_calltype_catalog_v1.1.xlsx" download style="color:var(--accent);text-decoration:none;font-weight:700;">콜 타입 카탈로그 v1.1 (xlsx) ↓</a></span></span>
+  </div>
+</header>
+
+<div class="why">
+  <b>배경</b> — 자사 연애 리얼리티 영상 IP 「러브룰렛」(OTT·TV 방송용 제작물)의 촬영본을 활용해, 플레이어가 <b>모니터룸</b>에서 출연자들을 지켜보고 선택하는 Steam FMV 게임으로 만든다. 엔진은 유니티(9/17 결정 — Maker 대비 제작 속도 우위). 퀵게임 게임팩토리 전략의 자체 제작 1호 성격이며, <b>게임 완성도만큼 "어떻게 발견되게 할 것인가"가 성패를 가르는 장르</b>라 유입 전략(3장)을 제작 마일스톤과 같은 문서에서 관리한다.
+</div>
+
+<h2><span class="n">1.</span> R&amp;R</h2>
+<table>
+  <tr><th style="width:22%">역할</th><th style="width:22%">담당</th><th>책임 범위</th></tr>
+  <tr><td>총괄 · 게임 기획 <span class="tag">Owner</span></td><td>전병모</td><td>기획서(「모니터룸」 v0.3.4)·콜 타입 카탈로그 · 웹 프로토타입 · 일정 소유</td></tr>
+  <tr><td>영상 소스 편집</td><td>전병모</td><td>수령한 영상 소스 선별·컷 편집·게임용 분기 클립 제작 — 장기 공정</td></tr>
+  <tr><td>유니티 개발 <span class="tag b">Dev</span></td><td>안국주 팀장 (개발팀)</td><td>기획서에 맞춘 <b>클립 교체형 구조</b> — 영상 클립만 바꿔 끼우면 동작하는 틀을 먼저 개발(임시 클립으로 검증)</td></tr>
+  <tr><td>UI · 아트</td><td>그래픽팀</td><td>모니터룸 UI, 스토어 캡슐 이미지·키아트 — 팀 내 담당자 배정 필요</td></tr>
+  <tr><td>Steam 운영</td><td class="date">■ 미정</td><td>Steamworks 계정·스토어 페이지·빌드 업로드·이벤트 등록</td></tr>
+  <tr><td>유입 · 크리에이터 담당</td><td class="date">■ 미정</td><td>3장 채널 실행 — 숏폼 운영, 스트리머 섭외, UTM 추적</td></tr>
+  <tr><td>QA · 현지화</td><td class="date">■ 미정</td><td>분기 전수 플레이 확인, 자막(EN/JA/ZH 등) 품질</td></tr>
+</table>
+<p class="cap">구조 원칙: 영상 소스 수령일이 정해지지 않았으므로 <b>개발(구조)과 콘텐츠(영상)를 분리</b>한다. 안국주 팀장이 틀을 먼저 완성하고, 영상은 편집되는 대로 클립 단위로 교체 투입한다 — 영상이 늦어도 개발은 멈추지 않는다.</p>
+
+<h2><span class="n">2.</span> 마일스톤 <span style="font-weight:400;font-size:12.5px;color:var(--ink3);">— 날짜 칸은 날짜만, 산정 규칙은 판정란 [기준:] 태그 · M3 이후 날짜 산정 대상</span></h2>
+<table>
+  <tr><th style="width:5%">#</th><th style="width:25%">마일스톤</th><th style="width:9%">시작일</th><th style="width:9%">목표일</th><th style="width:14%">담당 / 확인</th><th>완료 판정 기준</th></tr>
+  <tr><td>M1</td><td>게임 기획서 <span style="color:#3d8c4a;font-weight:800;">✅</span></td><td>9/16</td><td>9/22</td><td>전병모</td><td><b>완료</b> — 「모니터룸」 기획서(현재 v0.3.4) + 콜 타입 카탈로그 v1.1(13종 판단 타입, 장면 카드·정답 데이터 저작 스키마). 이후 변경은 버전 올려 기록</td></tr>
+  <tr><td>M2</td><td>웹 프로토타입 <span style="color:#3d8c4a;font-weight:800;">✅</span></td><td>9/16</td><td>9/22</td><td>전병모</td><td><b>완료</b> — love-roulette-monitor.vercel.app 공개, 핵심 루프 검증</td></tr>
+  <tr><td>M3</td><td>유니티 클립 교체형 구조 개발</td><td class="date">■</td><td class="date">■</td><td>안국주 / 전병모</td><td><b>[기준: 영상 소스 수령과 무관하게 선행]</b> 기획서 분기 구조대로 임시 클립으로 끝까지 플레이 가능 + 클립 파일 교체만으로 반영되는 것 확인</td></tr>
+  <tr><td>M4</td><td>영상 소스 수령</td><td>—</td><td class="date">■ 미정</td><td>전병모</td><td>외부 의존 — 수령일 확정 시 기입. 이 날짜가 M5 시작일</td></tr>
+  <tr><td>M5</td><td>영상 소스 편집 · 클립 투입</td><td class="date">M4 수령일</td><td class="date">■</td><td>전병모 / 안국주</td><td><b>[기준: 수령 후 착수, 장기 공정]</b> 편집 완료 클립을 M3 구조에 순차 교체 — 에피소드 단위로 완료 체크</td></tr>
+  <tr><td>M6</td><td>Steam 스토어 페이지(Coming Soon) 오픈</td><td class="date">■</td><td class="date">■</td><td>■ / 전병모</td><td><b>[기준: 가능한 한 이르게 — 위시리스트 누적의 시작점]</b> 캡슐·트레일러(그래픽팀)·태그(FMV·Dating Sim·Interactive Fiction) 완비. 트레일러 영상 확보 방법 결정 필요</td></tr>
+  <tr><td>M7</td><td>데모 빌드 (1개 에피소드)</td><td class="date">■</td><td class="date">■</td><td>안국주·전병모 / ■</td><td>1개 에피소드 분량 완결 플레이 — Steam 데모로 배포</td></tr>
+  <tr><td>M8</td><td>크리에이터 1차 공개 (데모 선공개)</td><td class="date">■</td><td class="date">■</td><td>■ / 전병모</td><td>스트리머·유튜버 1차 배포, 채널별 UTM 링크로 유입 측정 시작</td></tr>
+  <tr><td>M9</td><td>Steam Next Fest 참가</td><td class="date">■</td><td class="date">■</td><td>■ / 전병모</td><td><b>[기준: 출시 직전 회차 1회만 — 참가는 게임당 1회]</b> 참가 전 위시리스트 2,000+ 확보 목표</td></tr>
+  <tr><td>M10</td><td>정식 출시</td><td class="date">■</td><td class="date">■</td><td>전병모 / ■</td><td>블랭크 — M9 결과 보고 확정</td></tr>
+</table>
+<p class="cap">의존: M3(구조)는 지금 바로 진행 / M5(편집)는 M4(소스 수령)에 묶임 / M6(스토어)은 예고편 등 보유 소스로 M4를 기다리지 않고 열 수 있음. 가장 긴 공정은 M5.</p>
+
+<h2><span class="n">3.</span> Steam FMV 유입 전략 — 채널 정리</h2>
+<p class="cap" style="margin-bottom:6px;">원칙: Steam 자체가 주 채널이고, 바깥 채널은 전부 <b>Steam 스토어 페이지로 사람을 보내 위시리스트를 쌓는 역할</b>이다. 행사(Next Fest)는 이미 가진 관심을 증폭할 뿐 처음부터 만들어 주지 않는다.</p>
+<table>
+  <tr><th style="width:4%">#</th><th style="width:18%">채널</th><th style="width:32%">역할 · 근거</th><th>「모니터룸」 적용</th></tr>
+  <tr><td>1</td><td><b>Steam 스토어 페이지</b><br>(Coming Soon)</td><td>PC 게임 판매의 대부분이 Steam에서 일어남. 페이지를 일찍 열어야 위시리스트가 쌓이기 시작하고, 외부 유입의 도착지가 됨</td><td>M6을 최대한 앞당김 — 예고편·로고 보유분으로 선오픈. FMV·Dating Sim 태그 정확히, 캡슐 이미지는 출연자 얼굴 클로즈업 중심</td></tr>
+  <tr><td>2</td><td><b>스트리머 · 유튜버</b><br>(가장 강력)</td><td>FMV 연애 장르 최대 흥행작 「Love Is All Around」(중국, 2023)는 빌리빌리 크리에이터 플레이 영상으로 폭발 — 관련 해시태그 조회 13억 회+. 선택지 반응을 보는 재미가 방송 콘텐츠로 직결되는 장르</td><td>국내: 치지직·SOOP·유튜브 스트리머 / 해외: Twitch·YouTube. "시청자 투표로 선택" 모드 검토 — 방송 친화 기능이 곧 마케팅</td></tr>
+  <tr><td>3</td><td><b>숏폼</b><br>(쇼츠·틱톡·릴스)</td><td>실사 영상이라 게임 화면이 그대로 클립이 됨 — 다른 장르보다 제작 비용이 낮음</td><td>보유 촬영본으로 "당신이라면 누구를 고를까?" 선택형 숏폼 연재 → 스토어 링크</td></tr>
+  <tr><td>4</td><td><b>원작 IP 시청자 · 출연진</b></td><td>이미 방송을 본 시청자는 설명 없이 반응하는 1차 타깃</td><td>방송·OTT 채널 공지, 출연진 SNS 공동 홍보(계약 범위 확인 필요)</td></tr>
+  <tr><td>5</td><td><b>데모</b></td><td>좋은 데모는 플레이어의 12~20%를 위시리스트로 전환(공개 설문 중앙값 16.33%)</td><td>M7 데모를 Next Fest 전부터 상시 공개 — 크리에이터가 언제든 켤 수 있게</td></tr>
+  <tr><td>6</td><td><b>Steam Next Fest</b></td><td>증폭기. 참가 전 위시리스트와 행사 중 획득량이 강하게 비례, 2,000건 전후가 효과가 나기 시작하는 문턱으로 보고됨. 2026년 2월 회차 중앙값은 +806건</td><td>게임당 1회뿐이므로 출시 직전 회차로. 2026년 10월 회차(10/26 종료)는 준비상 불가 — 이후 회차 대상</td></tr>
+  <tr><td>7</td><td><b>측정 (UTM)</b></td><td>채널별 링크가 없으면 위시리스트 숫자만 보이고 어느 활동이 효과였는지 알 수 없음</td><td>숏폼·스트리머·원작 채널마다 개별 UTM, 크리에이터별 고유 링크 — M8부터 필수</td></tr>
+  <tr><td>8</td><td><b>커뮤니티 · 출시 전환</b></td><td>위시리스트 수보다 구매 전환이 중요 — 부풀린 위시리스트는 구매로 이어지지 않음</td><td>Discord 등 소규모 팬 채널 운영, 출시 알림은 Steam 메일 1회에 의존하지 않고 자체 채널로 재공지</td></tr>
+</table>
+
+<h3 style="font-size:15px;font-weight:700;margin:20px 0 6px;">3.1 권장 실행 순서</h3>
+<p style="font-size:13px;">스토어 페이지 오픈(M6) → 숏폼·원작 채널로 위시리스트 누적 → 데모 공개(M7) → 크리에이터 배포(M8, UTM 측정) → 위시리스트 2,000+ 확보 후 Next Fest(M9) → 출시(M10)</p>
+
+<h3 style="font-size:15px;font-weight:700;margin:20px 0 6px;">3.2 주의할 점</h3>
+<ul>
+  <li><b>벤치마크의 한계</b>: 「Love Is All Around」의 판매는 대부분 중국 시장에서 나왔다. 국내·일본 시장에서 같은 규모를 기대하기보다 <b>"크리에이터가 방송하고 싶은 게임"이라는 성공 구조</b>를 가져오는 것이 핵심.</li>
+  <li><b>성인 이용가</b>: 기획서상 1차 타깃은 Steam 유료 단품·성인 이용가. 성인 콘텐츠 설정은 스토어 노출·Next Fest 노출·크리에이터 방송 가능 여부에 직접 영향을 주므로, 등급 설정과 방송용 가이드를 M6 전에 확정.</li>
+  <li><b>자막·현지화</b>: 한국어 원본이라 해외 유입은 자막 품질이 곧 입구. 최소 영어, 가능하면 일본어·중국어.</li>
+  <li><b>영상 소스 일정 미정</b>: 수령일이 정해지지 않은 상태라 출시·Next Fest 회차는 M4 확정 후에만 역산 가능. 그전까지는 M3·M6을 최대한 진척시켜 둔다.</li>
+  <li><b>안국주 팀장 부하</b>: 10월 초 신데렐라 백업 온보딩(10/01~10/07)·네이버 레드 Maker 지원(~10/02)과 겹친다. M3 시작일은 이 둘이 끝난 뒤로 잡는 것을 권장.</li>
+  <li><b>M4 공백 활용</b>: 수령일이 미정인 동안 M3 구조 개발과 스토어 페이지 준비(M6)를 먼저 진행해, 영상이 도착하는 즉시 편집만 남는 상태를 만든다.</li>
+  <li><b>출연자 초상권·방송 계약</b>: 촬영본의 게임 사용과 출연진 홍보 참여가 계약 범위에 있는지 M4 수령 전에 확인.</li>
+</ul>
+
+<h2><span class="n">4.</span> 운영 규칙</h2>
+<ul>
+  <li><b>주간 체크</b>: 목요일 저녁 보드 갱신 시 마일스톤 진행과 위시리스트 수(M6 이후)를 함께 반영, 금요일 주간회의에서 확인.</li>
+  <li><b>날짜 변경</b>: 담당 제안 → 총괄 승인 → 표 갱신. 구두 변경 금지.</li>
+</ul>
+
+<footer>
+  © 2026 SuperStory 개발본부 — 내부용. 초안 — R&amp;R 미정 칸과 마일스톤 날짜는 금요일 주간회의에서 확정. 전사 상태는 <a href="./" style="color:var(--accent);">프로젝트 보드</a>가 단일 출처.
+</footer>
+
+</div>
+</body>
+</html>
