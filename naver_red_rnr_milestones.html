@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>네이버 레드 샘플 「황자들의 교육용 XX 마네킹」 — 담당·R&R·마일스톤 (1p)</title>
+<style>
+  :root{--ink:#1c1c1c;--ink2:#4a4a4a;--ink3:#8a8a8a;--line:#e2ddd4;--bg:#fbfaf7;--card:#fff;--accent:#E8562F;--soft:#f6f2ea;--fill:#fffdf0;}
+  *{box-sizing:border-box;margin:0;padding:0;}
+  body{font-family:'Pretendard','Apple SD Gothic Neo','Noto Sans KR',sans-serif;background:var(--bg);color:var(--ink);line-height:1.65;font-size:14px;}
+  .wrap{max-width:920px;margin:0 auto;padding:40px 26px 80px;}
+  header.doc{border-bottom:3px solid var(--accent);padding-bottom:14px;}
+  header.doc h1{font-size:22px;font-weight:800;letter-spacing:-.5px;}
+  header.doc .sub{color:var(--ink2);margin-top:4px;font-size:13px;}
+  .meta{display:flex;gap:12px;flex-wrap:wrap;font-size:12px;color:var(--ink3);margin-top:8px;}
+  .why{background:var(--card);border:1px solid var(--line);border-left:4px solid var(--accent);border-radius:8px;padding:12px 16px;margin:18px 0;font-size:13px;color:var(--ink2);}
+  h2{font-size:16.5px;font-weight:800;margin:30px 0 8px;}
+  h2 .n{color:var(--accent);margin-right:6px;}
+  table{width:100%;border-collapse:collapse;font-size:12.5px;margin:8px 0 4px;background:var(--card);}
+  th,td{border:1px solid var(--line);padding:7px 10px;text-align:left;vertical-align:top;}
+  th{background:var(--soft);font-weight:700;white-space:nowrap;}
+  td.date{background:var(--fill);min-width:88px;color:var(--ink3);}
+  .cap{font-size:11.5px;color:var(--ink3);margin-bottom:10px;}
+  ul{padding-left:20px;margin:6px 0 10px;}
+  li{margin-bottom:6px;}
+  .tag{display:inline-block;font-size:10.5px;font-weight:700;padding:1px 8px;border-radius:99px;color:#fff;background:var(--accent);margin-left:4px;vertical-align:1px;}
+  .tag.g{background:#3d8c4a;} .tag.b{background:#4A7A8C;}
+  footer{margin-top:36px;padding-top:12px;border-top:1px solid var(--line);font-size:11.5px;color:var(--ink3);}
+  @media print{body{background:#fff;font-size:12.5px;} .wrap{padding:10mm 8mm;} h2{break-after:avoid;} table{break-inside:avoid;}}
+</style>
+</head>
+<body>
+<div class="wrap">
+
+<header class="doc">
+  <h1>네이버 레드 샘플 — 담당 · R&amp;R · 마일스톤</h1>
+  <div class="sub">작품: <b>「황자들의 교육용 XX 마네킹」</b> · Naver Red Sample · 제작 운영 체제 (1p)</div>
+  <div class="meta">
+    <span>작성: 2026-09-29 · 개발본부</span>
+    <span>분류: B라인 (IP·콘텐츠) · <a href="./" style="color:var(--accent);text-decoration:none;font-weight:700;">← 프로젝트 보드</a></span>
+    <span>상태: 분절 완료(9/28) · 애니메이션 진행 중(9/29~) · Maker 지원 ~10/02 · 오디오 방향 결정 ~10/14</span>
+    <span>날짜 칸(■ 음영)은 담당 산정 후 기입</span>
+  </div>
+</header>
+
+<div class="why">
+  <b>배경</b> — 네이버 레드 성인 웹툰 <b>「황자들의 교육용 XX 마네킹」</b> 원본(계약 완료·수령, 후보작 12종 중 1작 — 5장)을 PlayToon Maker로 인터랙티브 샘플화하는 건. 일본 제안용과 한국판을 병행한다. 그래픽팀 제작(분절 → 연출·애니메이션)과 개발팀 Maker 기능 지원이 <b>같은 기간에 맞물려</b> 돌아가므로, 두 트랙의 기한과 의존 관계를 한 표에서 관리한다.
+</div>
+
+<h2><span class="n">1.</span> R&amp;R</h2>
+<table>
+  <tr><th style="width:20%">역할</th><th style="width:22%">담당</th><th>책임 범위</th></tr>
+  <tr><td>총괄</td><td>전병모</td><td>일정 소유(변경 승인) · 수위·사운드 등 방향 결정 조율 · 제안 트랙(일본/한국) 판단</td></tr>
+  <tr><td>연출·기획 · 애니메이션 총괄 <span class="tag">Owner</span></td><td>박인성 팀장 (그래픽팀)</td><td>장면 연출·기획, 애니메이션 품질 총괄 — 제작 트랙 일정 산정과 갱신</td></tr>
+  <tr><td>분절 · 애니메이션</td><td>이규선 · 유성현 (그래픽팀)</td><td>원본 분절(레이어 분리) 완료, 애니메이션 작업</td></tr>
+  <tr><td>개발 지원 <span class="tag b">Support</span></td><td>안국주 팀장 (개발팀, 프로그램)</td><td>PlayToon Maker 기능 지원 — 협업, 인터랙션, 말풍선, 히든 테이크 심화, 분기 확인 (2.1 목록)</td></tr>
+</table>
+<p class="cap">원칙: 제작 트랙 소유자(박인성)와 개발 지원(안국주)을 분리한다. 애니메이션 중 Maker 기능 이슈는 지원 목록(2.1)에 행으로 올려 추적한다 — 구두 요청 금지.</p>
+
+<h2><span class="n">2.</span> 마일스톤 <span style="font-weight:400;font-size:12.5px;color:var(--ink3);">— 날짜 칸은 날짜만, 산정 규칙은 판정란 [기준:] 태그 · 시작일·목표일을 함께 기입(개인별 R&amp;R 파생, 관리 기준 4장)</span></h2>
+<table>
+  <tr><th style="width:5%">#</th><th style="width:24%">마일스톤</th><th style="width:9%">시작일</th><th style="width:9%">목표일</th><th style="width:15%">담당 / 확인</th><th>완료 판정 기준</th></tr>
+  <tr><td>M1</td><td>분절 완료 <span style="color:#3d8c4a;font-weight:800;">✅ 완료</span></td><td>9/17</td><td>9/28</td><td>이규선·유성현 / 박인성</td><td><b>완료(9/17~9/28)</b> — 원본 전 컷 분절(레이어 분리) 완료, 애니메이션 공정으로 인계</td></tr>
+  <tr><td>M2</td><td>Maker 개발 지원 (2.1 목록 5항)</td><td class="date">9/30</td><td class="date">10/02</td><td>안국주 / 박인성</td><td><b>[기준: 지원 목록 5항 전체 10/02까지]</b> 협업·인터랙션·말풍선·히든 테이크 심화·분기 확인 — 그래픽팀이 Maker에서 실제 작업에 사용 가능한 상태로 판정. 판정 확인은 사용 측(박인성)</td></tr>
+  <tr><td>M3</td><td>연출 기획 + 애니메이션</td><td class="date">9/29</td><td class="date">10/22</td><td>박인성(총괄) · 이규선·유성현 / 전병모</td><td><b>[기준: 9/29 착수 → 10/22 완료]</b> 연출·기획(박인성), 애니메이션(이규선·유성현) 완료 — 샘플 전편 Maker 재생 확인</td></tr>
+  <tr><td>M4</td><td>성인 오디오 품질·구현 방향 결정</td><td>—</td><td class="date">10/14</td><td>전병모 / 박인성</td><td><b>[기준: 10/14 전 결정 필수]</b> 일본 제안용·한국판의 성인 오디오 품질 수준과 구현 방식 확정 — 결정 즉시 M5 착수</td></tr>
+  <tr><td>M5</td><td>성인 오디오 구현</td><td class="date">10/15</td><td class="date">10/21</td><td>미정 / 박인성</td><td><b>[기준: M4 결정 다음 날 바로 착수 → 10/21 완료]</b> M4에서 정한 품질·방식으로 오디오 제작·Maker 적용</td></tr>
+  <tr><td>M6</td><td>샘플 전달 (일본 제안용 · 한국판)</td><td class="date">■</td><td class="date">■</td><td>전병모 / 박인성</td><td>블랭크 — M3 애니메이션·M5 오디오 완료 후 전달 일정·경로 확정</td></tr>
+</table>
+
+<h3 style="font-size:15px;font-weight:700;margin:22px 0 6px;">2.1 Maker 개발 지원 목록 (M2)</h3>
+<p class="cap" style="margin-bottom:6px;">규칙: 애니메이션 중 추가로 필요한 기능은 이 표에 행을 추가한다. 완료는 사용 측(그래픽팀) 확인으로 성립.</p>
+<table>
+  <tr><th style="width:5%">#</th><th style="width:26%">지원 항목</th><th style="width:13%">담당</th><th style="width:11%">기한</th><th style="width:10%">상태</th><th>비고</th></tr>
+  <tr><td>S1</td><td>협업</td><td>안국주</td><td>10/02</td><td>🟢 진행</td><td>그래픽팀 동시 작업 환경</td></tr>
+  <tr><td>S2</td><td>인터랙션 지원</td><td>안국주</td><td>10/02</td><td>🟢 진행</td><td>—</td></tr>
+  <tr><td>S3</td><td>말풍선</td><td>안국주</td><td>10/02</td><td>🟢 진행</td><td>—</td></tr>
+  <tr><td>S4</td><td>히든 테이크 심화</td><td>안국주</td><td>10/02</td><td>🟢 진행</td><td>—</td></tr>
+  <tr><td>S5</td><td>분기 확인 지원</td><td>안국주</td><td>10/02</td><td>🟢 진행</td><td>—</td></tr>
+</table>
+
+<h2><span class="n">3.</span> 의존 관계 · 리스크</h2>
+<ul>
+  <li><b>M2 → M3 의존</b>: 애니메이션(9/29~)이 Maker 지원 기능(지원 9/30 착수)— 인터랙션·말풍선·분기 — 을 쓰는 구간은 M2 완료(10/02) 전까지 대기한다. 그래픽팀은 첫 주를 <b>지원 기능이 필요 없는 컷부터</b> 진행해 공백을 없앤다. M2가 밀리면 M3 목표일(10/22) 재산정.</li>
+  <li><b>안국주 팀장 일정 중첩</b>: 같은 기간(10/01~10/07) 신데렐라 백업 체제 온보딩(신데렐라 M5)이 잡혀 있다. 10/01~10/02 이틀은 두 건이 겹치므로 <b>레드 M2 우선 여부를 총괄이 사전 결정</b>한다.</li>
+  <li><b>M4 → M5 연쇄</b>: 성인 오디오 방향은 <b>10/14 전 결정</b>이 마지노선이다. 결정이 늦으면 오디오 구현(M5) 착수가 그만큼 밀리고, 애니메이션 완료(10/22) 이후 전달(M6)까지 직결된다. 오디오 구현 담당은 M4 결정과 함께 지정한다.</li>
+</ul>
+
+<h2><span class="n">4.</span> 운영 규칙</h2>
+<ul>
+  <li><b>주간 체크</b>: 목요일 저녁 보드 갱신 시 M2·M3 진행률과 2.1 목록 상태를 함께 반영, 금요일 주간회의에서 확인.</li>
+  <li><b>날짜 변경</b>: 담당 제안 → 총괄 승인 → 표 갱신. 구두 변경 금지 — 이 문서가 일정의 단일 출처.</li>
+  <li><b>기능 요청</b>: 그래픽팀 → 2.1 목록에 행 추가 → 안국주 확인. 세부 태스크는 Jira로 내려간다.</li>
+</ul>
+
+<h2><span class="n">5.</span> 후보작 목록 <span style="font-weight:400;font-size:12.5px;color:var(--ink3);">— 계약 대상 12종 · 인기순위 등은 추후 추가</span></h2>
+<p class="cap" style="margin-bottom:6px;">범위(전 작품 공통): 네이버 독점기간 종료 후 국내 및 글로벌 비독점 플랫폼을 통한 비독점 서비스. 단, 대상 작품의 국내 및 글로벌 유통 대행권은 "대행사"가 독점적으로 보유한다.</p>
+<table>
+  <tr><th style="width:5%">#</th><th style="width:34%">제목</th><th style="width:16%">국내 독점 종료일</th><th style="width:9%">형태</th><th style="width:12%">인기순위</th><th>비고</th></tr>
+  <tr><td>1</td><td>노예 공주는 밤마다</td><td>2027-01-27</td><td>웹툰</td><td class="date"></td><td></td></tr>
+  <tr style="background:#fff4ef;"><td>2</td><td><b>황자들의 교육용 XX 마네킹</b></td><td>2027-02-21</td><td>웹툰</td><td class="date"></td><td><b>현재 샘플 작업작</b></td></tr>
+  <tr><td>3</td><td>하북팽가 금지옥엽</td><td>2027-05-27</td><td>웹툰</td><td class="date"></td><td></td></tr>
+  <tr><td>4</td><td>속박의 고리 -감금</td><td>2027-07-12</td><td>웹툰</td><td class="date"></td><td></td></tr>
+  <tr><td>5</td><td>속박의 고리 -각인</td><td>2027-05-31</td><td>웹툰</td><td class="date"></td><td></td></tr>
+  <tr><td>6</td><td>해적의 노예신부</td><td>2027-07-21</td><td>웹툰</td><td class="date"></td><td></td></tr>
+  <tr><td>7</td><td>죽은 대공의 아내가 되었다</td><td>2027-08-28</td><td>웹툰</td><td class="date"></td><td></td></tr>
+  <tr><td>8</td><td>럭키올럭키</td><td>미정</td><td>웹툰</td><td class="date"></td><td></td></tr>
+  <tr><td>9</td><td>이혼 후 임신</td><td>미정</td><td>웹툰</td><td class="date"></td><td></td></tr>
+  <tr><td>10</td><td>성녀</td><td>미정</td><td>웹툰</td><td class="date"></td><td></td></tr>
+  <tr><td>11</td><td>오빠 친구는 왜 안 돼?</td><td>미정</td><td>웹툰</td><td class="date"></td><td></td></tr>
+  <tr><td>12</td><td>하녀</td><td>미정</td><td>웹툰</td><td class="date"></td><td></td></tr>
+</table>
+<p class="cap">독점 종료일이 이른 순서가 비독점 서비스 전환이 빠른 순서다 — 샘플 이후 본 제작 우선순위 판단 시 인기순위와 함께 본다.</p>
+
+<footer>
+  © 2026 SuperStory 개발본부 — 내부용. 전사 상태는 <a href="./" style="color:var(--accent);">프로젝트 보드</a>가 단일 출처.
+</footer>
+
+</div>
+</body>
+</html>
