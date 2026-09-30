@@ -32,6 +32,7 @@ deploy/
 ├── naver_red_rnr_milestones.html   네이버 레드 샘플 PoC R&R · 마일스톤 · Maker 지원 목록
 ├── love_roulette_rnr_milestones.html 러브룰렛 「모니터룸」 R&R · 마일스톤 · Steam 유입 전략
 ├── playtoon_maker_rnr_milestones.html PlayToon Maker V2 + 어린왕자 버전 R&R · 마일스톤
+├── gyeol_rnr_milestones.html        결(GYEOL) 학습형 AI R&R · 마일스톤
 ├── files/                          첨부 원본 (러브룰렛 기획서 v0.3.4 docx · 콜 타입 카탈로그 v1.1 xlsx)
 ├── vercel.json                     배포 설정 (캐시 무효화, noindex)
 └── README.md                       이 문서
@@ -182,7 +183,7 @@ Claude가 하는 일:
 ## 6. 상세 문서(R&R·마일스톤) 작성 규칙 — 신데렐라 양식
 
 승격된 프로젝트는 신데렐라 문서와 같은 구조로 상세 페이지를 붙입니다.
-현재 작성 대상: **어린왕자 80주년, 퀵게임 게임팩토리, 결(GYEOL)**.
+현재 작성 대상: **어린왕자 80주년, 퀵게임 게임팩토리**.
 
 ### 6.1 구성
 
@@ -293,6 +294,7 @@ Claude 없이 급히 고쳐야 할 때를 위한 안내입니다.
 
 | 날짜 | 버전 | 내용 |
 |---|---|---|
+| 2026-09-30 | v1.5 | 결(GYEOL) R&R 추가 — 일정은 주차별 일정표 이미지 분절 AI 구간(9/28 착수 ~ 2/19) 기준 |
 | 2026-09-30 | v1.4 | PlayToon Maker R&R 추가 (V2 + 어린왕자 버전, 개발팀 주차별 일정표 기준) |
 | 2026-09-30 | v1.3 | 러브룰렛 기획서 v0.3.4·콜 타입 카탈로그 v1.1 첨부(files/) |
 | 2026-09-30 | v1.2 | 러브룰렛 「모니터룸」 R&R 초안 + Steam FMV 유입 전략 추가, 네이버 레드 → 샘플 PoC 명칭 |

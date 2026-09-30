@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>결 (GYEOL) — 학습형 AI · 담당·R&R·마일스톤</title>
+<style>
+  :root{--ink:#1c1c1c;--ink2:#4a4a4a;--ink3:#8a8a8a;--line:#e2ddd4;--bg:#fbfaf7;--card:#fff;--accent:#E8562F;--soft:#f6f2ea;--fill:#fffdf0;}
+  *{box-sizing:border-box;margin:0;padding:0;}
+  body{font-family:'Pretendard','Apple SD Gothic Neo','Noto Sans KR',sans-serif;background:var(--bg);color:var(--ink);line-height:1.65;font-size:14px;}
+  .wrap{max-width:920px;margin:0 auto;padding:40px 26px 80px;}
+  header.doc{border-bottom:3px solid var(--accent);padding-bottom:14px;}
+  header.doc h1{font-size:22px;font-weight:800;letter-spacing:-.5px;}
+  header.doc .sub{color:var(--ink2);margin-top:4px;font-size:13px;}
+  .meta{display:flex;gap:12px;flex-wrap:wrap;font-size:12px;color:var(--ink3);margin-top:8px;}
+  .why{background:var(--card);border:1px solid var(--line);border-left:4px solid var(--accent);border-radius:8px;padding:12px 16px;margin:18px 0;font-size:13px;color:var(--ink2);}
+  h2{font-size:16.5px;font-weight:800;margin:30px 0 8px;}
+  h2 .n{color:var(--accent);margin-right:6px;}
+  table{width:100%;border-collapse:collapse;font-size:12.5px;margin:8px 0 4px;background:var(--card);}
+  th,td{border:1px solid var(--line);padding:7px 10px;text-align:left;vertical-align:top;}
+  th{background:var(--soft);font-weight:700;white-space:nowrap;}
+  td.date{background:var(--fill);min-width:88px;color:var(--ink3);}
+  .cap{font-size:11.5px;color:var(--ink3);margin-bottom:10px;}
+  ul{padding-left:20px;margin:6px 0 10px;}
+  li{margin-bottom:6px;}
+  .tag{display:inline-block;font-size:10.5px;font-weight:700;padding:1px 8px;border-radius:99px;color:#fff;background:var(--accent);margin-left:4px;vertical-align:1px;}
+  .tag.g{background:#3d8c4a;} .tag.b{background:#4A7A8C;}
+  footer{margin-top:36px;padding-top:12px;border-top:1px solid var(--line);font-size:11.5px;color:var(--ink3);}
+  @media print{body{background:#fff;font-size:12.5px;} .wrap{padding:10mm 8mm;} h2{break-after:avoid;} table{break-inside:avoid;}}
+  .wk{display:inline-block;min-width:20px;text-align:center;font-size:10.5px;padding:1px 3px;border-radius:3px;margin:1px;background:#e8eef9;color:#2F6FE8;font-weight:700;}
+  .wk.r{background:#fde4e1;color:#c0392b;}
+</style>
+</head>
+<body>
+<div class="wrap">
+
+<header class="doc">
+  <h1>결 (GYEOL) — 학습형 AI · 담당 · R&amp;R · 마일스톤</h1>
+  <div class="sub">사내 학습형 레이어 분절 AI · 독립 R&amp;D 프로젝트 (1p)</div>
+  <div class="meta">
+    <span>작성: 2026-09-30 · 개발본부</span>
+    <span>분류: C라인 (메인 개발) · <a href="./" style="color:var(--accent);text-decoration:none;font-weight:700;">← 프로젝트 보드</a></span>
+    <span>일정 근거: 개발팀 주차별 일정표(9/30) — 이미지 분절 AI 구간</span>
+    <span>자료: <a href="https://claude.ai/artifact/Ju6XCXxHN5DZNEdcBx5GaB" target="_blank" rel="noopener" style="color:var(--accent);text-decoration:none;font-weight:700;">기획안 v2.1 ↗</a> · <a href="https://claude.ai/artifact/CZUSZyymZjTDJicZjyUNFT" target="_blank" rel="noopener" style="color:var(--accent);text-decoration:none;font-weight:700;">시스템 설계서 v1.0 ↗</a></span>
+  </div>
+</header>
+
+<div class="why">
+  <b>배경</b> — 완성된 원화 한 장에서 Spine 리깅에 바로 쓸 수 있는 레이어를 자동으로 나누고, 그 과정에서 쌓이는 자사 데이터로 계속 학습시켜 <b>2027년 상반기에 자사 AI 모듈을 직접 쓰는 수준</b>에 도달하는 것이 단일 목적이다. 인프라는 사내 Mac Studio M4 Max 2대(Node A 추론·서비스 / Node B 데이터·학습), 학습 데이터는 완료된 유니티 제작 자산이 주력이다.<br>
+  <b>성공 기준</b>은 자동화율이 아니라 <b>디자이너의 장당 수작업 보정 시간 단축률</b>이다. <b>비목표</b>: 「결」은 특정 작품의 납기를 책임지지 않는다 — 제작 일정이 「결」을 재촉하지 않고, 「결」의 지연이 제작 일정의 사유가 되지 않는다.
+</div>
+
+<h2><span class="n">1.</span> R&amp;R</h2>
+<table>
+  <tr><th style="width:22%">역할</th><th style="width:20%">담당</th><th>책임 범위</th></tr>
+  <tr><td>총괄 · 설계 · 판정 <span class="tag">Owner</span></td><td>전병모</td><td>설계, 태그 셋·분절 기준 주관, 홀드아웃 선정, 학습 사용 플래그 판정, 배포 게이트 판정, KPI 해석, 계약·라이선스 협의, 디자인팀 협의</td></tr>
+  <tr><td>개발 · 구현 · 인프라 <span class="tag b">Dev</span></td><td>이순형</td><td>유니티 추출 툴, 환경 구축, ComfyUI 커스텀 노드, 오케스트레이터·웹, 데이터 파이프라인, 학습 실행, 운영 자동화</td></tr>
+  <tr><td>태그 셋 합의 · 선행 테스트 라운드</td><td>플레이북디자인팀 (박인성 팀장)</td><td>분절 태그 셋 v1 합의 참여, 신규 샘플 착수 시 디자이너 전원 1~2장 투입·보정 시간 기록 (운영 합의 필요 — O-5)</td></tr>
+  <tr><td>협조</td><td>플레이북엔진팀</td><td>기획안 수신 — 유니티 자산 제공·Spine 임포트 정합 확인 범위 확정 필요</td></tr>
+</table>
+<p class="cap">2인 체제의 최대 리스크는 지식 집중 — 환경 구축 스크립트·의존성 잠금·워크플로 JSON·운영 런북·실험 로그를 구축과 동시에 남긴다(기획안 10.1).</p>
+
+<h2><span class="n">2.</span> 마일스톤 <span style="font-weight:400;font-size:12.5px;color:var(--ink3);">— 개발팀 주차별 일정표(9/30) 이미지 분절 AI 구간 기준 · 1주차 = 9/28(월)</span></h2>
+<table>
+  <tr><th style="width:5%">#</th><th style="width:25%">마일스톤</th><th style="width:9%">시작일</th><th style="width:9%">목표일</th><th style="width:13%">담당 / 판정</th><th>완료 판정 기준</th></tr>
+  <tr><td>M1</td><td>환경 구성 · 모델 조사</td><td class="date">9/28</td><td class="date">10/16</td><td>이순형 / 전병모</td><td><b>[기준: 일정표 T1·T2, 1~3주차]</b> ComfyUI·AI 서버 구성, 분절 모델 기술 조사 및 라이선스 검토 완료</td></tr>
+  <tr><td>M2</td><td>평가 체계 · 주력 모델 선정</td><td class="date">10/05</td><td class="date">10/23</td><td>이순형 / 전병모</td><td><b>[기준: 일정표 T3~T5, 2~4주차]</b> 평가 데이터셋·PSD 출력 규격 명세, 자동 평가 도구, 벤치마크로 주력 모델 선정</td></tr>
+  <tr><td>M3</td><td>분절→PSD 워크플로 구축</td><td class="date">10/12</td><td class="date">11/13</td><td>이순형 / 전병모</td><td><b>[기준: 일정표 T6, 3~7주차]</b> ComfyUI 커스텀 노드로 원화 업로드 → PSD 산출 관통</td></tr>
+  <tr><td>M4</td><td>정확도 개선 · 파인튜닝 학습 모델</td><td class="date">10/26</td><td class="date">12/04</td><td>이순형 / 전병모</td><td><b>[기준: 일정표 T7~T9, 5~10주차]</b> 분절 결과 분석·정확도 개선, 파인튜닝 가능성 검토, 파인튜닝 학습 모델 구축</td></tr>
+  <tr><td>M5</td><td>성능 최적화 · 서비스 배포</td><td class="date">11/23</td><td class="date">12/25</td><td>이순형 / 전병모</td><td><b>[기준: 일정표 T10·T11, 9~13주차]</b> 성능 최적화, 사내 서비스 환경 구성 및 배포</td></tr>
+  <tr><td>M6</td><td>실사용 검증 · 피드백 반영</td><td class="date">12/21</td><td class="date">2/19</td><td>이순형 · 디자인팀 / 전병모</td><td><b>[기준: 일정표 T12, 13~21주차]</b> 디자이너 실사용 — 장당 보정 시간 단축률로 판정</td></tr>
+</table>
+
+<h3 style="font-size:15px;font-weight:700;margin:22px 0 6px;">2.1 일정표 과제 (원문 → 날짜 환산)</h3>
+<table>
+  <tr><th style="width:5%">#</th><th style="width:44%">과제</th><th style="width:9%">담당</th><th style="width:22%">주차</th><th>기간</th></tr>
+  <tr><td>T1</td><td>ComfyUI 환경 및 AI 서버 구성</td><td>이순형</td><td><span class="wk">1</span><span class="wk">2</span></td><td>9/28 ~ 10/09</td></tr>
+  <tr><td>T2</td><td>분절·레이어 분리 모델 기술 조사 및 라이선스 검토</td><td>이순형</td><td><span class="wk">1</span><span class="wk">2</span><span class="wk">3</span></td><td>9/28 ~ 10/16</td></tr>
+  <tr><td>T3</td><td>평가 데이터셋 구성 및 PSD 출력 규격 기능 명세서 작성</td><td>이순형</td><td><span class="wk">2</span><span class="wk">3</span></td><td>10/05 ~ 10/16</td></tr>
+  <tr><td>T4</td><td>평가 지표 정의 및 자동 평가 도구 개발</td><td>이순형</td><td><span class="wk">2</span><span class="wk">3</span><span class="wk">4</span></td><td>10/05 ~ 10/23</td></tr>
+  <tr><td>T5</td><td>후보 모델 정확도·성능 벤치마크 및 주력 모델 선정</td><td>이순형</td><td><span class="wk">3</span><span class="wk">4</span></td><td>10/12 ~ 10/23</td></tr>
+  <tr><td>T6</td><td>ComfyUI 커스텀 노드 및 분절→PSD 워크플로 구축</td><td>이순형</td><td><span class="wk">3</span><span class="wk">4</span><span class="wk">5</span><span class="wk">6</span><span class="wk">7</span></td><td>10/12 ~ 11/13</td></tr>
+  <tr><td>T7</td><td>이미지 분절 결과 분석 및 정확도 개선</td><td>이순형</td><td><span class="wk">5</span><span class="wk">6</span><span class="wk">7</span><span class="wk">8</span><span class="wk">9</span></td><td>10/26 ~ 11/27</td></tr>
+  <tr><td>T8</td><td>파인튜닝 및 미세 조정 가능 여부 검토 및 개선</td><td>이순형</td><td><span class="wk">6</span><span class="wk">7</span><span class="wk">8</span><span class="wk">9</span></td><td>11/02 ~ 11/27</td></tr>
+  <tr><td>T9</td><td>파인튜닝 분절 학습 모델 구축</td><td>이순형</td><td><span class="wk">8</span><span class="wk">9</span><span class="wk">10</span></td><td>11/16 ~ 12/04</td></tr>
+  <tr><td>T10</td><td>성능 최적화</td><td>이순형</td><td><span class="wk">9</span><span class="wk">10</span><span class="wk">11</span><span class="wk">12</span></td><td>11/23 ~ 12/18</td></tr>
+  <tr><td>T11</td><td>서비스 환경 구성 및 배포</td><td>이순형</td><td><span class="wk">12</span><span class="wk">13</span></td><td>12/14 ~ 12/25</td></tr>
+  <tr><td>T12</td><td>실사용 검증, 피드백 반영</td><td>이순형</td><td><span class="wk">13</span><span class="wk">14</span><span class="wk">15</span><span class="wk">16</span><span class="wk">17</span><span class="wk">18</span><span class="wk">19</span><span class="wk">20</span><span class="wk">21</span></td><td>12/21 ~ 2/19</td></tr>
+</table>
+<p class="cap">일정표 전제: 작업 중 추가 요청·변경 지시가 없는 것을 전제로 함 · 분절 AI 진행 상황과 모델 벤치마크 결과에 따라 기간이 변동될 수 있어 필요 시 재산출 · 연말 연휴 미반영.</p>
+
+<h2><span class="n">3.</span> 운영 · 게이트</h2>
+<ul>
+  <li><b>자체 게이트</b>: 각 단계는 직전 단계의 완료 기준이 확인된 뒤 진입한다. 위 날짜는 계획 기준이며, 어떤 작품의 일정도 단계 전환을 앞당기거나 미루는 사유가 되지 않는다.</li>
+  <li><b>선행 테스트 라운드</b>: 워크플로 구축(M3) 이후, 신규 샘플에서 분절이 필요할 때마다 디자이너 전원이 1~2장을 넣고 보정 시간을 기록 → 작품 적합도 판정(AI 활용 / 부분 활용 / 수작업). 반나절을 넘기지 않는다. 수작업으로 가도 교정 데이터는 학습에 들어간다.</li>
+  <li><b>핵심 지표</b>: 장당 수작업 보정 시간, usable율(10분 이내 보정으로 Spine 투입 가능한 비율).</li>
+</ul>
+
+<h2><span class="n">4.</span> 리스크 · 확인 사항</h2>
+<ul>
+  <li><b>벤치마크 결과 의존</b>: M2(주력 모델 선정, ~10/23) 결과에 따라 M3 이후 전체 기간이 재산출될 수 있다 — 10/23 직후 금요일 주간회의에서 일정 유지 여부를 판정한다.</li>
+  <li><b>연휴 미반영</b>: M5 끝(12/25)과 M6 초반(1/1)이 연말 연휴에, M6 후반이 2027 설 연휴(2월 초)에 걸린다. 실제 종료는 2/19보다 늦어질 수 있다.</li>
+  <li><b>이순형 단독 담당</b>: 12개 과제 전부가 한 사람. 같은 기간 컨슈머 관리 플랫폼 마무리(완료 대상)와 겹친다 — 10월 초 우선순위를 정해 둔다.</li>
+  <li><b>M3·M4 병행 구간</b>: 10/26~11/13에 워크플로 구축(T6)과 정확도 개선(T7)·파인튜닝 검토(T8)가 동시에 진행된다. 가장 부하가 큰 구간.</li>
+</ul>
+
+<footer>
+  © 2026 SuperStory 개발본부 — 내부용. 일정 근거: 개발팀 주차별 작업 계획 일정표(2026-09-30) 이미지 분절 AI 구간. 전사 상태는 <a href="./" style="color:var(--accent);">프로젝트 보드</a>가 단일 출처.
+</footer>
+
+</div>
+</body>
+</html>
