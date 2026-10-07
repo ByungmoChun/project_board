@@ -38,7 +38,7 @@
   <div class="meta">
     <span>작성: 2026-09-29 · 개발본부</span>
     <span>분류: A라인 (동화·앱) · <a href="./" style="color:var(--accent);text-decoration:none;font-weight:700;">← 프로젝트 보드</a></span>
-    <span>상태: Android <b>v1.3.9</b>(QA 완료) 리뷰 제출(10/03, 10/02 빌드 오류로 리빌드) · 런칭 목표 10/13 / iOS v1.3.9 QA 중(10/06 빌드) → 10/07 리뷰 제출 목표 · 갱신 10/06</span>
+    <span>상태: <b>마지막 런칭 빌드</b> 진행 — 리소스 10/08 · 개발·QA 빌드 10/12 15시 · QA 완료·리뷰 제출 10/12(늦어도 10/13 오전) · 리뷰 통과 마감 10/20 · 런칭 예상 10월 말~11월 초 / iOS 1.0 심사 통과, 1.4 QA 빌드는 내부 테스트로 종결 · 갱신 10/06</span>
     <span>날짜 칸(■ 음영)은 담당 산정 후 기입</span>
   </div>
 </header>
@@ -52,7 +52,8 @@
   <tr><th style="width:16%">역할</th><th style="width:14%">담당</th><th>책임 범위</th></tr>
   <tr><td>주 개발 <span class="tag">Owner</span></td><td>이상훈</td><td>Unity 클라이언트 · 빌드 · 스토어 제출 · 버전 정책 구현(부록 A ①~⑤) · 일정 산정과 갱신</td></tr>
   <tr><td>백업 개발 <span class="tag g">Backup</span></td><td>안국주</td><td>주 개발 부재 시 즉시 인계받아 진행. 평시: 릴리즈 동승 · 주 1회 동기화 · 코드 리뷰(A.1 체크리스트). <b>현재 시스템 세팅(빌드 환경·스토어 콘솔·배포 파이프라인) 미인지 상태 → 시스템 인수인계가 백업 가동의 선행 조건</b> — 메이커 업무와 배분(기본 20% 캐파) 팀 합의 전제</td></tr>
-  <tr><td>PM · 검증 <span class="tag b">Verify</span></td><td>변경호 본부장</td><td>주간 마일스톤 체크(지연 여부) · 대외 일정 조율 · 대표 보고</td></tr>
+  <tr><td>PM · 검증 <span class="tag b">Verify</span></td><td>전병모</td><td>주간 마일스톤 체크(지연 여부) · 대외 일정 조율 · 대표 보고 — 10/06 변경호 본부장에게서 이관</td></tr>
+  <tr><td>사업 담당</td><td>박선희</td><td>마케팅 일정 협의·실행 · 런칭 마케팅 준비 · 스토어 사업 정보 — 10/06 신설, 10/07 마케팅 일정 회의(전병모 · 박선희)</td></tr>
   <tr><td>총괄</td><td>전병모</td><td>일정 소유(산정 승인·변경 결정) · 우선순위 조정 · 리스크 판단</td></tr>
   <tr><td>정책 문서 오너</td><td>전병모</td><td>약관·처리방침 v1.0, 버전정책 가이드 — 변경 시 단일 출처 갱신</td></tr>
   <tr><td>시스템 기획</td><td>전병모</td><td>앱 시스템 기획 전반(기능 명세 22 · 화면 SB 30 · 콘텐츠 기획 61 · 정책) 대부분 직접 진행 — 기획 허브: <a href="https://playbook-features.vercel.app/" target="_blank" rel="noopener" style="color:var(--accent);font-weight:700;text-decoration:none;">playbook-features.vercel.app</a> (신데렐라 및 후속 동화 4종 통합 허브)</td></tr>
@@ -65,15 +66,16 @@
 <h2><span class="n">2.</span> 마일스톤 <span style="font-weight:400;font-size:12.5px;color:var(--ink3);">— 음영 칸은 이상훈 님 산정 후 기입 — <b>시작일·목표일을 함께</b> 기입한다(개인별 R&amp;R이 이 구간에서 파생됨, 관리 기준 4장). 이후 변경은 총괄 승인 · 버전 교체 시 마일스톤을 새로 만들지 않는다: 대상 버전만 갱신하고 이력은 2.1 버전 로그에 남긴다</span></h2>
 <table>
   <tr><th style="width:5%">#</th><th style="width:22%">마일스톤</th><th style="width:9%">시작일</th><th style="width:9%">목표일</th><th style="width:13%">담당 / 확인</th><th>완료 판정 기준</th></tr>
-  <tr><td>M1</td><td>Android 심사 통과 — <b>대상 v1.3.9</b><br><span style="color:var(--ink3);font-size:11.5px;">v1.3.0 통과(9/29) · v1.3.1·v1.3.2 미제출 → 내부 QA 빌드 v1.3.3~1.3.8 → <b>v1.3.9 QA 완료</b>, 10/02 빌드 오류 → 10/03 리빌드·리뷰 제출</span></td><td class="date">10/03</td><td class="date">10/11</td><td>이상훈 / 변 본부장</td><td><b>[기준: 시작일 = 대상 버전 제출일(QA 완료 후), 목표일 = 제출일 +8일, 재제출 시 재계산]</b> 심사 승인 확인. 참고: v1.3.0이 9/29 오후 늦게 통과해 앱 최초 심사는 넘었고, 런칭 대상인 v1.3.9 업데이트 심사가 남아 있다. <b>⚠ 통과 ≠ 런칭</b>: 퀄리티업 기간 중이므로 Play Console <b>관리형 게시(managed publishing)</b>를 켜서 승인돼도 자동 게시되지 않게 한다 — 게시는 M2 런칭 결정 후. 이력은 <b>2.1 버전 로그</b></td></tr>
-  <tr><td>M2</td><td><b>정식 서비스 런칭</b> — staged rollout 20 → 50 → 100%</td><td class="date">9/30</td><td class="date">10/13</td><td>이상훈 / 변 본부장 · 승인: 대표</td><td><b>[기준: 10/13(화) 목표(10/06 총괄) — 10/02 빌드 오류로 제출이 10/03으로 밀려 10/09 → 10/13. 주말 런칭 금지. 성립 조건: M1 통과(보수 기준 10/11) + 대표 승인이 10/13 전. 시작 조건 = 퀄리티업 완료 + 대표 승인. 단계 확대 세부 일정은 런칭 후 크래시율 보며 작성]</b> <b>서비스 런칭일 = rollout 시작일</b>(게시 개시). 단계 확대 일정은 사전 확정하지 않는다 — <b>런칭 후 Firebase Crashlytics 크래시율(Android 제한 사용 범위 내)·Play Vitals를 보며 그때그때 작성</b>. 각 단계 기준치 이내 확인 후 확대, <b>콘솔 100% 육안 확인</b>으로 완료</td></tr>
-  <tr><td>M3</td><td>iOS 심사 제출 — v1.3.9 버전업</td><td class="date">10/06</td><td class="date">10/07</td><td>이상훈 / 변 본부장</td><td><b>[기준: Android 제출일 +2일 이내 iOS 제출 — 10/06 iOS QA 빌드 → QA → 10/07 리뷰 제출 목표로 재설정]</b> Android v1.3.9에 맞춰 iOS도 동일 버전으로 버전업, 2.1(b) 회신 포함 재제출. 통과 후 게시 보류(수동 출시)는 M1과 동일 — 런칭은 M2 결정 따름. 건별 이력은 2.1 버전 로그</td></tr>
+  <tr><td>M1</td><td>Android 심사 통과 — <b>대상: 마지막 런칭 빌드</b>(2.2 범위, 번호 미정)<br><span style="color:var(--ink3);font-size:11.5px;">v1.3.0 통과(9/29) · v1.3.1·v1.3.2 미제출 → 내부 QA 빌드 v1.3.3~1.3.8 → v1.3.9 QA 완료·10/03 리뷰 제출 → <b>v1.3.9 런칭 무산(10/06)</b> — 2.2 범위 개발 후 다음 버전으로 재제출</span></td><td class="date">10/12</td><td class="date">10/20</td><td>이상훈 / 전병모</td><td><b>[기준: 시작일 = 리뷰 제출일 — QA는 10/12 완료 필수, 당일 QA 통과 시 즉시 제출 / 미통과 시 10/13 오전 제출(10/07 확정). 목표일 = 런칭 역산 마감 10/20 — 인플루언서 게시물 준비 2주 확보. 보수 규칙(제출 +8일)으로는 10/12 제출 시 10/20, 10/13 제출 시 10/21]</b> 심사 승인 확인. <b>이번 빌드가 마지막 런칭 빌드</b> — 재제출 여유 없음. 참고: v1.3.0이 9/29 오후 늦게 통과해 앱 최초 심사는 넘었고, v1.3.9는 런칭 대상에서 빠졌고(10/06), 런칭 대상은 2.2 범위를 담은 다음 버전이다. <b>⚠ 통과 ≠ 런칭</b>: 퀄리티업 기간 중이므로 Play Console <b>관리형 게시(managed publishing)</b>를 켜서 승인돼도 자동 게시되지 않게 한다 — 게시는 M2 런칭 결정 후. 이력은 <b>2.1 버전 로그</b></td></tr>
+  <tr><td>M2</td><td><b>정식 서비스 런칭</b> — staged rollout 20 → 50 → 100%</td><td class="date">9/30</td><td class="date">■</td><td>이상훈 / 전병모 · 승인: 대표</td><td><b>[기준: 예상 10월 말~11월 초(10/07 일정안) = M1 통과(~10/20) + 인플루언서 게시물 준비 2주(M10). 정확한 날짜는 M10 마케팅 일정 확정 시 기입. 주말 런칭 금지. 성립 조건: 런칭 대상 버전 심사 통과 + 대표 승인. 시작 조건 = 퀄리티업 완료 + 대표 승인. 단계 확대 세부 일정은 런칭 후 크래시율 보며 작성]</b> <b>서비스 런칭일 = rollout 시작일</b>(게시 개시). 단계 확대 일정은 사전 확정하지 않는다 — <b>런칭 후 Firebase Crashlytics 크래시율(Android 제한 사용 범위 내)·Play Vitals를 보며 그때그때 작성</b>. 각 단계 기준치 이내 확인 후 확대, <b>콘솔 100% 육안 확인</b>으로 완료</td></tr>
+  <tr><td>M3</td><td>iOS 심사 제출 — 마지막 런칭 빌드<br><span style="color:var(--ink3);font-size:11.5px;">iOS 1.0 심사 통과 완료 · 1.4 QA 빌드(10/06)는 내부 테스트로 종결 · 10/13 픽스 빌드로 제작 시작</span></td><td class="date">10/13</td><td class="date">10/14</td><td>이상훈 / 전병모</td><td><b>[기준: 마지막 런칭 빌드 Android 제출 후 iOS 업데이트 → QA 빌드 재생성 → 제출, 목표일 = Android 제출일 +2일 (10/06 결정) — iOS 통과도 M2 런칭 전 필요]</b> <b>10/07 확정: 10/13 Android 픽스 빌드 기준으로 iOS 제작 시작 → QA 빌드 → QA 통과 시 10/14 리뷰 신청.</b> 10/07 제출 계획은 Android 런칭 무산으로 취소. iOS도 Android 다음 버전과 같은 범위로 맞춘다. 통과 후 게시 보류(수동 출시)는 M1과 동일 — 런칭은 M2 결정 따름. 건별 이력은 2.1 버전 로그</td></tr>
   <tr><td>M4</td><td>약관·방침 웹 업로드 + 스토어 폼 제출 <span style="color:var(--e,#3d8c4a);font-weight:800;">✅ 완료</span></td><td>—</td><td>9/07</td><td>이순형·박선희 / 전병모</td><td><b>완료(9/07)</b> — 약관·처리방침 v1.0(시행일 = 게시일 9/7) 최종 수정·웹 게시. Apple 리뷰 통과일에 맞춰 수정 업데이트 완료. 이후 방침 변경 시 재발동(개정 절차는 별도)</td></tr>
-  <tr><td>M5</td><td>백업 체제 가동 (안국주 온보딩)</td><td class="date">10/01</td><td class="date">10/07</td><td>안국주 / 이상훈</td><td><b>[기준: 10/01 시작 + 근무일 5일]</b> 아래 3장 5항 완료. 핵심 실증: <b>안국주 로컬에서 클린 체크아웃 → 빌드 → 스토어 업로드까지 단독 성공 1회</b></td></tr>
+  <tr><td>M5</td><td>백업 체제 가동 (안국주 온보딩)</td><td class="date">10/01</td><td class="date">10/12</td><td>안국주 / 이상훈</td><td><b>[기준: 10/01 시작 → 마지막 런칭 빌드(10/12 개발·QA 빌드) 및 QA 끝난 리뷰 빌드 제출까지 계속 — 10/07 연장 결정(기존 근무일 5일 → 10/07)]</b> 런칭 빌드 기간 동안 안국주 팀장이 백업 빌드 담당으로 상시 대기. 아래 3장 5항 완료. 핵심 실증: <b>안국주 로컬에서 클린 체크아웃 → 빌드 → 스토어 업로드까지 단독 성공 1회</b></td></tr>
   <tr><td>M6</td><td>후속 동화 1종 착수 판단</td><td>—</td><td class="date">■</td><td>전병모</td><td>신데렐라 출시 안정화 확인 후 리드타임 산정과 함께 착수 결정</td></tr>
   <tr><td>M7</td><td>버전 정책 서버 + 검증 CI (부록 A-①) <span style="color:var(--ink3);font-size:11.5px;">— 다음 동화 프로젝트 착수 시</span></td><td class="date">■</td><td class="date">■</td><td>이상훈 / 안국주</td><td><b>[기준: 시작 = 후속 동화 프로젝트 개발 착수와 함께]</b> validate_policy 통과 정책 JSON이 CDN 게시, 검증 실패 시 배포 차단 확인. 그전까지 신데렐라는 버전 체크 없이 운영(강제 업데이트 수단 없음)임을 인지하고, 탑재 버전 업데이트로 소급 적용</td></tr>
   <tr><td>M8</td><td>클라이언트 버전 체크 모듈 (부록 A-②③) <span style="color:var(--ink3);font-size:11.5px;">— 다음 동화 프로젝트 착수 시</span></td><td class="date">■</td><td class="date">■</td><td>이상훈 / 안국주</td><td><b>[기준: M7과 한 묶음 — 후속 착수 시]</b> A.1 체크리스트 11항 리뷰 통과</td></tr>
   <tr><td>M9</td><td>In-App Updates·스토어 이동 (부록 A-④⑤) <span style="color:var(--ink3);font-size:11.5px;">— 다음 동화 프로젝트 착수 시</span></td><td class="date">■</td><td class="date">■</td><td>이상훈 / 안국주</td><td><b>[기준: M7·M8과 한 묶음 — 후속 착수 시]</b> 출처: 버전정책 가이드 부록 A ④⑤ — M7·M8 판정의 <b>실행 수단</b>(Android 인앱 업데이트 / iOS 스토어 이동)이라 셋이 한 묶음. internal app sharing 실기기 검증 + reviewVersions 게이트 미발동 확인</td></tr>
+  <tr><td>M10</td><td>런칭 마케팅 준비 — 인플루언서 게시물 제작</td><td class="date">■</td><td class="date">■</td><td>박선희 / 전병모</td><td><b>[기준: M1 통과(~10/20) 후 2주 — 10/07 마케팅 일정 회의]</b> 인플루언서 게시물 제작·일정 확정 → M2 런칭일 확정의 근거. 신설 10/07</td></tr>
 </table>
 
 <h3 style="font-size:15px;font-weight:700;margin:22px 0 6px;">2.1 버전 로그 — 심사·출시 이력의 단일 기록</h3>
@@ -94,18 +96,41 @@
   </tr>
   <tr>
     <td><b>v1.3.9</b></td><td>Android</td><td class="date">10/03</td><td class="date">■</td><td class="date">■</td>
-    <td><b>QA 완료 버전</b> — 10/02 빌드 오류 → 10/03 리빌드·QA 후 리뷰 제출(빌드 약속 시간 반복 미준수 — 개발 완료 지연이 QA·빌드·제출·검수로 연쇄) — 현재 M1 대상 버전. 수정 2건 · UI/UX 수정 포함, 세부 수정 내용 기재 필요</td>
+    <td><b>QA 완료 버전</b> — 10/02 빌드 오류 → 10/03 리빌드·QA 후 리뷰 제출(빌드 약속 시간 반복 미준수 — 개발 완료 지연이 QA·빌드·제출·검수로 연쇄) — <b>런칭 대상에서 제외(10/06)</b>, 심사 결과만 기록. 수정 내용: <b>디자인 스크립트 오류 수정 등</b>(수정 2건 · UI/UX 수정 포함)</td>
   </tr>
   <tr>
     <td>v1.3.0</td><td>iOS</td><td class="date">9/22</td><td>—</td><td>—</td>
-    <td>2.1(b) Information Needed 수신 → <b>v1.3.9로 버전업해 교체 제출 예정(M3), 심사 종결</b></td>
+    <td>2.1(b) Information Needed 수신 — 이후 iOS 1.0 심사 통과(아래 행). 두 행이 같은 빌드인지(스토어 표기 1.0) 확인 필요</td>
   </tr>
   <tr>
-    <td><b>v1.3.9</b></td><td>iOS</td><td class="date">10/07 예정</td><td class="date">■</td><td class="date">■</td>
-    <td>Android와 버전 통일 — 2.1(b) 회신 포함 재제출. 10/06 QA 빌드·QA 진행 → 10/07 리뷰 제출 목표</td>
+    <td><b>v1.0</b></td><td>iOS</td><td class="date">■</td><td class="date">■</td><td class="date">■</td>
+    <td><b>심사 통과 ✅</b> — 게시 보류(수동 출시), 런칭은 M2 결정 따름. 제출일·통과일 기입 필요</td>
+  </tr>
+  <tr>
+    <td>v1.4 (QA 빌드)</td><td>iOS</td><td>—</td><td>—</td><td>—</td>
+    <td>10/06 QA 빌드 → 전병모 단독 내부 테스트로 <b>종결, 미제출</b>. Android 런칭 무산(10/06)에 따라 다음 Android 리뷰 버전 제출 후 업데이트해 QA 빌드를 다시 만든다</td>
   </tr>
 </table>
 <p class="cap">출시일(런칭) = <b>서비스 개시일</b> — Android는 <b>rollout 시작일(게시 개시)</b> 기준이며 100% 도달일은 비고에 부기, iOS는 App Store "출시됨" 확인일. 심사 통과했으나 관리형 게시로 보류 중인 버전은 통과일만 채우고 출시일은 비워 둔다(현재 퀄리티업 국면의 정상 상태). <b>퀄리티업 지시는 반영될 다음 버전 행의 비고에 누적 기재</b>해 요구 이력이 버전과 함께 남게 한다. reviewVersions 등록은 심사 제출 시 → 제거는 해당 버전 게시(런칭) 확인 후.</p>
+
+<h3 style="font-size:15px;font-weight:700;margin:22px 0 6px;">2.2 런칭 전 개발 범위 — 다음 버전 (10/06 확정)</h3>
+<p class="cap">10/06 지시 미비 사항을 개발 회의(10/07, 전병모 · 박인성 · 이상훈) 안건으로 확정한 범위. 이 범위의 일정 + 마케팅 일정(10/07 회의)을 맞춘 뒤 런칭일(M2)을 확정한다. 다음 버전이 제출되면 2.1 버전 로그에 행을 만들고 이 목록을 그 행 비고로 옮긴다(작성 규칙 5).</p>
+<table>
+  <tr><th style="width:6%">#</th><th style="width:16%">구분</th><th>항목</th><th style="width:10%">담당</th><th style="width:9%">목표일</th></tr>
+  <tr><td>U1</td><td rowspan="5">UI 디자인</td><td>온보딩 팝업 — <b>두 장으로 압축</b> (권한 요청은 기존 APK 분석상 대상 없음 → 보호자 안내 문구로 구성 검토)</td><td>박인성</td><td class="date">10/08</td></tr>
+  <tr><td>U2</td><td>구매 · 완독 팝업 — <b>리소스 새로 제작</b></td><td>박인성</td><td class="date">10/08</td></tr>
+  <tr><td>U3</td><td>튜토리얼 (콘텐츠 시작 시)</td><td>박인성</td><td class="date">10/08</td></tr>
+  <tr><td>U4</td><td>감상 기록</td><td>박인성</td><td class="date">10/08</td></tr>
+  <tr><td>U5</td><td>구매 성공 · 취소 시 팝업</td><td>박인성</td><td class="date">10/08</td></tr>
+  <tr><td>R1</td><td>리소스 수정</td><td>설정 창 — 사운드 단락</td><td>박인성</td><td class="date">10/08</td></tr>
+  <tr><td>D1</td><td rowspan="5">개발 기능 추가</td><td>온보딩</td><td>이상훈</td><td class="date">10/12</td></tr>
+  <tr><td>D2</td><td>튜토리얼</td><td>이상훈</td><td class="date">10/12</td></tr>
+  <tr><td>D3</td><td>구매 팝업 · 튜토리얼 표시 중 콘텐츠 정지 상태</td><td>이상훈</td><td class="date">10/12</td></tr>
+  <tr><td>D4</td><td>테이크 종료에 가까워질수록 빛나는 다음 페이지 버튼</td><td>이상훈</td><td class="date">10/12</td></tr>
+  <tr><td>D5</td><td>구매 성공 · 취소 시 팝업</td><td>이상훈</td><td class="date">10/12</td></tr>
+  <tr><td>P1</td><td>사업 결정</td><td>판매 가격 결정 → 빌드 반영 (구매 팝업에 가격 표시) · 스토어 상품 가격 등록(Play Console · App Store Connect)</td><td>사업부 · 박선희 / 이상훈(반영)</td><td class="date">10/12</td></tr>
+</table>
+<p class="cap"><b>[기준: 10/07 업데이트 빌드 일정안 — 리소스 10/08(목) 퇴근 시간 마감 · 개발 및 QA 빌드 10/12(월) 15시 마감 · QA 완료 10/12 필수(당일 통과 → 즉시 리뷰 제출 / 미통과 → 10/13 오전 제출) · 10/12 전 팀원 야근 대기(10/08 공지) · 사업부 가격 결정은 10/12(월) 빌드 전까지 요청(박선희, 10/07) — 가격은 리소스 이미지에 넣지 않음(박인성 전달) · 가격을 직접 써넣는 팝업 있음 → 빌드 반영 필요]</b> <b>이번 빌드가 마지막 런칭 빌드</b>다: 런칭 예상 10월 말~11월 초, 인플루언서 게시물 준비 2주를 확보하려면 리뷰 통과가 늦어도 10/19~20에 나와야 한다(M1 목표 10/20).</p>
 
 <h2><span class="n">3.</span> 백업 체제 — 지정이 아니라 가동 조건 5가지</h2>
 <p class="cap">※ 안국주 님은 현재 시스템 세팅을 전혀 모르는 상태에서 시작한다. 따라서 ①·②가 이 체제의 실질이며, 완료 전까지 백업은 서류상 존재일 뿐이다.</p>
@@ -119,7 +144,7 @@
 
 <h2><span class="n">4.</span> 운영 규칙</h2>
 <ul>
-  <li><b>주간 체크</b>: 변 본부장 주관, 마일스톤 표 기준 지연 여부만 확인 (녹색/황색/적색). 황색 이상은 사유·회복 계획 1줄 필수.</li>
+  <li><b>주간 체크</b>: 전병모 주관, 마일스톤 표 기준 지연 여부만 확인 (녹색/황색/적색). 황색 이상은 사유·회복 계획 1줄 필수.</li>
   <li><b>날짜 변경</b>: 담당이 제안 → 총괄 승인 → 표 갱신. 구두 변경 금지 — 이 문서가 일정의 단일 출처.</li>
   <li><b>정책 값 변경(forceBelow 등)</b>: 버전정책 가이드 운영 규율 준수 — Android 100% 확인 후 · iOS 출시 +24~48h 후 · 변경 전 validate_policy 통과.</li>
 </ul>
