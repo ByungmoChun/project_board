@@ -19,6 +19,7 @@ PROJECTS = [  # (문서, 표시명, 분류)
     ('love_roulette_rnr_milestones.html','러브룰렛 「모니터룸」',   'B'),
     ('playtoon_maker_rnr_milestones.html','PlayToon Maker',       'C'),
     ('gyeol_rnr_milestones.html',        '결 (GYEOL)',             'C'),
+    ('superstory_web_rnr_milestones.html', 'superstory.com 홈페이지', 'E'),
 ]
 # 같은 작업이 두 문서에 걸쳐 있는 경우 — 부하 계산에서 한 번만 센다
 LOAD_SKIP = {('playtoon_maker_rnr_milestones.html', 'M1')}  # = 네이버 레드 M2 Maker 지원
