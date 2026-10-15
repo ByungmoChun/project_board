@@ -33,6 +33,7 @@ deploy/
 ├── love_roulette_rnr_milestones.html 러브룰렛 「모니터룸」 R&R · 마일스톤 · Steam 유입 전략
 ├── playtoon_maker_rnr_milestones.html PlayToon Maker V2 + 어린왕자 버전 R&R · 마일스톤
 ├── gyeol_rnr_milestones.html        결(GYEOL) 학습형 AI R&R · 마일스톤
+├── superstory_web_rnr_milestones.html superstory.com 홈페이지 R&R · 마일스톤
 ├── files/                          첨부 원본 (러브룰렛 기획서 v0.3.4 docx · 콜 타입 카탈로그 v1.1 xlsx)
 ├── vercel.json                     배포 설정 (캐시 무효화, noindex)
 └── README.md                       이 문서
@@ -317,6 +318,7 @@ Claude 없이 급히 고쳐야 할 때를 위한 안내입니다.
 
 | 날짜 | 버전 | 내용 |
 |---|---|---|
+| 2026-10-15 | v1.48 | superstory.com 홈페이지 R&R·마일스톤 승격(drafts → deploy, v1.0) · 보드 상세 칸 링크 · 타임라인 대상 등록 · 10/15 스냅샷 재생성 |
 | 2026-10-15 | v1.47 | superstory.com 홈페이지(초안): M2 디자인 외주·M3 로그인/로그 결정 차주 초 10/20, M4~M7 10/20→10/30(10월 말 전체 완료) · 보드 행 팔로업 10/20 |
 | 2026-10-15 | v1.46 | superstory.com 홈페이지 R&R·마일스톤 초안 v0.1(drafts/superstory_web_rnr_milestones.html, 미배포) — M1 시안 공유 ✅(10/13) · M2 의견 수렴(수정 범위·디자인 외주) · M3 직접 해보기 로그인 구분 · M4~M6 개발 잔여 · M7 공식 교체 · 보드 행 갱신 |
 | 2026-10-15 | v1.45 | PlayToon Maker 2.1에 안국주 작업 정리 — S3 레드 수시 지원(S3-1~S3-5, PLT-761 = 레드 S8) · S4 스토리 블록 서버 연동(PLT-657) 추가, R&R 문구 연결 · 보드 Maker 행에 안국주 작업 요약 |
