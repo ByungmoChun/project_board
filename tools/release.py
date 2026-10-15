@@ -19,10 +19,11 @@ def check():
         for m in re.finditer(r'(?:href|src)="([^"#?]+)', s):
             u = m[1]
             if re.match(r'(https?:|mailto:|data:|javascript:)', u): continue
-            if 'drafts/' in u or u.startswith('../'):
+            tgt = (f.parent/u).resolve()
+            if 'drafts/' in u or DEPLOY.resolve() not in [tgt, *tgt.parents]:
                 errs.append(f'{rel}: 배포 폴더 밖을 가리키는 링크 {u}'); continue
-            tgt = (f.parent/u)
-            if u in ('./', '.'): tgt = DEPLOY/'index.html'
+            if u in ('./', '.'): tgt = f.parent/'index.html'
+            if tgt.is_dir(): tgt = tgt/'index.html'
             if not tgt.exists() and not Path(str(tgt)+'.html').exists():
                 errs.append(f'{rel}: 깨진 링크 {u}')
     if errs:
