@@ -121,7 +121,7 @@ tools/    생성·검사 스크립트 — 배포 제외
 
 ## 3-2. 주간 스냅샷
 
-목요일 보드 갱신이 끝나면 `python3 tools/build_timeline.py deploy YYYY-MM-DD` → `python3 tools/snapshot.py deploy YYYY-MM-DD` → `python3 tools/release.py check` 순서로 실행한다. 스냅샷은 `deploy/snapshots/<날짜>/`에 보드·상세 문서 고정본으로 저장되고, 보드 상단 "주간 스냅샷" 링크(목록 페이지)에서 열람한다. 고정본은 고치지 않는다.
+목요일 보드 갱신이 끝나면 `python3 tools/build_timeline.py deploy YYYY-MM-DD` → `python3 tools/build_v2_timeline.py deploy YYYY-MM-DD`(Maker 2.2) → `python3 tools/snapshot.py deploy YYYY-MM-DD` → `python3 tools/release.py check` 순서로 실행한다. 스냅샷은 `deploy/snapshots/<날짜>/`에 보드·상세 문서 고정본으로 저장되고, 보드 상단 "주간 스냅샷" 링크(목록 페이지)에서 열람한다. 고정본은 고치지 않는다.
 
 ## 4. 보드 읽는 법
 
@@ -318,6 +318,8 @@ Claude 없이 급히 고쳐야 할 때를 위한 안내입니다.
 
 | 날짜 | 버전 | 내용 |
 |---|---|---|
+| 2026-10-19 | v1.53 | Maker 2.1 표 # 열 확대(5%→7%, 줄바꿈 금지) — S3-1 등 한 줄 표시 |
+| 2026-10-19 | v1.52 | PlayToon Maker 문서 일정 정리 — 2.1 표에 상태·Jira(링크만) 칸 분리, Jira 일정·상태 서술 제거 · 2.2 V2 타임라인 신설(tools/build_v2_timeline.py, 2.1 표에서 자동 생성) · 기존 2.2 Jira 개발 목록 표 삭제 → 2.3 Jira 바로가기(링크만) · V3 백로그 2.4 |
 | 2026-10-19 | v1.51 | 마일스톤 타임라인 오늘선 10/19로 이동(재생성) |
 | 2026-10-15 | v1.50 | 신데렐라 M5 백업 체제 가동 ✅ · 네이버 레드 M4 오디오 방향 결정 ✅ — 한국어만 녹음(결정안 일본어에서 변경), M5 한국어 녹음 · 전병모·안국주 카드 |
 | 2026-10-15 | v1.49 | 퀵게임 행 현황 갱신 — 한붓그리기(이상훈) 기본 로직 배포 → 기획 방향 결정, 체스 서바이벌(이순형) 결 개발로 일시 정지, 일정 미확정 · 이상훈·이순형 카드 |
