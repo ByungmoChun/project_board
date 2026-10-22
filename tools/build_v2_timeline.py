@@ -12,7 +12,7 @@ def pd(x):
     m = re.search(r'(\d{1,2})/(\d{1,2})', x); return dt.date(2026, int(m[1]), int(m[2])) if m else None
 a = s.find('<!-- V21:START -->'); b = s.find('<!-- V21:END -->')
 rows = []
-for m in re.finditer(r'<tr><td>([FS]\d(?:-\d)?)</td>(.*?)</tr>', s[a:b], re.S):
+for m in re.finditer(r'<tr><td[^>]*>([FS]\d(?:-\d)?)</td>(.*?)</tr>', s[a:b], re.S):
     tds = re.findall(r'<td[^>]*>(.*?)</td>', m[2], re.S)
     if '-' in m[1]: continue
     name, who, per, st = tx(tds[0]), tx(tds[1]), tds[3], tx(tds[4])
@@ -20,6 +20,8 @@ for m in re.finditer(r'<tr><td>([FS]\d(?:-\d)?)</td>(.*?)</tr>', s[a:b], re.S):
     end = pd(ds[-1]) if ds else None
     start = pd(ds[0]) if len(ds) == 2 else None
     rows.append((m[1], name, who, start, end, st))
+if not rows:
+    sys.exit('오류: 2.1 표에서 행을 하나도 읽지 못함 — 표 형식 확인 필요(타임라인 갱신 중단)')
 def x(d):  # 평일 기준 위치
     days = (d - W1).days; wk, wd = divmod(days, 7); return (wk*5 + min(wd, 4)) * DW
 track = WEEKS*5*DW
