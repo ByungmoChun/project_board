@@ -12,7 +12,7 @@ def pd(x):
     m = re.search(r'(\d{1,2})/(\d{1,2})', x); return dt.date(2026, int(m[1]), int(m[2])) if m else None
 a = s.find('<!-- V21:START -->'); b = s.find('<!-- V21:END -->')
 rows = []
-for m in re.finditer(r'<tr><td>([FS]\d(?:-\d)?)</td>(.*?)</tr>', s[a:b], re.S):
+for m in re.finditer(r'<tr><td[^>]*>([FS]\d(?:-\d)?)</td>(.*?)</tr>', s[a:b], re.S):
     tds = re.findall(r'<td[^>]*>(.*?)</td>', m[2], re.S)
     if '-' in m[1]: continue
     name, who, per, st = tx(tds[0]), tx(tds[1]), tds[3], tx(tds[4])
@@ -20,6 +20,8 @@ for m in re.finditer(r'<tr><td>([FS]\d(?:-\d)?)</td>(.*?)</tr>', s[a:b], re.S):
     end = pd(ds[-1]) if ds else None
     start = pd(ds[0]) if len(ds) == 2 else None
     rows.append((m[1], name, who, start, end, st))
+if not rows:
+    sys.exit('오류: 2.1 표에서 행을 하나도 읽지 못함 — 표 형식 확인 필요(타임라인 갱신 중단)')
 def x(d):  # 평일 기준 위치
     days = (d - W1).days; wk, wd = divmod(days, 7); return (wk*5 + min(wd, 4)) * DW
 track = WEEKS*5*DW
@@ -65,7 +67,7 @@ SEC = f'''<!-- V2TL:START — tools/build_v2_timeline.py가 2.1 표에서 생성
 .v2bl{{position:absolute;top:7px;font-size:10.5px;color:var(--ink3);white-space:nowrap;}}
 .v2na{{position:absolute;left:8px;top:7px;font-size:10.5px;color:var(--ink3);}}
 .v2today{{position:absolute;top:34px;bottom:0;border-left:2px solid var(--accent);z-index:3;pointer-events:none;}}
-.v2today span{{position:absolute;top:2px;left:3px;background:var(--accent);color:#fff;font-size:9.5px;font-weight:800;padding:0 4px;border-radius:3px;white-space:nowrap;}}
+.v2today span{{position:absolute;top:-17px;left:3px;background:var(--accent);color:#fff;font-size:9.5px;font-weight:800;padding:0 4px;border-radius:3px;white-space:nowrap;}}
 @media (max-width:700px){{.v2{{--v2lab:150px;}}}}
 </style>
 <p class="cap">2.1 표의 기간·상태를 그대로 막대로 그린 것(평일 기준, 1주차 = 9/28). <b>진행</b> 파랑 · <b>예정</b> 연파랑 · <b>완료</b> 초록 · <b>지연·목표일 경과</b> 빨간 테두리 · <b>보류</b> 빗금. 세부 태스크 일정은 Jira(2.3)에서 본다.</p>
