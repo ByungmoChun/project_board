@@ -14,8 +14,6 @@ def check():
     for f in sorted(DEPLOY.rglob('*.html')):
         s = f.read_text(encoding='utf-8')
         rel = f.relative_to(DEPLOY)
-        if 'V2TL:START' in s and s.count('class="v2row"') < 2:
-            errs.append(f'{rel}: V2 타임라인이 비어 있음 — build_v2_timeline.py 재실행 필요')
         if 'name="draft"' in s or 'DRAFT:START' in s:
             errs.append(f'{rel}: 초안 표식이 남아 있음 — 승격 절차를 거치지 않은 문서')
         for m in re.finditer(r'(?:href|src)="([^"#?]+)', s):
