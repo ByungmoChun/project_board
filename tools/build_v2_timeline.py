@@ -48,6 +48,8 @@ for rid, name, who, st_d, en_d, st in rows:
              f'<div class="v2tr" style="width:{track}px">{grid}{bar}</div></div>')
 tx_ = x(TODAY) if W1 <= TODAY <= W1+dt.timedelta(weeks=WEEKS) else None
 today = f'<div class="v2today" style="left:calc(var(--v2lab) + {tx_+DW/2}px)"><span>오늘 {TODAY.month}/{TODAY.day}</span></div>' if tx_ is not None else ''
+V2END = dt.date(2026, 11, 6)
+v2end = f'<div class="v2end" style="left:calc(var(--v2lab) + {x(V2END)+DW}px)"><span>V2 마감 {V2END.month}/{V2END.day}</span></div>'
 SEC = f'''<!-- V2TL:START — tools/build_v2_timeline.py가 2.1 표에서 생성. 직접 수정 금지 -->
 <style>
 .v2wrap{{overflow-x:auto;border:1px solid var(--line);border-radius:8px;background:var(--card);margin-top:6px;}}
@@ -67,13 +69,15 @@ SEC = f'''<!-- V2TL:START — tools/build_v2_timeline.py가 2.1 표에서 생성
 .v2bl{{position:absolute;top:7px;font-size:10.5px;color:var(--ink3);white-space:nowrap;}}
 .v2na{{position:absolute;left:8px;top:7px;font-size:10.5px;color:var(--ink3);}}
 .v2today{{position:absolute;top:34px;bottom:0;border-left:2px solid var(--accent);z-index:3;pointer-events:none;}}
+  .v2end{{position:absolute;top:34px;bottom:0;border-left:2px dashed #222;z-index:3;pointer-events:none;}}
+.v2end span{{position:absolute;top:-17px;right:3px;background:#222;color:#fff;font-size:9.5px;font-weight:800;padding:0 4px;border-radius:3px;white-space:nowrap;}}
 .v2today span{{position:absolute;top:-17px;left:3px;background:var(--accent);color:#fff;font-size:9.5px;font-weight:800;padding:0 4px;border-radius:3px;white-space:nowrap;}}
 @media (max-width:700px){{.v2{{--v2lab:150px;}}}}
 </style>
 <p class="cap">2.1 표의 기간·상태를 그대로 막대로 그린 것(평일 기준, 1주차 = 9/28). <b>진행</b> 파랑 · <b>예정</b> 연파랑 · <b>완료</b> 초록 · <b>지연·목표일 경과</b> 빨간 테두리 · <b>보류</b> 빗금. 세부 태스크 일정은 Jira(2.3)에서 본다.</p>
 <div class="v2wrap"><div class="v2">
 <div class="v2row v2head"><div class="v2lab" style="font-size:11px;color:var(--ink3)">기능 · 지원 / 담당</div><div class="v2tr" style="width:{track}px">{head}</div></div>
-{body}{today}
+{body}{today}{v2end}
 </div></div>
 <!-- V2TL:END -->'''
 s = re.sub(r'<!-- V2TL:START.*?<!-- V2TL:END -->', lambda _: SEC, s, flags=re.S)
