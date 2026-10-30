@@ -14,7 +14,7 @@ PAST_WEEKS = 2                        # 1주차 앞에 보여줄 '이전' 주 �
 W = 46                                # 주당 px
 
 PROJECTS = [  # (문서, 표시명, 분류)
-    ('cinderella_rnr_milestones.html',   '신데렐라 앱',            'A'),
+    ('cinderella_rnr_milestones.html',   '세계동화 앱',            'A'),
     ('naver_red_rnr_milestones.html',    '네이버 레드 샘플 PoC',    'B'),
     ('love_roulette_rnr_milestones.html','러브룰렛 「모니터룸」',   'B'),
     ('playtoon_maker_rnr_milestones.html','PlayToon Maker',       'C'),

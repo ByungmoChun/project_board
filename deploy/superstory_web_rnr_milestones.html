@@ -28,6 +28,7 @@
   .tag.g{background:#3d8c4a;} .tag.b{background:#4A7A8C;}
   footer{margin-top:36px;padding-top:12px;border-top:1px solid var(--line);font-size:11.5px;color:var(--ink3);}
   @media print{body{background:#fff;font-size:12.5px;} .wrap{padding:10mm 8mm;} h2{break-after:avoid;} table{break-inside:avoid;}}
+td.date{white-space:nowrap;}
 </style>
 </head>
 <body>
@@ -59,8 +60,8 @@
 </table>
 
 <h2><span class="n">2.</span> 마일스톤 <span style="font-weight:400;font-size:12.5px;color:var(--ink3);">— 날짜 칸은 날짜만, 산정 규칙은 판정란 [기준:] 태그. 모르는 칸은 ■</span></h2>
-<table>
-  <tr><th style="width:5%">#</th><th style="width:26%">마일스톤</th><th style="width:9%">시작일</th><th style="width:9%">목표일</th><th style="width:14%">담당 / 확인</th><th>완료 판정 기준</th></tr>
+<table style="table-layout:fixed">
+  <tr><th style="width:4%">#</th><th style="width:23%">마일스톤</th><th style="width:7%;white-space:nowrap">시작일</th><th style="width:7%;white-space:nowrap">목표일</th><th style="width:10%">담당 / 확인</th><th>완료 판정 기준</th></tr>
   <tr><td>M1</td><td>시안 개발 완료 · 공유 <span style="color:var(--e,#3d8c4a);font-weight:800;">✅ 완료</span></td><td>—</td><td>10/13</td><td>전병모</td><td><b>완료(10/13)</b> — 10/12 Vercel 배포, 10/13(화) 대표님 · 박선희 팀장에게 공유</td></tr>
   <tr><td>M2</td><td>검토 의견 수렴 — 진행 방식 결정 <span style="color:var(--e,#3d8c4a);font-weight:800;">✅ 완료</span></td><td class="date">10/13</td><td class="date">10/20</td><td>대표님 · 박선희 팀장 / 전병모</td><td><b>완료(10/22 확인)</b> — 대표님 지시: IR 요약 버전으로 전체 구성 심플화, 박선희 팀장 일괄 진행(M8~M11). 디자인 외주 여부는 크몽 견적 비교(M10)로 넘어감. <b>[기준: 차주 초 결정 — 10/15 지시]</b> 두 분 의견 수령 → 수정 범위 확정 + 디자인을 외주로 할지 지금 시안대로 갈지 결정. 이 결정으로 M7 진행 방식이 정해진다</td></tr>
   <tr><td>M3</td><td>「직접 해보기」 로그인 구분 결정 <span style="color:var(--e,#3d8c4a);font-weight:800;">✅ 완료</span></td><td>—</td><td class="date">10/20</td><td>대표님 / 전병모</td><td><b>완료(10/19)</b> — 대표님 원 의도는 로그인 기록이 아니라 <b>목적별 세그먼트 구분</b>(로그인 요구는 와전). 결정: 뷰어 로그인 제거(누구나 열람) + 카테고리 세그먼트 구분 + 카톡 공유 편의. 유출 민감 샘플(타카라토미 등) 예외 처리는 별도 확인. <b>[기준: 차주 초 결정 — 플레이어 로그 범위와 함께]</b> 로그인해서 계속 로그를 남겨야 하는 부분과, 로그인 없이 무조건 보여야 하는 부분의 구분 결정</td></tr>
