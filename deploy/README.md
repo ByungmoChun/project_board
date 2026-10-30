@@ -33,6 +33,7 @@ deploy/
 ├── love_roulette_rnr_milestones.html 러브룰렛 「모니터룸」 R&R · 마일스톤 · Steam 유입 전략
 ├── playtoon_maker_rnr_milestones.html PlayToon Maker V2 + 어린왕자 버전 R&R · 마일스톤
 ├── gyeol_rnr_milestones.html        결(GYEOL) 학습형 AI R&R · 마일스톤
+├── emotional_tts_rnr_milestones.html  Emotional TTS R&R · 마일스톤
 ├── superstory_web_rnr_milestones.html superstory.com 홈페이지 R&R · 마일스톤
 ├── files/                          첨부 원본 (러브룰렛 기획서 v0.3.4 docx · 콜 타입 카탈로그 v1.1 xlsx)
 ├── vercel.json                     배포 설정 (캐시 무효화, noindex)
@@ -318,6 +319,8 @@ Claude 없이 급히 고쳐야 할 때를 위한 안내입니다.
 
 | 날짜 | 버전 | 내용 |
 |---|---|---|
+| 2026-10-30 | v1.83 | Maker M4 판정란에 중간 보고 ✅ — 10/29 워크샵 「플레이툰 메이커 V2 개발 현황과 사실 확인」 발표·자료 링크, 남은 항목(F4 폴리싱·F5·F7) 명시 · M4 자체는 11/06 완료 기준 유지 |
+| 2026-10-30 | v1.82 | Emotional TTS R&R·마일스톤 승격(drafts → deploy, v1.0) — 보드 상세 칸 링크, 보드 3장 타임라인 대상 등록, 문서 마일스톤 타임라인 · 전병모 카드 워크샵 발표(10/29)에 발표 자료 링크 |
 | 2026-10-30 | v1.81 | 우선순위 변경(10/30) — 분절 정확도 이슈로 결(분절) 연구 비중 축소, 팁스 준비로 Emotional TTS 집중: 결 문서 리스크·보드 결/TTS 행·TTS 초안 배경·리스크 · 이순형 일정표는 같은 시트에서 계속 갱신(퀵게임 미반영) |
 | 2026-10-30 | v1.80 | 신규 프로젝트 C라인 Emotional TTS(생성형 감정 TTS) — 결 아래 등록, 🟢 진행(10/26 착수), 보드 25→26건 · R&R·마일스톤 초안 drafts/emotional_tts_rnr_milestones.html(M1~M6·T1~T12, 이순형 일정표 생성형 TTS 구간 5~21주차) · 이순형 주차별 작업 계획 일정표(구글 시트) 링크 보관 · 마일스톤 타임라인 생성기 대상에 TTS 추가 |
 | 2026-10-30 | v1.79 | R&R 문서 6종 마일스톤 표 열 폭 조정 — #·시작일·목표일·담당 축소(날짜 줄바꿈 금지), 완료 판정 기준 확대 · 세계동화 앱 버전 로그 버전·플랫폼·날짜 열 축소(머리 "제출일·통과일·출시일"), 비고 확대 · 해당 표 고정 레이아웃 |
