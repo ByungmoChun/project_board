@@ -1,0 +1,376 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>동화 앱 BM 다각화 조사 — 피어 앱 수익모델 · 추가 결제 상품 · 정책 제약</title>
+<style>
+  @import url('https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@400;500;700;900&display=swap');
+  *, *::before, *::after { box-sizing:border-box; margin:0; padding:0; }
+  :root {
+    --bg:#ffffff; --soft:#f6f6f7; --soft2:#fafafa; --line:#e7e7e9;
+    --text:#17171a; --body:#3a3a40; --muted:#7a7a82;
+    --red:#cf1126; --red-soft:rgba(207,17,38,0.07);
+    --blue:#2f6fa8; --blue-soft:rgba(47,111,168,0.08);
+    --green:#2f9e5c; --green-soft:rgba(47,158,92,0.09);
+    --amber:#c2740c; --amber-soft:rgba(194,116,12,0.09);
+    --grey-bar:#c9c9ce;
+  }
+  body { font-family:'Noto Sans KR',sans-serif; background:var(--bg); color:var(--text); line-height:1.6; -webkit-font-smoothing:antialiased; }
+  .page { max-width:1080px; margin:0 auto; padding:40px 32px 80px; }
+  a { color:var(--blue); text-decoration:none; }
+  a:hover { text-decoration:underline; }
+  strong { color:var(--text); }
+
+  /* COVER */
+  .cover { padding:8px 0 40px; border-bottom:2px solid var(--text); margin-bottom:44px; }
+  .cover .logo img { height:40px; width:auto; }
+  .cover .eyebrow { margin-top:40px; font-size:13px; font-weight:700; letter-spacing:.16em; color:var(--red); }
+  .cover h1 { font-size:44px; font-weight:900; letter-spacing:-.03em; line-height:1.25; margin:12px 0 14px; }
+  .cover h1 em { font-style:normal; color:var(--blue); }
+  .cover .sub { font-size:16px; color:var(--muted); max-width:760px; }
+  .cover .meta { margin-top:22px; display:flex; gap:18px; font-size:13px; color:var(--muted); flex-wrap:wrap; }
+  .cover .meta span { padding:4px 12px; border:1px solid var(--line); border-radius:20px; }
+
+  /* EXEC SUMMARY */
+  .exec { background:var(--text); color:#fff; border-radius:20px; padding:36px 38px; margin-bottom:64px; }
+  .exec .label { font-size:13px; font-weight:700; letter-spacing:.16em; color:#ff8a98; margin-bottom:10px; }
+  .exec h2 { font-size:26px; font-weight:900; line-height:1.4; letter-spacing:-.02em; margin-bottom:26px; }
+  .exec h2 em { font-style:normal; color:#ffd0d6; }
+  .exec-rows { display:grid; gap:2px; border-radius:14px; overflow:hidden; }
+  .exec-row { display:grid; grid-template-columns:52px 210px 1fr; align-items:center; gap:18px; background:rgba(255,255,255,.06); padding:18px 22px; }
+  .exec-row .n { font-size:13px; font-weight:900; color:#ff8a98; }
+  .exec-row .big { font-size:26px; font-weight:900; letter-spacing:-.02em; line-height:1.2; }
+  .exec-row .big small { display:block; font-size:12px; font-weight:500; color:rgba(255,255,255,.55); letter-spacing:0; margin-top:4px; }
+  .exec-row .msg b { display:block; font-size:16px; font-weight:700; margin-bottom:3px; }
+  .exec-row .msg span { font-size:14px; color:rgba(255,255,255,.7); line-height:1.65; }
+
+  /* SECTION */
+  .section { margin-bottom:72px; }
+  .sec-head { margin-bottom:26px; }
+  .sec-num { display:inline-flex; align-items:center; gap:10px; font-size:13px; font-weight:700; letter-spacing:.14em; color:var(--red); margin-bottom:12px; }
+  .sec-num::before { content:''; width:26px; height:2px; background:var(--red); }
+  .headline { font-size:30px; font-weight:900; letter-spacing:-.025em; line-height:1.38; margin-bottom:12px; }
+  .headline em { font-style:normal; color:var(--red); }
+  .lead { font-size:16px; color:var(--body); max-width:860px; line-height:1.8; }
+
+  /* EVIDENCE BLOCK */
+  .grid-2 { display:grid; grid-template-columns:1fr 1fr; gap:18px; }
+  .grid-3 { display:grid; grid-template-columns:repeat(3,1fr); gap:16px; }
+  .grid-4 { display:grid; grid-template-columns:repeat(4,1fr); gap:14px; }
+  .ev { border:1px solid var(--line); border-radius:16px; padding:24px; background:var(--bg); margin-bottom:18px; }
+  .grid-2 .ev, .grid-3 .ev { margin-bottom:0; }
+  .ev-tag { font-size:12px; font-weight:700; color:var(--muted); letter-spacing:.06em; margin-bottom:6px; }
+  .ev-key { font-size:18px; font-weight:900; letter-spacing:-.015em; line-height:1.45; margin-bottom:6px; }
+  .ev-key em { font-style:normal; color:var(--blue); }
+  .ev-desc { font-size:14px; color:var(--muted); line-height:1.7; margin-bottom:18px; }
+  .ev-foot { font-size:12.5px; color:var(--muted); margin-top:14px; padding-top:12px; border-top:1px dashed var(--line); line-height:1.7; }
+
+  /* BARS */
+  .bar { display:grid; grid-template-columns:118px 1fr 84px; gap:12px; align-items:center; margin-bottom:10px; font-size:14px; }
+  .bar .lbl { color:var(--body); }
+  .bar .trk { height:14px; background:var(--soft); border-radius:7px; overflow:hidden; }
+  .bar .fill { height:100%; border-radius:7px; background:var(--grey-bar); }
+  .bar .fill.hi { background:var(--blue); }
+  .bar .fill.red { background:var(--red); opacity:.85; }
+  .bar .val { text-align:right; font-weight:700; font-variant-numeric:tabular-nums; }
+  .bar .val.hi { color:var(--blue); }
+  .bar .val.red { color:var(--red); }
+  .bar-group { font-size:13.5px; font-weight:700; color:var(--text); margin:14px 0 8px; }
+  .bar-group:first-child { margin-top:0; }
+  .legend { display:flex; gap:16px; font-size:12.5px; color:var(--muted); margin-bottom:12px; }
+  .legend i { display:inline-block; width:10px; height:10px; border-radius:2px; margin-right:5px; vertical-align:-1px; }
+
+  /* COLUMN CHART */
+  .cols { display:flex; align-items:flex-end; gap:40px; height:200px; padding:0 30px; border-bottom:1.5px solid var(--line); }
+  .col { flex:1; height:100%; display:flex; flex-direction:column; justify-content:flex-end; align-items:center; }
+  .col .v { font-size:20px; font-weight:900; margin-bottom:8px; }
+  .col .b { width:64%; border-radius:8px 8px 0 0; }
+  .col-lbls { display:flex; gap:40px; padding:8px 30px 0; font-size:13.5px; color:var(--muted); text-align:center; }
+  .col-lbls div { flex:1; }
+  .growth-badge { display:inline-block; margin-top:14px; background:var(--blue-soft); color:var(--blue); font-weight:700; font-size:13.5px; padding:6px 12px; border-radius:8px; }
+
+  /* STAT TILES */
+  .stat { background:var(--soft2); border:1px solid var(--line); border-radius:14px; padding:20px; }
+  .stat .v { font-size:28px; font-weight:900; letter-spacing:-.02em; line-height:1.2; }
+  .stat .v small { font-size:14px; font-weight:700; }
+  .stat .k { font-size:14px; font-weight:700; margin:8px 0 4px; }
+  .stat .s { font-size:12.5px; color:var(--muted); line-height:1.6; }
+
+  /* TABLE */
+  table { width:100%; border-collapse:collapse; font-size:14px; }
+  th { text-align:left; font-size:12.5px; font-weight:700; color:var(--muted); padding:10px 12px; border-bottom:1.5px solid var(--text); white-space:nowrap; }
+  td { padding:13px 12px; border-bottom:1px solid var(--line); color:var(--body); vertical-align:middle; }
+  td.name { white-space:nowrap; }
+  td.name b { color:var(--text); display:block; }
+  td.name span, td small { font-size:12.5px; color:var(--muted); }
+  td.num { text-align:right; white-space:nowrap; font-variant-numeric:tabular-nums; }
+  tr.total td { font-weight:900; color:var(--text); border-top:1.5px solid var(--text); border-bottom:none; background:var(--soft2); }
+  tr.focus td { background:var(--red-soft); }
+
+  .pill { display:inline-block; font-size:12px; font-weight:700; padding:3px 10px; border-radius:20px; white-space:nowrap; }
+  .pill.red { background:var(--red-soft); color:var(--red); }
+  .pill.amber { background:var(--amber-soft); color:var(--amber); }
+  .pill.grey { background:var(--soft); color:var(--muted); }
+  .pill.blue { background:var(--blue-soft); color:var(--blue); }
+  .pill.green { background:var(--green-soft); color:var(--green); }
+
+  /* POINT CARDS */
+  .point { border-left:3px solid var(--blue); background:var(--soft2); border-radius:0 12px 12px 0; padding:16px 18px; }
+  .point.red { border-left-color:var(--red); }
+  .point.green { border-left-color:var(--green); }
+  .point.amber { border-left-color:var(--amber); }
+  .point b { display:block; font-size:15px; margin-bottom:4px; }
+  .point span { font-size:13.5px; color:var(--muted); line-height:1.7; }
+
+  /* FORMULA */
+  .formula { display:flex; align-items:center; gap:12px; flex-wrap:wrap; font-size:15px; }
+  .formula .t { background:var(--soft); border-radius:10px; padding:12px 16px; text-align:center; }
+  .formula .t b { display:block; font-size:18px; }
+  .formula .t span { font-size:12px; color:var(--muted); }
+  .formula .op { font-size:20px; font-weight:700; color:var(--muted); }
+  .formula .t.res { background:var(--text); color:#fff; }
+  .formula .t.res b { color:#fff; } .formula .t.res span { color:rgba(255,255,255,.6); }
+
+  /* TIERS */
+  .tier { border:1px solid var(--line); border-radius:16px; overflow:hidden; }
+  .tier-h { padding:14px 18px; font-weight:900; font-size:15px; display:flex; justify-content:space-between; align-items:center; }
+  .tier-h small { font-size:12px; font-weight:500; opacity:.8; }
+  .tier.t1 .tier-h { background:var(--red); color:#fff; }
+  .tier.t2 .tier-h { background:var(--blue); color:#fff; }
+  .tier.t3 .tier-h { background:var(--soft); color:var(--text); }
+  .tier-b { padding:6px 18px 14px; }
+  .ch { padding:12px 0; border-bottom:1px solid var(--line); }
+  .ch:last-child { border-bottom:none; }
+  .ch b { display:block; font-size:14.5px; margin-bottom:2px; }
+  .ch span { font-size:13px; color:var(--muted); line-height:1.65; display:block; }
+
+  /* CONCLUSION */
+  .conclude { background:var(--red-soft); border:1px solid rgba(207,17,38,.18); border-radius:20px; padding:30px 32px; }
+  .conclude .headline { font-size:24px; }
+  .conclude .grid-3 { margin-top:18px; }
+  .conclude .point { background:#fff; }
+
+  .sources { display:grid; grid-template-columns:1fr 1fr; gap:6px 24px; font-size:13.5px; }
+  .sources a { padding:8px 0; border-bottom:1px solid var(--line); display:block; }
+  .note { font-size:12.5px; color:var(--muted); margin-top:12px; line-height:1.7; }
+  .footer { text-align:right; font-size:12px; color:var(--muted); margin-top:28px; }
+
+  @media (max-width:820px) {
+    .page { padding:28px 16px 60px; }
+    .cover h1 { font-size:30px; } .headline { font-size:23px; } .exec h2 { font-size:21px; }
+    .grid-2, .grid-3, .grid-4, .sources { grid-template-columns:1fr; }
+    .exec { padding:26px 20px; }
+    .exec-row { grid-template-columns:1fr; gap:6px; }
+    .table-wrap { overflow-x:auto; }
+    table { min-width:640px; }
+  }
+
+  td a { font-weight:700; }
+  .table-wrap { overflow-x:auto; }
+  .exec h2 em { font-style:normal; color:#ffd0d6; }
+</style>
+</head>
+<body>
+<div class="page">
+
+<!-- ═══ 표지 ═══ -->
+<div class="cover">
+  <div class="logo"><img alt="Super Story" src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAfQAAACyCAYAAAC0oD1PAAAACXBIWXMAAAsTAAALEwEAmpwYAAAGn2lUWHRYTUw6Y29tLmFkb2JlLnhtcAAAAAAAPD94cGFja2V0IGJlZ2luPSLvu78iIGlkPSJXNU0wTXBDZWhpSHpyZVN6TlRjemtjOWQiPz4gPHg6eG1wbWV0YSB4bWxuczp4PSJhZG9iZTpuczptZXRhLyIgeDp4bXB0az0iQWRvYmUgWE1QIENvcmUgOS4xLWMwMDEgNzkuMTQ2Mjg5OSwgMjAyMy8wNi8yNS0yMDowMTo1NSAgICAgICAgIj4gPHJkZjpSREYgeG1sbnM6cmRmPSJodHRwOi8vd3d3LnczLm9yZy8xOTk5LzAyLzIyLXJkZi1zeW50YXgtbnMjIj4gPHJkZjpEZXNjcmlwdGlvbiByZGY6YWJvdXQ9IiIgeG1sbnM6eG1wPSJodHRwOi8vbnMuYWRvYmUuY29tL3hhcC8xLjAvIiB4bWxuczp4bXBNTT0iaHR0cDovL25zLmFkb2JlLmNvbS94YXAvMS4wL21tLyIgeG1sbnM6c3RSZWY9Imh0dHA6Ly9ucy5hZG9iZS5jb20veGFwLzEuMC9zVHlwZS9SZXNvdXJjZVJlZiMiIHhtbG5zOnN0RXZ0PSJodHRwOi8vbnMuYWRvYmUuY29tL3hhcC8xLjAvc1R5cGUvUmVzb3VyY2VFdmVudCMiIHhtbG5zOmRjPSJodHRwOi8vcHVybC5vcmcvZGMvZWxlbWVudHMvMS4xLyIgeG1sbnM6cGhvdG9zaG9wPSJodHRwOi8vbnMuYWRvYmUuY29tL3Bob3Rvc2hvcC8xLjAvIiB4bXA6Q3JlYXRvclRvb2w9IkFkb2JlIFBob3Rvc2hvcCAyNS4wIChXaW5kb3dzKSIgeG1wOkNyZWF0ZURhdGU9IjIwMjYtMDMtMjNUMTU6NDM6NDMrMDk6MDAiIHhtcDpNb2RpZnlEYXRlPSIyMDI2LTA2LTAyVDE1OjAzOjIyKzA5OjAwIiB4bXA6TWV0YWRhdGFEYXRlPSIyMDI2LTA2LTAyVDE1OjAzOjIyKzA5OjAwIiB4bXBNTTpJbnN0YW5jZUlEPSJ4bXAuaWlkOjMyNGQ3YTY3LTlhZjQtYTg0ZC05ZDIyLTEyMjVlMWI2OGM4OSIgeG1wTU06RG9jdW1lbnRJRD0iYWRvYmU6ZG9jaWQ6cGhvdG9zaG9wOmYzY2FiZDJkLWU3ODItNjE0NS1hNmM2LTAwZmNiNWZiODVkMCIgeG1wTU06T3JpZ2luYWxEb2N1bWVudElEPSJ4bXAuZGlkOkEyOEE0MTA3MjY4MzExRjFCOUMyREY0MzVFQkM1MUU4IiBkYzpmb3JtYXQ9ImltYWdlL3BuZyIgcGhvdG9zaG9wOkNvbG9yTW9kZT0iMyI+IDx4bXBNTTpEZXJpdmVkRnJvbSBzdFJlZjppbnN0YW5jZUlEPSJ4bXAuaWlkOkEyOEE0MTA0MjY4MzExRjFCOUMyREY0MzVFQkM1MUU4IiBzdFJlZjpkb2N1bWVudElEPSJ4bXAuZGlkOkEyOEE0MTA1MjY4MzExRjFCOUMyREY0MzVFQkM1MUU4Ii8+IDx4bXBNTTpIaXN0b3J5PiA8cmRmOlNlcT4gPHJkZjpsaSBzdEV2dDphY3Rpb249InNhdmVkIiBzdEV2dDppbnN0YW5jZUlEPSJ4bXAuaWlkOjFhYWUxNTUzLWU0ZDAtMzk0ZS1hN2QwLTczZTliY2NjNzllMCIgc3RFdnQ6d2hlbj0iMjAyNi0wNi0wMlQxNTowMzoyMiswOTowMCIgc3RFdnQ6c29mdHdhcmVBZ2VudD0iQWRvYmUgUGhvdG9zaG9wIDI1LjAgKFdpbmRvd3MpIiBzdEV2dDpjaGFuZ2VkPSIvIi8+IDxyZGY6bGkgc3RFdnQ6YWN0aW9uPSJzYXZlZCIgc3RFdnQ6aW5zdGFuY2VJRD0ieG1wLmlpZDozMjRkN2E2Ny05YWY0LWE4NGQtOWQyMi0xMjI1ZTFiNjhjODkiIHN0RXZ0OndoZW49IjIwMjYtMDYtMDJUMTU6MDM6MjIrMDk6MDAiIHN0RXZ0OnNvZnR3YXJlQWdlbnQ9IkFkb2JlIFBob3Rvc2hvcCAyNS4wIChXaW5kb3dzKSIgc3RFdnQ6Y2hhbmdlZD0iLyIvPiA8L3JkZjpTZXE+IDwveG1wTU06SGlzdG9yeT4gPC9yZGY6RGVzY3JpcHRpb24+IDwvcmRmOlJERj4gPC94OnhtcG1ldGE+IDw/eHBhY2tldCBlbmQ9InIiPz7/0GzGAABTx0lEQVR4nO3deZxN5f8A8M/znLtvs+8Y62AwISMhZCskZCcq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"></div>
+  <div class="eyebrow">BM RESEARCH · 2026.10.28</div>
+  <h1>동화 앱 BM 다각화 조사<br><em>피어 앱 수익모델 · 추가 결제 상품 · 정책 제약</em></h1>
+  <p class="sub">신데렐라 인터랙티브 동화 앱에 챕터 결제 외에 어떤 추가 BM을 어떤 순서로 붙일지 정하기 위해, 국내외 피어 앱 10곳의 콘텐츠 양과 수익모델, 스토어 정책 제약을 조사했습니다.</p>
+  <div class="meta"><span>작성 · 모모</span><span>대상: 신데렐라 인터랙티브 동화 앱</span><span>기준일 2026.10.28</span></div>
+</div>
+
+<!-- ═══ 요약 ═══ -->
+<div class="exec">
+  <div class="label">EXECUTIVE SUMMARY</div>
+  <h2>챕터 결제 다음은 <em>의상 팩</em>, 책이 늘면 <em>전권 세트 → 연간 패스(구독)</em></h2>
+  <div class="exec-rows">
+    <div class="exec-row"><div class="n">01</div><div class="big">의상 팩<small>첫 추가 상품 · 0.99–2.99달러</small></div><div class="msg"><b>바비·토카보카에서 검증된 상품이고 제작 부담이 가장 작습니다.</b><span>아이들이 옷 갈아입히기를 좋아함. 런칭 빌드에는 넣지 않고 런칭 이후 업데이트로 올립니다.</span></div></div>
+    <div class="exec-row"><div class="n">02</div><div class="big">권당 + 세트 + 구독<small>피어 앱의 기본 조합</small></div><div class="msg"><b>챕터(권)만 파는 앱은 거의 없습니다.</b><span>핑크퐁 스토리북은 권당 1.99달러, 세트 12.99달러, 구독 월 8.99달러. 구독형 앱은 대부분 책을 수백 편 갖고 있습니다.</span></div></div>
+    <div class="exec-row"><div class="n">03</div><div class="big">무료 장치<small>미니게임 · 스티커 · 코인</small></div><div class="msg"><b>미니게임과 코인은 파는 상품이 아니라 재방문을 만드는 장치로 씁니다.</b><span>코인을 돈으로 파는 구조는 Google 가족 정책과 교사 추천 심사에서 위험합니다.</span></div></div>
+    <div class="exec-row"><div class="n">04</div><div class="big">A안 유지<small>결제는 부모 상점에서만</small></div><div class="msg"><b>이야기 중간 결제 요구나 감정에 호소하는 결제 유도는 규정으로 금지돼 있습니다.</b><span>두 앱 분리(일반/BM 버전)는 교사 추천 심사 결과를 본 뒤 결정합니다.</span></div></div>
+  </div>
+</div>
+
+<!-- ═══ 01 피어 앱 ═══ -->
+<div class="section">
+  <div class="sec-head">
+    <div class="sec-num">01 · 피어 앱 BM 사례</div>
+    <div class="headline">챕터(권)만 파는 앱은 거의 없고, <em>권당 · 세트 · 구독</em>을 한 앱에 같이 둡니다</div>
+    <p class="lead">대부분 '권당 구매 + 전체 세트 + 구독'을 한 앱에 같이 두고, 아이가 들어갈 장소나 꾸미기 팩 같은 소액 단품을 붙입니다. 해외 7곳과 국내 3곳의 콘텐츠 양과 수익모델을 비교했습니다.</p>
+  </div>
+
+  <div class="ev">
+    <div class="ev-tag">피어 앱 비교</div>
+    <div class="ev-key">구독만 받는 앱은 <em>책 수백 편</em>, 권당 판매 앱은 <em>10권 안팎</em>이 기준선입니다</div>
+    <div class="ev-desc">가격은 해외 앱은 미국 스토어(달러), 국내 앱은 한국 스토어(원) 기준입니다.</div>
+    <div class="table-wrap"><table>
+      <thead><tr><th>앱</th><th>핵심 콘텐츠 양</th><th>기본 BM</th><th>미니게임·활동</th><th>추가로 파는 것</th><th>가격</th><th>결제 유도 지점</th></tr></thead>
+      <tbody>
+        <tr class="focus"><td class="name"><b><a href="https://apps.apple.com/app/id1471100783" target="_blank">핑크퐁 아기상어 스토리북</a></b><span>더핑크퐁컴퍼니</span></td><td>책 10권(5개 언어). 빨간 망토(Red Riding Hood) 포함</td><td>무료 + 권당 구매</td><td>책마다 퍼즐·미로 게임(개수 미공개)</td><td>전권 세트, 핑크퐁 플러스 구독(앱 10개 묶음)</td><td>권당 1.99달러, 세트 12.99달러<br><small>구독 월 8.99 / 연 59.99달러</small></td><td>잠긴 책. 책마다 퍼즐·미로 미니게임</td></tr>
+        <tr><td class="name"><b><a href="https://apppricinglab.com/iap/apple/1208138685" target="_blank">토카보카 월드</a></b><span>스핀마스터</span></td><td><a href="https://tocaboca.com/app/world/" target="_blank">장소 90곳 이상, 캐릭터 500개</a></td><td>무료 + 장소·아이템 구매</td><td>정해진 게임 없이 자유롭게 노는 방식. 매주 금요일 무료 선물</td><td>장소(집·병원·몰), 가구 팩, 캐릭터 만들기</td><td>0.99–4.99달러</td><td>잠긴 장소. 무료와 유료를 명확히 표시</td></tr>
+        <tr><td class="name"><b><a href="https://apppricinglab.com/iap/apple/1296796112" target="_blank">바비 드림하우스 어드벤처스</a></b><span>Budge Studios</span></td><td>캐릭터 약 10명, 활동 약 10종. 방 개수는 미공개</td><td>무료 일부 + VIP 구독</td><td>요리·댄스·헤어살롱 등 활동과 미니게임(개수 미공개)</td><td>옷·방 꾸미기 등 VIP 콘텐츠</td><td>월 12.99달러, 주 1.99달러</td><td>꾸미기·옷 갈아입히기 항목</td></tr>
+        <tr><td class="name"><b><a href="https://apps.apple.com/us/app/-/id1198599796" target="_blank">페피 슈퍼스토어</a></b><span>Pepi Play</span></td><td>캐릭터 34명 추가, 아이템 수천 개</td><td>무료 + 장소 팩 + 패스</td><td>매장별 놀이(매장 수 미공개)</td><td>가게·활동 팩, 페피 패스</td><td>팩 3.99달러<br><small>패스 5.99 / 49.99달러</small></td><td>잠긴 가게. 광고 포함</td></tr>
+        <tr><td class="name"><b><a href="https://apps.apple.com/app/id1473021827" target="_blank">Readmio</a></b><span>체코</span></td><td>영어 동화 250편 이상(체코어 350편 이상), 13개 언어. 매주 새 동화 추가</td><td>무료 일부 + 구독</td><td>없음. 낭독 효과음이 핵심</td><td>부모가 읽으면 효과음이 따라 나오는 낭독 기능, 평생 이용권</td><td>연 39.99–49.99달러<br><small>평생 159달러</small></td><td>부모의 목소리 체험 자체</td></tr>
+        <tr><td class="name"><b><a href="https://apps.apple.com/app/id1435813450" target="_blank">Vooks</a></b><span>미국</span></td><td><a href="https://info.vooks.com/whats-in-the-vooks-library" target="_blank">애니메이션 동화 370편 이상, 전자책 약 1,000권, 오디오북 1,000권 이상</a></td><td>구독</td><td>없음</td><td>부모 녹음(Storyteller), 오디오, 크리에이터 기능을 구독에 포함</td><td>월 9.99 / 연 69.99달러</td><td>구독 가치를 높이는 부가 기능</td></tr>
+        <tr><td class="name"><b><a href="https://apps.apple.com/app/id874425722" target="_blank">사고미니 월드</a></b><span>스핀마스터</span></td><td>게임 20개 이상, '활동 수백 개'. 구독하면 다른 앱 10개까지 이용 가능</td><td>구독</td><td>앱 전체가 미니게임 묶음</td><td>구독자는 광고·인앱 결제 없음</td><td>7.99–59.99달러</td><td>구독으로 전부 해금</td></tr>
+        <tr><td class="name"><b><a href="https://apps.apple.com/kr/app/stoala-%EC%8A%A4%ED%86%A8%EB%9D%BC-%EB%82%98%EB%A7%8C%EC%9D%98-%EB%8F%99%ED%99%94%EC%B1%85/id6503722245" target="_blank">Stoala 스톨라</a></b><span>국내 · 스노우</span></td><td>AI 맞춤 동화(총 편수 미공개). 업데이트마다 10편 안팎 추가</td><td>무료 체험 + 구독 + 단권 소장</td><td>없음. 아이 사진 주인공, 부모 목소리 녹음, 아이가 전개 선택</td><td>일반 단권, 인터랙티브 단권</td><td>구독 월 9,900 / 연 35,900원<br><small>단권 5,500원, 인터랙티브 단권 7,700원</small></td><td>내 아이가 주인공인 책을 소장</td></tr>
+        <tr><td class="name"><b><a href="https://apps.apple.com/kr/app/%EC%8A%A4%ED%86%A0%EB%A6%AC%EB%B6%81-ai-%EC%9E%A0%EC%9E%90%EB%A6%AC-%EB%8F%99%ED%99%94/id6504148282" target="_blank">스토리북 AI</a></b><span>국내 스토어 · JH Digital</span></td><td>AI가 그때그때 동화 생성(고정 편수 없음). 영어</td><td>무료 + 코인 소모</td><td>없음. 페이지마다 선택지로 줄거리 결정</td><td>코인 팩 4종</td><td>1,100–33,000원</td><td>새 동화를 만들 때마다 코인 차감</td></tr>
+        <tr><td class="name"><b><a href="https://apps.apple.com/kr/app/id923670648" target="_blank">아이윙</a></b><span>국내 · 엠플레어</span></td><td>그림동화 스트리밍북 약 20만 권, 출판사 그림책 약 1만 권. 5개 언어</td><td>이용권·월 구독</td><td>없음. 부모 녹음, 외국어 사운드북</td><td>프리미엄 이용권</td><td>월 5,500원<br><small>30일 4,400–9,000원, 12개월 33,000–90,000원</small></td><td>대형 도서관 이용권</td></tr>
+      </tbody>
+    </table></div>
+    <div class="ev-foot">핑크퐁 스토리북은 우리 포맷에 가장 가까운 국내 사례입니다. 다만 평점이 3.6(리뷰 307건)으로 낮아, 권당 결제 방식에 대한 부모의 반응은 스토어 리뷰로 따로 확인해 볼 필요가 있습니다.<br>토카보카는 유료 앱 여러 개를 무료 앱 하나로 합치면서 이 모델로 바꿨고, 기존 구매자에게는 콘텐츠를 자동으로 해금해 줬습니다(<a href="https://www.axios.com/2018/11/21/toca-boca-in-app-purchases-toca-life-world" target="_blank">Axios, 2018</a>).</div>
+  </div>
+
+  <div class="grid-2">
+    <div class="ev">
+      <div class="ev-tag">단품 가격 비교 · 한국 스토어</div>
+      <div class="ev-key">신데렐라 <em>챕터 1개</em>는 Stoala <em>단권</em>의 60% 수준입니다</div>
+      <div class="ev-desc">유료 챕터 수에 따라 한 권 값이 Stoala 단권보다 비싸질 수 있습니다.</div>
+      <div class="bar"><div class="lbl">Stoala 인터랙티브 단권</div><div class="trk"><div class="fill" style="width:100%"></div></div><div class="val">7,700원</div></div>
+      <div class="bar"><div class="lbl">Stoala 일반 단권</div><div class="trk"><div class="fill" style="width:71%"></div></div><div class="val">5,500원</div></div>
+      <div class="bar"><div class="lbl">신데렐라 챕터</div><div class="trk"><div class="fill red" style="width:43%"></div></div><div class="val red">3,300원</div></div>
+    </div>
+    <div class="ev">
+      <div class="ev-tag">단품 가격 비교 · 미국 스토어</div>
+      <div class="ev-key">핑크퐁은 <em>책 1권</em>이 1.99달러, <em>10권 세트</em>가 12.99달러입니다</div>
+      <div class="ev-desc">신데렐라는 챕터 1개가 2.99달러로, 핑크퐁 책 1권보다 높습니다.</div>
+      <div class="bar"><div class="lbl">핑크퐁 10권 세트</div><div class="trk"><div class="fill" style="width:100%"></div></div><div class="val">$12.99</div></div>
+      <div class="bar"><div class="lbl">신데렐라 챕터</div><div class="trk"><div class="fill red" style="width:23%"></div></div><div class="val red">$2.99</div></div>
+      <div class="bar"><div class="lbl">핑크퐁 책 1권</div><div class="trk"><div class="fill" style="width:15%"></div></div><div class="val">$1.99</div></div>
+    </div>
+  </div>
+</div>
+
+<!-- ═══ 02 추가 결제 상품 ═══ -->
+<div class="section">
+  <div class="sec-head">
+    <div class="sec-num">02 · 추가 결제 상품</div>
+    <div class="headline">수익성이 가장 높을 것으로 보이는 건 <em>의상 팩</em>과 <em>다음 책 세트</em>입니다</div>
+    <p class="lead">두 상품 모두 유니티 라인에서 반복해 만들 수 있고, 아이가 이미 좋아하는 행동에 기대기 때문입니다. 아래 표의 예상 제작 부담은 조사 내용을 바탕으로 한 추정입니다.</p>
+  </div>
+  <div class="ev">
+    <div class="ev-tag">상품 유형별 분석</div>
+    <div class="ev-key">의상 팩은 <em>제작 부담이 낮고</em>, 다음 책은 <em>본 제작 라인 그대로</em> 만들 수 있습니다</div>
+    <div class="ev-desc">미니게임·보상·광고는 파는 상품보다 재방문 장치로 쓰거나 쓰지 않는 쪽을 권합니다.</div>
+    <div class="table-wrap"><table>
+      <thead><tr><th>상품</th><th>피어 사례</th><th>가격대</th><th>신데렐라에서의 형태</th><th>예상 제작 부담</th><th>메모</th></tr></thead>
+      <tbody>
+        <tr class="focus"><td class="name"><b>의상·꾸미기 팩</b></td><td>바비(VIP), 토카보카(가구 팩)</td><td class="num">0.99–2.99달러</td><td>드레스·구두·마차 테마 팩. 무도회 장면에 바로 적용</td><td><span class="pill green">낮음</span><br><small>스파인 스킨 추가</small></td><td>대표님이 직접 본 반응과 일치. 첫 후보</td></tr>
+        <tr class="focus"><td class="name"><b>다음 책·전권 세트</b></td><td>핑크퐁(권당 1.99, 세트 12.99달러)</td><td class="num">권당 1.99–4.99달러</td><td>신데렐라 앱 안에 빨간 망토 등을 추가. 전권 미리 구매</td><td><span class="pill blue">본 제작 라인</span></td><td>책이 쌓일수록 가치가 커짐</td></tr>
+        <tr><td class="name"><b>미니게임</b></td><td>핑크퐁(퍼즐·미로는 무료로 포함)</td><td class="num">단독 판매 사례 없음</td><td>퍼즐형 게임</td><td><span class="pill amber">중간</span></td><td>파는 상품보다 재방문 장치나 보상 수단으로 쓰는 게 일반적</td></tr>
+        <tr><td class="name"><b>음성·낭독</b></td><td>Readmio(구독의 핵심), Vooks(부모 녹음)</td><td class="num">구독에 포함</td><td>성우 낭독 버전, 언어 팩, 부모 녹음</td><td><span class="pill amber">중간</span><br><small>언어만큼 녹음비. 부모 녹음은 COPPA 대응 필요</small></td><td>언어 팩은 글로벌 확장과 연결됨</td></tr>
+        <tr><td class="name"><b>보상 컬렉션</b><span>스티커·코인</span></td><td>선희 님이 언급한 타사 미니게임 코인</td><td class="num">협의 필요</td><td>동화를 끝까지 읽으면 보상</td><td><span class="pill green">낮음</span></td><td>코인을 현금으로 사게 하면 Google 가족 정책에 걸릴 위험. 무료 보상으로만 권장</td></tr>
+        <tr><td class="name"><b>개인화</b><span>아이 이름·얼굴</span></td><td>Wonderbly(실물 맞춤 동화책 플랫폼, 2021년 Graphite Capital이 인수)</td><td class="num">실물 책 기준 고가</td><td>주인공에 아이 이름 넣기</td><td><span class="pill amber">중간</span></td><td>얼굴·사진은 COPPA에서 생체정보로 분류될 수 있어 피해야 함. 이름만 기기 안에 두는 방식을 권장</td></tr>
+        <tr><td class="name"><b>광고</b></td><td>페피(광고 포함)</td><td class="num">—</td><td>권장하지 않음</td><td><span class="pill grey">—</span></td><td>교사 추천 심사 항목이며, 부모의 신뢰를 깎음</td></tr>
+      </tbody>
+    </table></div>
+  </div>
+</div>
+
+<!-- ═══ 03 정책 제약 ═══ -->
+<div class="section">
+  <div class="sec-head">
+    <div class="sec-num">03 · 정책 제약</div>
+    <div class="headline">문제가 되는 건 인앱 결제가 아니라 <em>'아이를 자극해 결제시키는 설계'</em>입니다</div>
+    <p class="lead">인앱 결제 자체는 어느 스토어에서도 막혀 있지 않습니다. 교사 추천은 이 부분을 사람이 직접 평가합니다.</p>
+  </div>
+  <div class="ev">
+    <div class="ev-tag">규정별 요구 사항</div>
+    <div class="ev-key">모든 결제는 <em>부모 인증 뒤</em>에 두고, 아이는 고르기만 합니다</div>
+    <div class="ev-desc">Google Play 교사 추천·가족 정책, Apple 키즈 카테고리, FTC–Epic Games 합의를 기준으로 정리했습니다.</div>
+    <div class="table-wrap"><table>
+      <thead><tr><th>규정</th><th>금지·요구 사항</th><th>우리 설계에 주는 의미</th></tr></thead>
+      <tbody>
+        <tr><td class="name"><b><a href="https://play.google.com/console/about/programs/teacherapproved" target="_blank">Google Play 교사 추천</a></b></td><td>교사·전문가가 광고·인앱 결제·교차 홍보가 13세 미만 아이의 경험에 주는 영향을 평가. 통과하면 키즈 탭 노출과 배지를 받음</td><td>결제 화면이 이야기 흐름을 끊으면 불리합니다. BM버전이 따로 필요한 이유이기도 합니다.</td></tr>
+        <tr><td class="name"><b><a href="https://support.google.com/googleplay/android-developer/answer/9893335" target="_blank">Google Play 가족 정책</a></b></td><td>감정을 조종해 결제를 유도하는 수법 금지. 게임 코인과 실제 돈을 명확히 구분. 보상형 광고도 5초 뒤에는 닫을 수 있어야 함. 관심사 기반 광고·리타겟팅 금지</td><td>'신데렐라가 슬퍼해요, 드레스를 사 주세요' 같은 문구는 쓸 수 없습니다. 코인을 돈으로 파는 구조는 피해야 합니다</td></tr>
+        <tr><td class="name"><b><a href="https://uae.revera.legal/info-centr/news-and-analytical-materials/83-zapusk-prilozheniya-dlya-detej-kakie-trebovaniya-predyavlyayut-app-store-i-google-play" target="_blank">Apple 키즈 카테고리</a></b></td><td>인앱 결제와 외부 링크 앞에 부모 인증 필수. 타사 광고와 추적은 사실상 불가</td><td>모든 상점은 부모 인증 뒤에 둡니다. 아이는 원하는 것만 고르고 결제는 부모가 하는 '위시리스트' 방식이 맞습니다</td></tr>
+        <tr><td class="name"><b><a href="https://www.ftc.gov/node/80137" target="_blank">FTC–Epic Games 합의</a></b><span>2022.12</span></td><td>다크 패턴으로 결제를 유도해 2억 4,500만 달러를 환불. 부모 동의 없는 아동 결제, 미리보기 버튼 옆 구매 버튼, 숨겨진 환불 메뉴가 문제됐음</td><td>의상 미리보기와 구매 버튼은 분리하고, 환불 안내는 쉽게 찾을 수 있게 둡니다</td></tr>
+      </tbody>
+    </table></div>
+  </div>
+</div>
+
+<!-- ═══ 04 적용안 ═══ -->
+<div class="section">
+  <div class="sec-head">
+    <div class="sec-num">04 · 신데렐라 적용안</div>
+    <div class="headline">결제는 <em>'부모 상점'</em>에 모으고, 이야기 안에서는 결제를 요구하지 않습니다</div>
+    <p class="lead">이렇게 하면 앱을 하나로 유지하면서 교사 추천 심사에도 대응할 수 있습니다. BM 버전은 이 구조로 부족할 때 꺼내는 다음 카드로 둡니다.</p>
+  </div>
+
+  <div class="grid-2" style="margin-bottom:18px;">
+    <div class="tier t2"><div class="tier-h">A. 한 앱 + 부모 상점 <small>우선 유지</small></div><div class="tier-b">
+      <div class="ch"><b>구조</b><span>아이 화면에는 잠금 표시만 하고, 구매는 부모 인증 뒤 상점에서만 가능</span></div>
+      <div class="ch"><b>장점</b><span>스토어 리뷰와 순위가 한 앱에 쌓임. 빌드·심사도 한 번</span></div>
+      <div class="ch"><b>단점</b><span>교사 추천 심사에서 어떻게 평가될지는 결과를 봐야 알 수 있음</span></div>
+    </div></div>
+    <div class="tier t3"><div class="tier-h">B. 두 앱 분리 <small>심사 결과 후 판단</small></div><div class="tier-b">
+      <div class="ch"><b>구조</b><span>교사 추천용 버전(유료 단일 구매 또는 인앱 결제 없음)과 일반판(상점 포함)을 따로 출시</span></div>
+      <div class="ch"><b>장점</b><span>교사 추천 기준을 확실히 맞출 수 있음</span></div>
+      <div class="ch"><b>단점</b><span>빌드·심사·마케팅이 두 배로 듦. 리뷰가 두 앱에 나뉘어 쌓임</span></div>
+    </div></div>
+  </div>
+
+  <div class="ev">
+    <div class="ev-tag">단계별 우선순위</div>
+    <div class="ev-key">책 수가 늘어나는 속도에 맞춰 <em>단품 → 세트 → 구독</em>으로 넓힙니다</div>
+    <div class="ev-desc">3단계 구독 전환 시점은 연간 편수 산정 결과에 달려 있습니다.</div>
+    <div class="grid-2" style="gap:12px;">
+      <div class="point red"><b>① 런칭(11월 중순)과 첫 업데이트</b><span>챕터 1은 무료, 나머지 챕터는 챕터당 3,300원(북미 2.99달러)으로 파는 현재 구조를 유지합니다. 한국어와 영어는 언제든 바꿔 보고 들을 수 있습니다. 의상 팩은 런칭 빌드에 넣지 않고, 런칭 이후 업데이트로 1–2종(0.99–1.99달러)을 부모 상점에 올려 구매율을 챕터 결제와 비교합니다.</span></div>
+      <div class="point"><b>② 두 번째 책 추가(빨간 망토 또는 잭과 콩나무)</b><span>책을 앱 안에 더하고, 권당 구매와 전권 미리 구매 세트를 엽니다(핑크퐁 방식). 의상 팩은 책마다 주인공에 맞춰 만듭니다.</span></div>
+      <div class="point"><b>③ 책 3권 이상</b><span>연간 패스나 구독을 엽니다. 가격은 피어 기준인 월 8–10달러, 연 40–70달러 안에서 정합니다. 이 시점은 연간 편수 산정 결과에 달려 있습니다.</span></div>
+      <div class="point green"><b>④ 보조 장치</b><span>퍼즐형 미니게임과 스티커 보상은 무료로 넣어 재방문을 만드는 데 씁니다. 코인을 돈으로 파는 구조는 만들지 않습니다.</span></div>
+      <div class="point amber"><b>⑤ 글로벌 확장 때</b><span>추가 언어 낭독 팩(스페인어 등, 한국어·영어는 기본 포함)을 상품이나 구독 혜택으로 추가합니다.</span></div>
+    </div>
+  </div>
+</div>
+
+<!-- ═══ 확인 필요 ═══ -->
+<div class="section">
+  <div class="conclude">
+    <div class="sec-num">CHECK</div>
+    <div class="headline">확인이 필요한 항목</div>
+    <div class="grid-3">
+      <div class="point red"><b>챕터 묶음 구매 옵션</b><span>묶음 구매 옵션이 있는지 확인. 가격은 챕터당 3,300원 / 2.99달러로 확인됨</span></div>
+      <div class="point red"><b>교사 추천 심사 결과</b><span>그때까지는 A안을 유지하고, 결과를 보고 B안 여부를 판단합니다</span></div>
+      <div class="point red"><b>의상 팩 업데이트 일정</b><span>런칭 이후 의상 팩 업데이트 일정(상훈 님·인성 팀장 일정)</span></div>
+    </div>
+  </div>
+</div>
+
+<!-- ═══ 출처 ═══ -->
+<div class="section" style="margin-bottom:0;">
+  <div class="sec-num">SOURCES</div>
+  <div class="sources">
+    <a href="https://apps.apple.com/app/id1471100783" target="_blank">App Store — 핑크퐁 아기상어 스토리북</a>
+    <a href="https://apps.apple.com/kr/app-bundle/%ED%95%91%ED%81%AC%ED%90%81%ED%94%8C%EB%9F%AC%EC%8A%A4-%EC%9D%B8%EA%B8%B0-%EC%95%B1/id1569354535?l=en-GB" target="_blank">App Store — 핑크퐁 플러스 번들</a>
+    <a href="https://apppricinglab.com/iap/apple/1208138685" target="_blank">App Pricing Lab — 토카보카 월드 인앱 상품</a>
+    <a href="https://tocaboca.com/app/world/" target="_blank">Toca Boca — Toca Boca World</a>
+    <a href="https://apppricinglab.com/iap/apple/1296796112" target="_blank">App Pricing Lab — 바비 드림하우스 어드벤처스</a>
+    <a href="https://www.axios.com/2018/11/21/toca-boca-in-app-purchases-toca-life-world" target="_blank">Axios — 토카보카의 무료+인앱 전환 (2018.11)</a>
+    <a href="https://apps.apple.com/us/app/-/id1198599796" target="_blank">App Store — 페피 슈퍼스토어</a>
+    <a href="https://apps.apple.com/app/id1473021827" target="_blank">App Store — Readmio</a>
+    <a href="https://apps.apple.com/app/id1435813450" target="_blank">App Store — Vooks</a>
+    <a href="https://info.vooks.com/whats-in-the-vooks-library" target="_blank">Vooks — What's in the Vooks library</a>
+    <a href="https://apps.apple.com/app/id874425722" target="_blank">App Store — 사고미니 월드</a>
+    <a href="https://apps.apple.com/kr/app/stoala-%EC%8A%A4%ED%86%A8%EB%9D%BC-%EB%82%98%EB%A7%8C%EC%9D%98-%EB%8F%99%ED%99%94%EC%B1%85/id6503722245" target="_blank">App Store — Stoala 스톨라</a>
+    <a href="https://apps.apple.com/kr/app/%EC%8A%A4%ED%86%A0%EB%A6%AC%EB%B6%81-ai-%EC%9E%A0%EC%9E%90%EB%A6%AC-%EB%8F%99%ED%99%94/id6504148282" target="_blank">App Store — 스토리북 AI: 잠자리 동화</a>
+    <a href="https://apps.apple.com/kr/app/id923670648" target="_blank">App Store — 아이윙 읽어주는 그림책 도서관</a>
+    <a href="https://flashesandflames.com/2021/07/29/wonderbly-is-sold" target="_blank">Flashes &amp; Flames — Wonderbly 매각 (2021.7)</a>
+    <a href="https://play.google.com/console/about/programs/teacherapproved" target="_blank">Google Play — 교사 추천 프로그램</a>
+    <a href="https://support.google.com/googleplay/android-developer/answer/9893335" target="_blank">Google Play — 가족 광고·수익화 정책</a>
+    <a href="https://uae.revera.legal/info-centr/news-and-analytical-materials/83-zapusk-prilozheniya-dlya-detej-kakie-trebovaniya-predyavlyayut-app-store-i-google-play" target="_blank">Revera — App Store·Google Play 아동 앱 요건</a>
+    <a href="https://www.ftc.gov/node/80137" target="_blank">FTC — Epic Games 합의 (2022.12)</a>
+  </div>
+  <p class="note">※ 가격은 조사 시점의 앱스토어 표기 기준이며 지역·시점에 따라 달라질 수 있습니다. 예상 제작 부담은 조사 내용을 바탕으로 한 추정입니다.</p>
+  <div class="footer">Super Story · 동화 앱 BM 다각화 조사 · 2026.10.28</div>
+</div>
+
+</div>
+
+</body>
+</html>
