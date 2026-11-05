@@ -14,6 +14,8 @@ def check():
     for f in sorted(DEPLOY.rglob('*.html')):
         s = f.read_text(encoding='utf-8')
         rel = f.relative_to(DEPLOY)
+        if 'PLAN:START' in s and s.count('class="plrow') < 3:
+            errs.append(f'{rel}: 4장 일정안 타임라인이 비어 있음 — build_plan_timeline.py 재실행 필요')
         if 'MSTL:START' in s and s.count('class="mtrow"') < 2:
             errs.append(f'{rel}: 마일스톤 타임라인이 비어 있음 — build_ms_timeline.py 재실행 필요')
         if 'V2TL:START' in s and s.count('class="v2row"') < 2:
