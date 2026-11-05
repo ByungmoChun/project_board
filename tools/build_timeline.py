@@ -165,7 +165,7 @@ SECTION = f'''<!-- TIMELINE:START — tools/build_timeline.py가 생성. 직접 
   h3.tl-h{{font-size:14px;font-weight:800;margin:20px 0 2px;}}
   @media (max-width:700px){{ul.und{{columns:1;}} .tl{{--lab:170px;}}}}
 </style>
-<h2><span class="n">3.</span> 마일스톤 타임라인 (주차)</h2>
+<h2><span class="n">2.</span> 마일스톤 타임라인 (주차)</h2>
 <p class="cap">5개 R&amp;R 문서의 마일스톤 표에서 자동 생성 — 기준일 {TODAY.month}/{TODAY.day} · 1주차 = 9/28(월). 막대 = 시작일~목표일, ◆ = 시작일 없는 항목(단발 판단·시작 미정). 막대에 마우스를 올리면 담당·기간이 보인다. 이 장은 직접 고치지 않고 R&amp;R 문서를 고친 뒤 다시 생성한다.</p>
 <div class="tl-key"><span><i style="background:var(--c)"></i>진행 중</span><span><i style="background:#dbe6fb;border:1px solid var(--c)"></i>예정</span><span><i style="background:var(--e);opacity:.55"></i>완료</span><span><i style="background:#fff;border:2px solid #c0392b"></i>목표일 경과·미완료</span><span><i style="background:var(--accent);width:3px"></i>오늘</span></div>
 <div class="tl-wrap"><div class="tl">
