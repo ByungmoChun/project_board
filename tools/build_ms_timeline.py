@@ -5,7 +5,7 @@ MSTL 마커 사이를 다시 쓴다. 마커가 없으면 마일스톤 표 바로
 import re, sys, html, datetime as dt
 from pathlib import Path
 D = Path(sys.argv[1]); TODAY = dt.date.fromisoformat(sys.argv[2])
-DOCS = ['cinderella_rnr_milestones.html', 'naver_red_rnr_milestones.html', 'gyeol_rnr_milestones.html', 'emotional_tts_rnr_milestones.html', 'little_prince_rnr_milestones.html']
+DOCS = ['cinderella_rnr_milestones.html', 'naver_red_rnr_milestones.html', 'gyeol_rnr_milestones.html', 'emotional_tts_rnr_milestones.html', 'little_prince_rnr_milestones.html', 'love_roulette_rnr_milestones.html']
 def tx(x): return html.unescape(re.sub(r'<[^>]+>', ' ', x)).strip()
 def pd(x):
     t = tx(x)
