@@ -28,6 +28,7 @@ CSS = '''<style>
 .mtdia{position:absolute;top:9px;width:12px;height:12px;transform:rotate(45deg);}
 .mtbar.now,.mtdia.now{background:#2F6FE8;} .mtbar.next,.mtdia.next{background:#dbe6fb;border:1px solid #2F6FE8;}
 .mtbar.done,.mtdia.done{background:#3d8c4a;opacity:.6;} .mtbar.late,.mtdia.late{background:#fff;border:2px solid #c0392b;}
+.mtbar.hold,.mtdia.hold{background:repeating-linear-gradient(45deg,#f3e3b0 0 5px,#fff 5px 10px);border:1px solid #c99a1d;}
 .mtbl{position:absolute;top:7px;font-size:10.5px;color:var(--ink3);white-space:nowrap;}
 .mtna{position:absolute;left:8px;top:7px;font-size:10.5px;color:var(--ink3);}
 .mttoday{position:absolute;top:34px;bottom:0;border-left:2px solid var(--accent);z-index:3;pointer-events:none;}
@@ -43,8 +44,9 @@ for name in DOCS:
     for m in re.finditer(r'<tr><td>(M\d+)</td>(.*?)</tr>', s[s.rfind('<table', 0, a):tb_end], re.S):
         tds = re.findall(r'<td[^>]*>(.*?)</td>', m[2], re.S)
         done = '✅' in tds[0]
-        nm = re.sub(r'✅\s*(완료)?', '', tx(re.split(r'<br', tds[0])[0])).strip()
-        rows.append((m[1], nm, pd(tds[1]), pd(tds[2]), tx(tds[3]).split('/')[0].strip(), done))
+        hold = '보류' in tds[0]
+        nm = re.sub(r'(✅\s*(완료)?|🟡\s*보류)', '', tx(re.split(r'<br', tds[0])[0])).strip()
+        rows.append((m[1], nm, pd(tds[1]), pd(tds[2]), tx(tds[3]).split('/')[0].strip(), 'hold' if hold else done))
     if not rows: sys.exit(f'오류: {name} 마일스톤 표에서 행을 못 읽음 — 갱신 중단')
     ds = [d for r in rows for d in (r[2], r[3]) if d]
     W0 = monday(min(ds)); W1 = monday(max(ds)); weeks = (W1 - W0).days//7 + 1
@@ -68,8 +70,8 @@ for name in DOCS:
         if not en:
             bar = '<div class="mtna">일정 미정 (■)</div>'
         else:
-            c = 'done' if done else ('late' if en < TODAY else ('now' if st and st <= TODAY else 'next'))
-            word = {'done': '완료', 'late': '목표일 경과', 'now': '진행', 'next': '예정'}[c]
+            c = 'hold' if done == 'hold' else ('done' if done else ('late' if en < TODAY else ('now' if st and st <= TODAY else 'next')))
+            word = {'done': '완료', 'late': '목표일 경과', 'now': '진행', 'next': '예정', 'hold': '보류'}[c]
             if st and st < en:
                 x0, x1 = x(st), x(en) + DW
                 bar = f'<div class="mtbar {c}" style="left:{x0}px;width:{max(x1-x0,DW)}px"></div>'
@@ -85,7 +87,7 @@ for name in DOCS:
     SEC = (f'<!-- MSTL:START — tools/build_ms_timeline.py가 위 마일스톤 표에서 생성. 직접 수정 금지 -->\n{CSS}\n'
            f'<h3 style="font-size:15px;font-weight:700;margin:22px 0 6px;">마일스톤 타임라인</h3>\n'
            f'<p class="cap">위 마일스톤 표의 시작일·목표일을 막대로 그린 것(평일 기준, 열 = 주 시작 월요일). '
-           f'<b>진행</b> 파랑 · <b>예정</b> 연파랑 · <b>완료</b> 초록 · <b>목표일 경과</b> 빨간 테두리 · ◆ = 시작일 없는 단발 항목. 표를 고치면 다시 생성한다.</p>\n'
+           f'<b>진행</b> 파랑 · <b>예정</b> 연파랑 · <b>완료</b> 초록 · <b>목표일 경과</b> 빨간 테두리 · <b>보류</b> 빗금 · ◆ = 시작일 없는 단발 항목. 표를 고치면 다시 생성한다.</p>\n'
            f'<div class="mtwrap"><div class="mt">\n<div class="mtrow mthead"><div class="mtlab" style="font-size:11px;color:var(--ink3)">마일스톤 / 담당</div>'
            f'<div class="mttr" style="width:{track+150}px">{head}</div></div>\n{body}{today}\n</div></div>\n<!-- MSTL:END -->')
     if '<!-- MSTL:START' in s:

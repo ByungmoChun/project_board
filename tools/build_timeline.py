@@ -43,12 +43,13 @@ def parse(doc):
         tds = re.findall(r'<td[^>]*>(.*?)</td>', m[2], re.S)
         name_html = tds[0]
         done = '✅' in name_html
+        hold = '보류' in name_html
         name = text(re.split(r'<br', name_html)[0])
         name = re.sub(r'✅\s*(완료)?', '', name).split(' — ')[0].strip()
         owner = text(tds[3]).split('/')[0]
         who = [p for p in PEOPLE if p in owner]
         out.append(dict(id=m[1], name=name, start=pdate(tds[1]), end=pdate(tds[2]), single=text(tds[1]) == '—',
-                        done=done, owner=text(tds[3]), who=who))
+                        done=done, hold=hold, owner=text(tds[3]), who=who))
     return out
 
 def x(d):  # 날짜 → px
@@ -92,6 +93,7 @@ for doc, nm, cat, ms in data:
         s = max(s, origin)
         x0, x1 = x(s), x(m['end'] + dt.timedelta(days=1))
         if m['done']: st = 'done'
+        elif m.get('hold'): st = 'hold'
         elif m['end'] < TODAY: st = 'late'
         elif m['start'] and m['start'] <= TODAY: st = 'now'
         else: st = 'next'
@@ -114,7 +116,7 @@ for p in PEOPLE:
     for i in range(nweeks):
         ws = origin + dt.timedelta(weeks=i); we = ws + dt.timedelta(days=4)
         hit = [f'{nm} {m["id"]}' for doc, nm, _, ms in data for m in ms
-               if (doc, m['id']) not in LOAD_SKIP and p in m['who'] and not m['done'] and m['start'] and m['end']
+               if (doc, m['id']) not in LOAD_SKIP and p in m['who'] and not m['done'] and not m.get('hold') and m['start'] and m['end']
                and m['start'] <= we and m['end'] >= ws]
         n = len(hit)
         cells.append(f'<div class="ld l{min(n,4)}" style="left:{i*W}px;width:{W}px" title="{html.escape(" / ".join(hit)) or "없음"}">{n or ""}</div>')
@@ -152,6 +154,7 @@ SECTION = f'''<!-- TIMELINE:START — tools/build_timeline.py가 생성. 직접 
   .bar.next,.dia.next{{background:color-mix(in srgb,var(--pc) 32%,#fff);border:1px solid var(--pc);}}
   .bar.done,.dia.done{{background:var(--e);opacity:.55;}}
   .bar.late,.dia.late{{background:#fff;border:2px solid #c0392b;}}
+  .bar.hold,.dia.hold{{background:repeating-linear-gradient(45deg,#f3e3b0 0 5px,#fff 5px 10px);border:1px solid #c99a1d;}}
   .bl{{position:absolute;top:7px;font-size:10.5px;color:var(--ink3);white-space:nowrap;z-index:1;}}
   .today{{position:absolute;top:46px;bottom:0;width:0;border-left:2px solid var(--accent);z-index:2;pointer-events:none;}}
   .today span{{position:absolute;top:2px;left:3px;background:var(--accent);color:#fff;font-size:9.5px;font-weight:800;padding:0 4px;border-radius:3px;white-space:nowrap;}}
