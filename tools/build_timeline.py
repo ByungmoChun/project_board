@@ -19,8 +19,8 @@ PROJECTS = [  # (문서, 표시명, 분류)
     ('love_roulette_rnr_milestones.html','러브룰렛 「모니터룸」',   'B'),
     ('playtoon_maker_rnr_milestones.html','PlayToon Maker',       'C'),
     ('gyeol_rnr_milestones.html',        '결 (GYEOL)',             'C'),
-    ('superstory_web_rnr_milestones.html', 'superstory.com 홈페이지', 'E'),
     ('emotional_tts_rnr_milestones.html', 'Emotional TTS', 'C'),
+    ('superstory_web_rnr_milestones.html', 'superstory.com 홈페이지', 'E'),
 ]
 # 같은 작업이 두 문서에 걸쳐 있는 경우 — 부하 계산에서 한 번만 센다
 LOAD_SKIP = {('playtoon_maker_rnr_milestones.html', 'M1')}  # = 네이버 레드 M2 Maker 지원
@@ -59,6 +59,7 @@ def x(d):  # 날짜 → px
 def fmt(d): return f'{d.month}/{d.day}'
 
 data = [(doc, nm, cat, parse(doc)) for doc, nm, cat in PROJECTS]
+COLLAPSED = {'gyeol_rnr_milestones.html', 'superstory_web_rnr_milestones.html'}  # 접어 두는 프로젝트(▶ 눌러 펼침)
 dated = [m for *_, ms in data for m in ms if m['end']]
 last = max(m['end'] for m in dated)
 nweeks = PAST_WEEKS + ((last - WEEK1).days // 7) + 1
@@ -83,7 +84,9 @@ def grid_lines():
 today_x = x(TODAY)
 rows, undated, early = [], [], []
 for doc, nm, cat, ms in data:
-    rows.append(f'<div class="tl-row grp"><div class="tl-lab"><span class="lb {cat}">{cat}</span><a class="doc" href="{doc}">{nm}</a></div><div class="tl-track" style="width:{track_w}px">{grid_lines()}</div></div>')
+    if rows: rows.append('</details>')
+    op = '' if doc in COLLAPSED else ' open'
+    rows.append(f'<details class="tl-g"{op}><summary class="tl-row grp"><div class="tl-lab"><span class="tl-tg"></span><span class="lb {cat}">{cat}</span><a class="doc" href="{doc}">{nm}</a><span class="tl-n">{len(ms)}</span></div><div class="tl-track" style="width:{track_w}px">{grid_lines()}</div></summary>')
     for m in ms:
         if not m['end']:
             undated.append((cat, nm, doc, m)); continue
@@ -108,6 +111,8 @@ for doc, nm, cat, ms in data:
         chk = ' ✅' if m['done'] else ''
         rows.append(f'<div class="tl-row"><div class="tl-lab ms"><b>{m["id"]}</b> {html.escape(m["name"])}{chk}<em>{html.escape(m["owner"])}</em></div>'
                     f'<div class="tl-track" style="width:{track_w}px">{grid_lines()}{shape}{label}</div></div>')
+
+if rows: rows.append('</details>')
 
 # 담당자별 동시 진행 부하 (완료 제외, 시작·목표 모두 있는 마일스톤)
 load_rows = []
@@ -140,6 +145,11 @@ SECTION = f'''<!-- TIMELINE:START — tools/build_timeline.py가 생성. 직접 
   .tl-lab.ms{{padding-left:22px;color:var(--ink2);flex-wrap:wrap;gap:0 5px;line-height:1.35;}}
   .tl-lab.ms em{{font-style:normal;color:var(--ink3);font-size:10.5px;width:100%;}}
   .tl-row.grp{{background:var(--soft);}} .tl-row.grp .tl-lab{{background:var(--soft);font-weight:800;}}
+  details.tl-g>summary{{list-style:none;cursor:pointer;}} details.tl-g>summary::-webkit-details-marker{{display:none;}}
+  .tl-tg{{display:inline-block;width:0;height:0;border-left:6px solid var(--ink2);border-top:4.5px solid transparent;border-bottom:4.5px solid transparent;transition:transform .15s;margin-right:2px;}}
+  details.tl-g[open]>summary .tl-tg{{transform:rotate(90deg);}}
+  .tl-n{{margin-left:auto;font-size:10px;font-weight:700;color:var(--ink3);background:var(--card);border:1px solid var(--line);border-radius:8px;padding:0 6px;}}
+  details.tl-g:not([open])>summary .tl-n::after{{content:' · 접힘';}}
   .tl-track{{position:relative;flex:0 0 auto;}}
   .tl-head .tl-track{{height:46px;}}
   .wk{{position:absolute;top:0;height:46px;font-size:10.5px;color:var(--ink2);text-align:center;padding-top:3px;line-height:1.25;border-left:1px solid var(--line);}}
@@ -169,7 +179,7 @@ SECTION = f'''<!-- TIMELINE:START — tools/build_timeline.py가 생성. 직접 
   @media (max-width:700px){{ul.und{{columns:1;}} .tl{{--lab:170px;}}}}
 </style>
 <h2><span class="n">2.</span> 마일스톤 타임라인 (주차)</h2>
-<p class="cap">5개 R&amp;R 문서의 마일스톤 표에서 자동 생성 — 기준일 {TODAY.month}/{TODAY.day} · 1주차 = 9/28(월). 막대 = 시작일~목표일, ◆ = 시작일 없는 항목(단발 판단·시작 미정). 막대에 마우스를 올리면 담당·기간이 보인다. 이 장은 직접 고치지 않고 R&amp;R 문서를 고친 뒤 다시 생성한다.</p>
+<p class="cap">5개 R&amp;R 문서의 마일스톤 표에서 자동 생성 — 기준일 {TODAY.month}/{TODAY.day} · 1주차 = 9/28(월). 막대 = 시작일~목표일, ◆ = 시작일 없는 항목(단발 판단·시작 미정). 막대에 마우스를 올리면 담당·기간이 보인다. 프로젝트 이름 앞 ▶ 를 누르면 접고 펼친다. 이 장은 직접 고치지 않고 R&amp;R 문서를 고친 뒤 다시 생성한다.</p>
 <div class="tl-key"><span><i style="background:var(--c)"></i>진행 중</span><span><i style="background:#dbe6fb;border:1px solid var(--c)"></i>예정</span><span><i style="background:var(--e);opacity:.55"></i>완료</span><span><i style="background:#fff;border:2px solid #c0392b"></i>목표일 경과·미완료</span><span><i style="background:var(--accent);width:3px"></i>오늘</span></div>
 <div class="tl-wrap"><div class="tl">
   <div class="tl-row tl-head"><div class="tl-lab" style="font-size:11px;color:var(--ink3)">프로젝트 · 마일스톤 / 담당</div><div class="tl-track" style="width:{track_w}px">{week_head()}</div></div>
@@ -178,7 +188,7 @@ SECTION = f'''<!-- TIMELINE:START — tools/build_timeline.py가 생성. 직접 
 </div></div>
 {('<p class="cap">창 이전 완료: ' + early_html + '</p>') if early else ''}
 
-<h3 class="tl-h">3.1 담당자별 동시 진행 마일스톤 수</h3>
+<h3 class="tl-h">2.1 담당자별 동시 진행 마일스톤 수</h3>
 <p class="cap">주별로 겹치는 미완료 마일스톤 개수(담당 기준, 시작·목표일 모두 있는 것만). 2 이상은 우선순위 확인 대상(Maker M1 = 레드 M2는 같은 작업이라 한 번만 셈) — 칸에 마우스를 올리면 해당 건이 보인다.</p>
 <div class="tl-wrap"><div class="tl">
   <div class="tl-row tl-head"><div class="tl-lab" style="font-size:11px;color:var(--ink3)">담당자</div><div class="tl-track" style="width:{track_w}px">{week_head()}</div></div>
@@ -186,7 +196,7 @@ SECTION = f'''<!-- TIMELINE:START — tools/build_timeline.py가 생성. 직접 
   <div class="today" style="left:calc(var(--lab) + {today_x:.1f}px)"></div>
 </div></div>
 
-<h3 class="tl-h">3.2 날짜 미정 (■) — 금요일 주간회의 기입 대상 {len(undated)}건</h3>
+<h3 class="tl-h">2.2 날짜 미정 (■) — 금요일 주간회의 기입 대상 {len(undated)}건</h3>
 {und_html}
 <!-- TIMELINE:END -->'''
 
