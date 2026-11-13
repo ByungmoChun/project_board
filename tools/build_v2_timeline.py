@@ -6,30 +6,39 @@ from pathlib import Path
 D = Path(sys.argv[1]); TODAY = dt.date.fromisoformat(sys.argv[2])
 F = D/'playtoon_maker_rnr_milestones.html'
 s = F.read_text(encoding='utf-8')
-W1 = dt.date(2026, 9, 28); WEEKS = 6; DW = 15   # 1일당 px (평일 5일 × 6주)
+W1 = dt.date(2026, 9, 28); DW = 12   # 1일당 px — 주 수는 V2·V3 행의 마지막 날짜로 계산
 def tx(x): return html.unescape(re.sub(r'<[^>]+>', '', x)).strip()
 def pd(x):
     m = re.search(r'(\d{1,2})/(\d{1,2})', x); return dt.date(2026, int(m[1]), int(m[2])) if m else None
 a = s.find('<!-- V21:START -->'); b = s.find('<!-- V21:END -->')
 rows = []
-for m in re.finditer(r'<tr><td[^>]*>([FS]\d(?:-\d)?)</td>(.*?)</tr>', s[a:b], re.S):
+for m in re.finditer(r'<tr><td[^>]*>(V3-\d+|[FS]\d(?:-\d)?)</td>(.*?)</tr>', s[a:b], re.S):
     tds = re.findall(r'<td[^>]*>(.*?)</td>', m[2], re.S)
-    if '-' in m[1]: continue
+    if re.fullmatch(r'[FS]\d-\d', m[1]): continue
     name, who, per, st = tx(tds[0]), tx(tds[1]), tds[3], tx(tds[4])
     ds = re.findall(r'(\d{1,2}/\d{1,2})', per)
+    if len(ds) == 1 and re.search(r'\d{1,2}/\d{1,2}\s*~\s*■', tx(per)):   # 시작만 있고 종료 미정
+        rows.append((m[1], name, who, pd(ds[0]), None, st)); continue
     end = pd(ds[-1]) if ds else None
     start = pd(ds[0]) if len(ds) == 2 else None
     rows.append((m[1], name, who, start, end, st))
-if not rows:
-    sys.exit('오류: 2.1 표에서 행을 하나도 읽지 못함 — 표 형식 확인 필요(타임라인 갱신 중단)')
+V2N = next((k for k, r in enumerate(rows) if r[0].startswith('V3-')), len(rows))
+LAST = max([r[4] or r[3] for r in rows if (r[4] or r[3])])
+WEEKS = (LAST - W1).days // 7 + 1
 def x(d):  # 평일 기준 위치
     days = (d - W1).days; wk, wd = divmod(days, 7); return (wk*5 + min(wd, 4)) * DW
 track = WEEKS*5*DW
 head = ''.join(f'<div class="v2wk" style="left:{i*5*DW}px;width:{5*DW}px"><b>{i+1}주</b><i>{(W1+dt.timedelta(weeks=i)).month}/{(W1+dt.timedelta(weeks=i)).day}~</i></div>' for i in range(WEEKS))
 grid = ''.join(f'<div class="v2gl" style="left:{i*5*DW}px"></div>' for i in range(WEEKS+1))
 body = ''
-for rid, name, who, st_d, en_d, st in rows:
-    if not en_d: bar = '<div class="v2na">일정 미정</div>'
+for k, (rid, name, who, st_d, en_d, st) in enumerate(rows):
+    if k in (0, V2N):
+        g = 'V2 기능 · 지원' if k == 0 else 'V3 1차 — MS.18 (11/9 착수 → 12/4 릴리즈)'
+        body += f'<div class="v2row v2grp"><div class="v2lab">{g}</div><div class="v2tr" style="width:{track}px">{grid}</div></div>'
+    if not en_d and st_d:
+        c = 'now' if '진행' in st else 'next'
+        bar = f'<div class="v2dia {c}" style="left:{x(st_d)+DW/2-6}px"></div><div class="v2bl" style="left:{x(st_d)+DW+3}px">{st_d.month}/{st_d.day}~ 종료 미정 · {html.escape(st)}</div>'
+    elif not en_d: bar = '<div class="v2na">일정 미정</div>'
     else:
         if '완료' in st: c = 'done'
         elif '보류' in st: c = 'hold'
@@ -49,7 +58,9 @@ for rid, name, who, st_d, en_d, st in rows:
 tx_ = x(TODAY) if W1 <= TODAY <= W1+dt.timedelta(weeks=WEEKS) else None
 today = f'<div class="v2today" style="left:calc(var(--v2lab) + {tx_+DW/2}px)"><span>오늘 {TODAY.month}/{TODAY.day}</span></div>' if tx_ is not None else ''
 V2END = dt.date(2026, 11, 6)
-v2end = f'<div class="v2end" style="left:calc(var(--v2lab) + {x(V2END)+DW}px)"><span>V2 마감 {V2END.month}/{V2END.day}</span></div>'
+V3REL = dt.date(2026, 12, 4)
+v2end = (f'<div class="v2end" style="left:calc(var(--v2lab) + {x(V2END)+DW}px)"><span>V2 마감 {V2END.month}/{V2END.day}</span></div>'
+         f'<div class="v2end v3" style="left:calc(var(--v2lab) + {x(V3REL)+DW}px)"><span>V3 1차 릴리즈 {V3REL.month}/{V3REL.day}</span></div>')
 SEC = f'''<!-- V2TL:START — tools/build_v2_timeline.py가 2.1 표에서 생성. 직접 수정 금지 -->
 <style>
 .v2wrap{{overflow-x:auto;border:1px solid var(--line);border-radius:8px;background:var(--card);margin-top:6px;}}
@@ -69,12 +80,14 @@ SEC = f'''<!-- V2TL:START — tools/build_v2_timeline.py가 2.1 표에서 생성
 .v2bl{{position:absolute;top:7px;font-size:10.5px;color:var(--ink3);white-space:nowrap;}}
 .v2na{{position:absolute;left:8px;top:7px;font-size:10.5px;color:var(--ink3);}}
 .v2today{{position:absolute;top:34px;bottom:0;border-left:2px solid var(--accent);z-index:3;pointer-events:none;}}
+  .v2grp{{background:var(--soft);min-height:24px;}} .v2grp .v2lab{{background:var(--soft);font-weight:800;font-size:11.5px;}}
+.v2end.v3{{border-left-color:#5b4fc4;}} .v2end.v3 span{{background:#5b4fc4;}}
   .v2end{{position:absolute;top:34px;bottom:0;border-left:2px dashed #222;z-index:3;pointer-events:none;}}
 .v2end span{{position:absolute;top:-17px;right:3px;background:#222;color:#fff;font-size:9.5px;font-weight:800;padding:0 4px;border-radius:3px;white-space:nowrap;}}
 .v2today span{{position:absolute;top:-17px;left:3px;background:var(--accent);color:#fff;font-size:9.5px;font-weight:800;padding:0 4px;border-radius:3px;white-space:nowrap;}}
 @media (max-width:700px){{.v2{{--v2lab:150px;}}}}
 </style>
-<p class="cap">2.1 표의 기간·상태를 그대로 막대로 그린 것(평일 기준, 1주차 = 9/28). <b>진행</b> 파랑 · <b>예정</b> 연파랑 · <b>완료</b> 초록 · <b>지연·목표일 경과</b> 빨간 테두리 · <b>보류</b> 빗금. 세부 태스크 일정은 Jira(2.3)에서 본다.</p>
+<p class="cap">2.1 표(V2 기능·지원, 아래쪽 V3 1차 포함)의 기간·상태를 그대로 막대로 그린 것(평일 기준, 1주차 = 9/28). <b>진행</b> 파랑 · <b>예정</b> 연파랑 · <b>완료</b> 초록 · <b>지연·목표일 경과</b> 빨간 테두리 · <b>보류</b> 빗금. 세부 태스크 일정은 Jira(2.3)에서 본다.</p>
 <div class="v2wrap"><div class="v2">
 <div class="v2row v2head"><div class="v2lab" style="font-size:11px;color:var(--ink3)">기능 · 지원 / 담당</div><div class="v2tr" style="width:{track}px">{head}</div></div>
 {body}{today}{v2end}
