@@ -21,7 +21,31 @@ PROJECTS = [  # (문서, 표시명, 분류)
     ('gyeol_rnr_milestones.html',        '결 (GYEOL)',             'C'),
     ('emotional_tts_rnr_milestones.html', 'Emotional TTS', 'C'),
     ('superstory_web_rnr_milestones.html', 'superstory.com 홈페이지', 'E'),
+    ('inline:public_facility', '공공시설물관리시스템', 'D'),
+    ('inline:marimo',          '수변 생태 마리모',     'D'),
 ]
+# R&R 문서 승격 전까지 쓰는 임시 마일스톤 (drafts/ 초안과 같은 내용 — 승격 시 PROJECTS의 'inline:'을 문서명으로 바꾸고 여기서 지운다)
+def _d(s):
+    if not s: return None
+    mo, d = map(int, s.split('/')); return dt.date(2026 if mo >= 7 else 2027, mo, d)
+def _m(i, name, st, en, owner, done=False):
+    return dict(id=i, name=name, start=_d(st), end=_d(en), single=st is None, done=done, hold=False, owner=owner,
+                who=[p for p in ['전병모','이상훈','안국주','홍수화','이순형','박인성','이규선','유성현'] if p in owner])
+INLINE = {
+  'inline:public_facility': [
+    _m('M1', '프로토타입 문서 (범위 · 기술정의서 · DB 설계도)', '11/9', '11/13', '전병모', done=True),
+    _m('M2', '프로토타입 개발', '11/10', '11/17', '전병모'),
+    _m('M3', '2차 질의(11/16 답변 수령) · 넥서스 미팅 → 범위 확정', None, None, '전병모 · 최경훈'),
+    _m('M4', '시스템 기획 · 앱/웹 기획', '11/16', None, '전병모'),
+    _m('M5', '본 개발 (2개월)', None, None, '이순형'),
+  ],
+  'inline:marimo': [
+    _m('M1', '그래픽 개발', '11/16', '12/11', '박인성 · 이규선'),
+    _m('M2', '프로그래밍', '11/16', '12/11', '안국주'),
+    _m('M3', '개발 완료', None, '12/11', '박인성 · 안국주'),
+    _m('M4', '설치 · 오픈(추정)', None, '12/21', '박인성'),
+  ],
+}
 # 같은 작업이 두 문서에 걸쳐 있는 경우 — 부하 계산에서 한 번만 센다
 LOAD_SKIP = {('playtoon_maker_rnr_milestones.html', 'M1')}  # = 네이버 레드 M2 Maker 지원
 PEOPLE = ['전병모','이상훈','안국주','홍수화','이순형','박인성','이규선','유성현']
@@ -37,6 +61,7 @@ def pdate(cell):
     return dt.date(2026 if mo >= 7 else 2027, mo, d)
 
 def parse(doc):
+    if doc.startswith('inline:'): return INLINE[doc]
     s = (DEPLOY/doc).read_text(encoding='utf-8')
     out = []
     for m in re.finditer(r'<tr><td>(M\d+)</td>(.*?)</tr>', s, re.S):
@@ -86,7 +111,7 @@ rows, undated, early = [], [], []
 for doc, nm, cat, ms in data:
     if rows: rows.append('</details>')
     op = '' if doc in COLLAPSED else ' open'
-    rows.append(f'<details class="tl-g"{op}><summary class="tl-row grp"><div class="tl-lab"><span class="tl-tg"></span><span class="lb {cat}">{cat}</span><a class="doc" href="{doc}">{nm}</a><span class="tl-n">{len(ms)}</span></div><div class="tl-track" style="width:{track_w}px">{grid_lines()}</div></summary>')
+    rows.append(f'<details class="tl-g"{op}><summary class="tl-row grp"><div class="tl-lab"><span class="tl-tg"></span><span class="lb {cat}">{cat}</span>{(f'<a class="doc" href="{doc}">{nm}</a>' if not doc.startswith('inline:') else f'<b>{nm}</b><span style="font-size:10px;color:var(--ink3);margin-left:4px">R&amp;R 준비 중</span>')}<span class="tl-n">{len(ms)}</span></div><div class="tl-track" style="width:{track_w}px">{grid_lines()}</div></summary>')
     for m in ms:
         if not m['end']:
             undated.append((cat, nm, doc, m)); continue
@@ -131,7 +156,7 @@ und_html = ''
 cur = None
 items = []
 for cat, nm, doc, m in undated:
-    items.append(f'<li><span class="lb {cat}">{cat}</span><a class="doc" href="{doc}">{nm}</a> <b>{m["id"]}</b> {html.escape(m["name"])} <em>{html.escape(m["owner"])}</em></li>')
+    items.append(f'<li><span class="lb {cat}">{cat}</span>{(f'<a class="doc" href="{doc}">{nm}</a>' if not doc.startswith('inline:') else f'<b>{nm}</b>')} <b>{m["id"]}</b> {html.escape(m["name"])} <em>{html.escape(m["owner"])}</em></li>')
 und_html = '<ul class="und">' + ''.join(items) + '</ul>'
 early_html = ' · '.join(f'{nm} {m["id"]} {html.escape(m["name"])} ({fmt(m["end"])})' for nm, m in early)
 
@@ -159,7 +184,7 @@ SECTION = f'''<!-- TIMELINE:START — tools/build_timeline.py가 생성. 직접 
   .gl{{position:absolute;top:0;bottom:0;border-left:1px solid #f0ece4;}} .gl.m{{border-left-color:var(--line);}}
   .bar{{position:absolute;top:8px;height:14px;border-radius:3px;z-index:1;}}
   .dia{{position:absolute;top:9px;width:12px;height:12px;transform:rotate(45deg);z-index:1;}}
-  .cA{{--pc:var(--a);}} .cB{{--pc:var(--b);}} .cC{{--pc:var(--c);}}
+  .cA{{--pc:var(--a);}} .cB{{--pc:var(--b);}} .cC{{--pc:var(--c);}} .cD{{--pc:var(--d,#b8860b);}} .cE{{--pc:var(--e,#3d8c4a);}}
   .bar.now,.dia.now{{background:var(--pc);}}
   .bar.next,.dia.next{{background:color-mix(in srgb,var(--pc) 32%,#fff);border:1px solid var(--pc);}}
   .bar.done,.dia.done{{background:var(--e);opacity:.55;}}
